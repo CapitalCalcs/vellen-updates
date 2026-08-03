@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vellen — Notes that connect</title>
+<meta name="description" content="Vellen is a notes app for people who want their notes to be plain Markdown files they own — with linking, whiteboards, boards, and private end-to-end encrypted sync.">
+<style>
+  :root {
+    --bg: #faf6ed; --panel: #f0e9da; --fg: #2e2718; --muted: #615848;
+    --accent: #a5720f; --accent-text: #6b4a08; --border: #e3d9c3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #191613; --panel: #14110e; --fg: #e8e0d2; --muted: #9d9182;
+      --accent: #e8b04b; --accent-text: #e8b04b; --border: #322a1f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 48px 24px 96px; }
+  h1, h2 { font-family: ui-serif, "New York", "Iowan Old Style", Palatino, Georgia, serif; }
+  h1 { font-size: 2.4rem; margin: 0 0 4px; }
+  h2 { font-size: 1.25rem; margin: 2.2em 0 0.5em; }
+  .tag { color: var(--muted); font-size: 1.05rem; margin: 0 0 2em; }
+  .promise {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 22px; margin: 1.5em 0;
+  }
+  .promise ul { margin: 0.6em 0 0; padding-left: 1.2em; }
+  .promise li { margin: 0.35em 0; }
+  a { color: var(--accent-text); }
+  strong { color: var(--fg); }
+  .brand { color: var(--accent); letter-spacing: 0.01em; }
+  .status { font-size: 0.9rem; color: var(--muted); }
+  footer { margin-top: 4em; padding-top: 1.5em; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><span class="brand">Vellen</span></h1>
+  <p class="tag">Notes that connect. Yours, in a folder you choose, forever.</p>
+
+  <p>Vellen is a notes app built on one conviction: <strong>your notes should
+  be plain files you own</strong> — readable by any app, in a folder you
+  picked, on your own device. Everything else is built on top of that, never
+  instead of it.</p>
+
+  <div class="promise">
+    <ul>
+      <li><strong>Plain Markdown files.</strong> No proprietary database, no lock-in. Your vault opens in any text editor.</li>
+      <li><strong>Notes that link.</strong> Wikilinks, backlinks, embeds, tags, and a graph of how your thinking connects.</li>
+      <li><strong>More than text.</strong> Whiteboards for spatial thinking, boards for tasks, daily notes for the everyday.</li>
+      <li><strong>Private sync, if you want it.</strong> Optional sync through your own Google Drive with end-to-end encryption — we run no servers and can't read your notes. Or skip it entirely.</li>
+      <li><strong>No account. No tracking. No training.</strong> The details are in the <a href="privacy.html">privacy policy</a> — it's short and it means it.</li>
+    </ul>
+  </div>
+
+  <h2>Where it runs</h2>
+  <p>macOS, Windows, iPhone, iPad, and Android.</p>
+
+  <h2>Availability</h2>
+  <p class="status">Vellen is in closed testing ahead of public launch. If
+  you'd like to help test, or want to hear when it opens up, write to
+  <a href="mailto:robmwalsh1969@gmail.com">robmwalsh1969@gmail.com</a>.</p>
+
+  <footer>
+    © 2026 CapitalCalcs LLC &nbsp;·&nbsp; <a href="privacy.html">Privacy policy</a>
+  </footer>
+</main>
+</body>
+</html>
