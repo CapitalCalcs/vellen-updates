@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vellen — What's new</title>
+<meta name="description" content="What changed in each version of Vellen, and what was broken before it — written for the people who use it.">
+<style>
+  :root {
+    --bg: #faf6ed; --panel: #f0e9da; --fg: #2e2718; --muted: #615848;
+    --accent: #a5720f; --accent-text: #6b4a08; --border: #e3d9c3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #191613; --panel: #14110e; --fg: #e8e0d2; --muted: #9d9182;
+      --accent: #e8b04b; --accent-text: #e8b04b; --border: #322a1f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 48px 24px 96px; }
+  h1, h2 { font-family: ui-serif, "New York", "Iowan Old Style", Palatino, Georgia, serif; }
+  h1 { font-size: 2rem; margin: 0 0 4px; }
+  h2 { font-size: 1.25rem; margin: 2.4em 0 0.6em; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  h2 a { color: inherit; text-decoration: none; }
+  h2 a:hover { text-decoration: underline; }
+  .date { color: var(--muted); font-size: 0.85rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 400; }
+  .updated { color: var(--muted); font-size: 0.85rem; margin-bottom: 2em; }
+  .intro {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 22px; margin: 1.5em 0 2.5em;
+  }
+  .release ul { padding-left: 1.2em; }
+  .release li { margin: 0.7em 0; }
+  .release li li { margin: 0.3em 0; }
+  code { font: 0.9em ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: var(--panel); padding: 1px 5px; border-radius: 4px; }
+  a { color: var(--accent-text); }
+  strong { color: var(--fg); }
+  .brand { color: var(--accent); letter-spacing: 0.01em; }
+  footer { margin-top: 4em; padding-top: 1.5em; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><span class="brand">Vellen</span> — What's new</h1>
+  <p class="updated">Latest: version 1.0.21, September 9, 2026</p>
+
+  <div class="intro">
+    <p style="margin:0">Every version, what it changed, and what was wrong
+    before it. Written plainly, on purpose: a notes app is something you
+    trust with your thinking, and you should be able to see exactly what
+    we fixed and when. Something not right? Write to
+    <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
+    use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
+  </div>
+
+  <section class="release" id="v1.0.21">
+    <h2><a href="#v1.0.21">Version 1.0.21</a><span class="date">September 9, 2026</span></h2>
+    <ul>
+    <li><strong>What's new, on the website.</strong> Every release note from this file is now published at vellen.capitalcalcs.com/changelog.html, in the same words, with the release date — so you can see what changed, and what was wrong before it, without opening the app.</li>
+    
+    <li><strong>&quot;Your Drive copy looked empty&quot; is no longer said about a Drive that isn't.</strong> A Windows machine reported that sync had protected its notes because the Drive copy looked empty — while the Drive copy was intact. Two things could make Drive's file list come back as nothing without Drive ever saying so: a &quot;successful&quot; reply that wasn't Drive at all (a hotel or airport Wi-Fi sign-in page, a proxy) used to be read as an empty list, and Drive's own &quot;this search was incomplete&quot; flag was ignored. Both now stop the sync with a plain sentence — &quot;Google Drive couldn't be read properly — a Wi-Fi sign-in page or a proxy may be in the way&quot; — and nothing is compared, so nothing is judged. The same sign-in page at token-refresh time no longer reads as &quot;your Google sign-in has expired&quot; either. The protection message itself now says the Drive copy may simply have been unreadable just now, and to look before rebuilding.</li>
+    
+    <li><strong>Help explains inline code.</strong> The formatting list said backticks make &quot;inline code&quot; and left it there. It now says what that's for — a file name, a shortcut, a menu path, an exact phrase, anything to be read exactly as written — and that everything inside is taken literally, which is how to mention a piece of Markdown without triggering it.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.20">
+    <h2><a href="#v1.0.20">Version 1.0.20</a><span class="date">September 7, 2026</span></h2>
+    <ul>
+    <li><strong>Selecting a paragraph no longer paints two overlapping blocks.</strong> The line you're on has a faint tint that stops at the text; a selection across a wrapped paragraph is drawn the way every editor draws it, out to the edges of the writing area. Together they made a stepped block in two shades. While anything is selected, the selection is now the only highlight; the line tint returns when you click or move on.</li>
+    
+    <li><strong>Owners are never asked to register a trial.</strong> After updating on an iPhone that had already bought the unlock, a notice said the 14-day trial had been registered with the App Store — while About correctly showed the licence as owned. At launch the app asks the store and opens your last folder at the same time; when the folder won the race, the trial registration ran before the store had said &quot;licensed&quot;. It now waits for the store's answer first (bounded, so an unreachable store still can't block a real trial), and the &quot;registered&quot; notice is only ever shown to someone actually on a trial.</li>
+    
+    <li><strong>New notes can take their folder's shape.</strong> A folder of like notes — every application, every project — tends to share the same properties, and a new note there used to start empty: open a neighbour, copy the names, blank the values. Now, when the other notes in a note's folder share properties it lacks, the Properties panel offers <strong>Add this folder's properties (3)</strong>. One click adds the names with blank values — a checkbox unticked, a list empty — and never copies a value or touches one you already have; it adds only what's missing, so a note you started by hand catches up too. It reads only the notes beside this one (never a subfolder's or another folder's), and a folder with a table or board offers that table's columns. Never automatic: a note that should have no properties ignores it. Also in the command palette.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.19">
+    <h2><a href="#v1.0.19">Version 1.0.19</a><span class="date">September 6, 2026</span></h2>
+    <ul>
+    <li><strong>Edit ▸ Select All selects the note, not the whole app.</strong> On a Mac, picking Select All from the menu bar lit up everything — sidebar, tabs, panels and note together — because the menu item was the system's own action, aimed at the window rather than at what you were editing (⌘A on the keyboard never did this; the editor handles that itself). The item is now Vellen's: it selects all of the note under the cursor, or the text field you're typing in, or a whiteboard card's text — and with nothing focused, it selects nothing at all.</li>
+    
+    <li><strong>The calendar emoji is gone from previews too.</strong> A task's due date is written in the file as <code>📅 2026-10-24</code>, and on Apple devices that emoji draws a calendar page reading &quot;JUL 17&quot; — a second, wrong date beside the real one. The editor has hidden it behind the app's own icon since 30 Aug, but linked mentions, search results and the published site's search still showed it. Previews now read &quot;due 2026-10-24&quot;; rendered notes — hover previews, embeds, whiteboard cards, exported pages and websites — draw the same icon the editor does. The file is unchanged.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.18">
+    <h2><a href="#v1.0.18">Version 1.0.18</a><span class="date">September 5, 2026</span></h2>
+    <ul>
+    <li><strong>The report that arrives after the restart.</strong> Diagnostics used to live only in memory, so a report made after reopening the app said &quot;no errors recorded this session&quot; — precisely when there was most to say. The last 60 events now carry across launches (labelled as an earlier session's), every message and stack trace is stripped of file paths before it is recorded rather than at one caller, and a save that fails while the app is quitting or closing is written down instead of being swallowed. Help's description of the report now matches it: the only path it shows is your notes folder's own location.</li>
+    
+    <li><strong>A key that missed the keychain no longer stays missed.</strong> If the system keychain didn't answer when a key was saved — locked, slow, or dismissed — the app used to keep that key in its own settings for the rest of the session without saying so. It now tells you once, offers &quot;Try now&quot;, asks the keychain again on its own, and moves the key across the moment it answers. Google AI keys travel in a request header, not the address, so they can't appear in a log that quotes a URL.</li>
+    
+    <li><strong>The launch document tells the truth again.</strong> LAUNCH-READINESS's headline section was dated 8 Aug and quoted v0.1.95, 723 tests and a four-gate script; it now reads 5 Sep 2026 with v1.0.17, 1,405 tests, five gates, the audit's four tiers, and the decision that 1.0 is Apple and Microsoft with Google Play following in 1.x once Play Billing exists. The Mac App Store sandbox row is ticked (it was complete on 7 Aug and marked open), and rows exist for the in-app privacy link, the acknowledgements, phone update paths and the quit/background flush. README and MAINTENANCE name lint as a ship gate.</li>
+    
+    <li><strong>The parts nobody had tested.</strong> The website export's real code path now runs in tests — <code>publish: false</code>, a folder's own index.md as the home page, custom.css kept across re-exports, image copying, section links, the outline, the skipped count — instead of a look-alike the tests built for themselves; the build is a pure function the app and the tests share. The purchase flow (trial ended → read-only → buy → writable again) and the front door (welcome screen, the three ways in, an unreachable Drive, picking a known folder) have automated tests for the first time. No behaviour changed; what changed is what a regression can hide behind.</li>
+    
+    <li><strong>Faster on phones, larger websites, longer notes.</strong> Opening a folder, a background sync and the views list each checked files one at a time, waiting on every round trip; they now check several at once (5–10 s on a phone with thousands of notes, down to a fraction). A website export of a big folder no longer writes the entire navigation tree into every page — past 300 pages each page carries its own folder chain and the rest fills in when opened, so a 5,000-page site is megabytes, not gigabytes; the graph is laid out in short slices so the app stays responsive while exporting, and isn't included past 2,500 pages; search text is trimmed to 2 KB per page. In the editor, moving the cursor no longer rescans the whole note for tables, images, maths, diagrams and embeds — only an edit does — so arrow keys on a very long note are instant again.</li>
+    
+    <li><strong>The screens that show thousands of notes stay quick.</strong> The sidebar tree re-rendered every row on every change anywhere in the app (a dirty-flag flip in one note, a sync pulling 500); it now redraws only when the notes, folders or selection actually change (2,300 rows: 435 ms → 17 ms per change). A table draws its first 300 rows and offers &quot;show 300 more&quot; / &quot;show all&quot; instead of laying out every row on each keystroke in the filter bar, and it no longer re-runs on unrelated changes. The Tasks view remembers which notes hold which tasks and re-reads only the ones that changed, instead of every task note on every keystroke; it also waits for typing to pause. The graph stops drawing once the layout has settled — it used to redraw every frame forever, one stroke per link, which warmed laptops and drained phones — and skips measuring labels for notes off the screen.</li>
+    
+    <li><strong>Big folders open and search faster.</strong> Opening a folder of several thousand notes took seconds even from cache, because every note's broken links were re-checked against every other broken link in the folder; that work now scales with the note, not the folder (a 5,000-note test with three broken links per note: 8.9 s → 0.2 s), and the whole load notifies the sidebar once instead of once per note. The index cache — a startup shortcut, not a record — is no longer rewritten two seconds after every save (20 MB on a large folder, on a phone); it's written when the folder has been quiet for a while, and always before the app closes, switches folders or goes to the background. Search-as-you-type finds prefix matches by binary search instead of walking the whole vocabulary, and builds snippets only for the results it shows (a common word: 104 ms → 27 ms). Smart folders run each query once per change rather than on every sidebar render, and a version checkpoint reads its index once instead of twice.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.17">
+    <h2><a href="#v1.0.17">Version 1.0.17</a><span class="date">September 4, 2026</span></h2>
+    <ul>
+    <li><strong>The sidebar no longer scrolls sideways, and the app no longer shifts inside its window.</strong> The Graph, Tasks, Calendar and Ask AI rows were four pixels wider than the sidebar, which was enough for a horizontal scrollbar; the rows fit now. Separately, the page around the whole app could scroll by a few pixels whenever anything ran slightly taller than the window — so a click-drag on empty space nudged everything. The frame is fixed now; only the sidebar, editor and panels scroll.</li>
+    
+    <li><strong>One name for the thing your notes live in.</strong> The app said &quot;vault&quot; in some places and &quot;notes folder&quot; in others for the same folder; it now says <strong>notes folder</strong> everywhere you can read it (Help included). A round of small fixes with it: &quot;New whiteboard&quot; in the command palette (it said &quot;canvas&quot;, the file extension); &quot;Import from Evernote (.enex)…&quot; opens the file picker straight away; the sidebar's ＋ makes a fresh note immediately, exactly as ⌘N does and as the Welcome note promises; Encryption drops its &quot;(beta)&quot; and a sentence written for testers; the Sync page's pointer to Encryption is one line; Unlock and Restore are disabled (with the reason shown) on a build with no store behind them; the Trash's &quot;Delete forever&quot; is a labelled button, not an ×; &quot;Click&quot; starts its sentence in the sidebar blurbs. On published websites: the outline no longer double-escapes &quot;&amp;&quot; in headings, it sits below the note's own title instead of above it, the home page's links to pages with # or &amp; in their names work, a sparsely linked site no longer labels every dot on the graph, &quot;Remove this setup…&quot; says so if the delete fails, and Help describes search results as a few words around the match, which is what they are.</li>
+    
+    <li><strong>Keyboard, screen readers, and the weight of a question.</strong> Right-click menus are real menus now: focus moves in when one opens, ↑/↓ and Home/End walk it, Enter picks, Escape closes and puts focus back where it was. Tabs are tabs — ←/→ switch, the × is a named button. Every dialog keeps Tab inside it, closes on Escape from anywhere, and returns focus when it goes; when one dialog sits on another, Escape closes the top one only. The system &quot;reduce motion&quot; setting now stills every animation, not just one spinner. The toast has two temperaments: a status fades as before, while an error — &quot;your changes are NOT on disk&quot; — stays until you close it, with its own × and a red edge, and is announced as an alert. Moving a note or whiteboard to the trash no longer asks first: it's recoverable, so the toast offers <strong>Undo</strong> instead (folders still ask — they carry more). The two heavy sync actions that asked nothing — Rebuild Drive backup and Disconnect — now do, and Rebuild says so when Drive isn't connected rather than spinning. Empty states: an empty Library invites the first note, an empty Graph explains itself (no notes, no notes matching the tag filter, or notes with no links between them yet), and a command search with no match says what to try.</li>
+    
+    <li><strong>Phones, boards and the words on the purchase screen.</strong> On a phone, the ⋯ menu now has <strong>Rename…</strong> and <strong>Move to folder…</strong> for the open note (moving was drag-only, which a finger can't do, and Help claimed the menu had it), and the note screen shows its title once instead of three times over a tab strip with a single tab in it. The purchase screen names the store you installed from — a Windows buyer saw &quot;App Store record: none for this account yet&quot; while their Microsoft Store trial was running — reads Microsoft's trial end date, and says 15 days on Windows where the Store enforces 15; Help says when that trial starts. Two error screens that showed a raw stack trace (Google sign-in failing, a folder that wouldn't open) now say what happened and what to try; the details go to Diagnostics. The licence screen no longer offers &quot;Decline &amp; quit&quot; on iPhone and iPad, where it did nothing.</li>
+    
+    <li><strong>A better first ten minutes.</strong> The sidebar now leads with your notes — Library sits above Views, Smart folders and Tags — so a first run shows the note list instead of four feature blurbs. Settings → About gains a &quot;Your notes are in …&quot; row with the real folder path and a Show in Finder / Show in folder button; the Welcome note names the folder too, and a new notes folder announces where it went the moment it's made. &quot;Get your notes&quot; (the sign-in screen) has a Back link, and Escape and the Android back button leave it; it also says that nothing is copied until you choose a folder. On the App Store builds, the $0.00 sheet that registers your free trial is now announced before it appears and confirmed after — and Help and the Welcome note explain it. &quot;New table&quot; and &quot;New board&quot; on a folder that isn't set up yet speak plainly (&quot;Set up “Projects” for tables&quot;, properties, not frontmatter or schema), keep the name you typed, skip the setup screen when there's nothing to propose, and close on Escape — as does the board editor. The palette's &quot;New board&quot; now makes the same kind of board the sidebar makes, and there's a &quot;New table&quot; command beside it.</li>
+    
+    <li><strong>Three fixes to the newest code.</strong> On a published website, a link to a section of another page — <code>[[Note#Budget]]</code> — now opens that page at that section instead of showing as &quot;Not part of this published site&quot; (while the target page's own &quot;Mentioned in&quot; list said otherwise). Exporting a site again to the same folder now removes the pages an earlier export wrote for notes that have since been marked <code>publish: false</code>, renamed or deleted, and images no longer used — so a note made private really does leave the site, as Help promised. Only files Vellen wrote are ever removed; your custom.css, custom.js and anything you added yourself are left alone. And a table or board whose folder schema carried a key with a trailing space (<code>status :</code> in YAML does that) no longer writes a second <code>status</code> line into a note when you edit the value: the app now writes to the spelling the note already has, blind to case and padding alike, and the schema drops the padding on load.</li>
+    
+    <li><strong>Ready for the store reviewers.</strong> iPhone, iPad and Android builds no longer check GitHub for newer versions — those installs update through their store, and Settings → About says so. Settings → About now links to the website, the privacy policy and support, and carries the open-source acknowledgements (every library, its licence, its copyright line). Help's trial topic points at the privacy policy too. On a phone, a view that crashes now costs you that view, not the app — the same safety net desktop has had — and the app-level recovery screen no longer offers a folder picker phones can't use. Two doors in the trial's read-only promise are closed: after the trial ends, a checkbox toggle and an edit in the Properties panel no longer rewrite the note. And the phone's note menu no longer offers Export and Print, which only ended in an error there.</li>
+    
+    <li><strong>Six security hardenings from the pre-customer audit.</strong> The browser clipper's local listener now accepts clips only from real browser extensions — a web page could previously reach it through a sandboxed frame and write notes into your vault (and discover that Vellen was running); the clipped page's address is validated before it's written into a note; and a clip that arrives while Vellen is in the background no longer yanks the app in front of what you're doing. Sync refuses file or folder names from Drive that would land outside your notes folder (a folder named <code>..</code> could write files elsewhere on every synced device), and every path the app resolves is now checked against the vault boundary as a last line. An encrypted vault's remembered key moved into the system keychain alongside the AI keys and Drive token. Links in rendered content — AI answers, Help, whiteboard cards — open in your browser instead of replacing the app's window with the page. Exports and published sites only include images from inside the vault. And the app's own permissions were tightened: &quot;open&quot; is limited to web and mail links, and the folder-access grant only accepts a real, non-root folder.</li>
+    
+    <li><strong>Nine ways to lose words, closed.</strong> The pre-customer audit (4 Sep) traced every path where typed text could quietly vanish or a note could be replaced without asking. Switching notes with &quot;protection paused&quot; on now writes the last keystrokes first (the paused switch had been skipping the flush). Switching vaults — from the vault menu, the welcome cards, or Trash → restore — flushes every open note and waits for any running sync before letting go, so a sync that outlived the switch can no longer write the old vault's boards into the new one. A sync that pulls a note you're mid-edit on raises the conflict banner instead of letting your next autosave overwrite the other device; the same if your autosave landed while the sync ran. &quot;Saved&quot; now means the words that were written — keystrokes typed during a slow write stay marked unsaved until their own save lands, so a quit can't trust a stale flag. New note, rename and move onto a name that already exists open or refuse instead of replacing the existing file. A note deleted by another app or device while you have unsaved edits keeps its tab and its words, and saving brings it back. A preferences file that exists but can't be read makes boards and pins read-only for the session rather than &quot;empty&quot; — the empty version, saved later, used to mark every board deleted on every device. The same absent-vs-unreadable rule now protects version history's index. Named versions work on Android (they were failing silently), and every &quot;the other version is saved first&quot; promise — conflict banners, History → Restore, closing a conflicted tab — now refuses to overwrite if that safety copy could not actually be taken, &quot;protection paused&quot; or not. And ⌘Q on the Mac, plus backgrounding on a phone, flush autosaves before the app goes.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.16">
+    <h2><a href="#v1.0.16">Version 1.0.16</a><span class="date">September 4, 2026</span></h2>
+    <ul>
+    <li><strong>A new task line is ready to type into — no spacebar first.</strong> The checklist button and Enter both insert \<code>- [ ] \</code> with its space, but on Mac and iOS the caret could end up on the wrong side of a line-ending space, so typed text landed between the brackets and the space — \<code>- [ ]text\</code> — and no checkbox appeared until you pressed space yourself. Text typed right after the brackets now always lands after the space (and supplies one if it's somehow missing), so click the button and just type, hit Enter and just type. Pressing space there deliberately still means exactly what it says.</li>
+    
+    <li><strong>Selecting text no longer paints a phantom block at the editor's foot.</strong> On Mac and iOS, dragging a selection could also fill a solid slab of highlight over the empty space below the note — nowhere near the text. Two selection painters were on at once: the editor draws its own selection, and a stylesheet rule was forcing the browser's native one back on too; WebKit &quot;helpfully&quot; fills the gaps between blocks when native selection paints, hence the slab. One painter now: the drawn selection keeps its color, the native one stays off, and the find panel's own text fields keep a styled selection of their own. Chromium happened to hide the overlap entirely — which is why no test ever saw it — so the new test pins the mechanism (drawn layer visible, native transparent) rather than the pixels.</li>
+    
+    <li><strong>The website export finishes its 24 Aug polish list.</strong> Four smaller pieces, closing out the plan: a page with three or more sections opens with an <strong>&quot;On this page&quot;</strong> outline whose entries jump straight to their section (every heading is deep-linkable either way); <strong>\<code>publish: false\</code></strong> in a note's properties keeps that note out of the export entirely — no page, no search result, no dot on the graph, and the export message says how many stayed private; a <strong>wikilink that resolves to nothing</strong> now renders as an honest dotted stub that explains itself on hover, instead of quietly dressing up as italics; and the sidebar's <strong>folders fold</strong> — real collapsible groups, with only the current page's chain starting open on large sites, so two hundred notes still make a readable map. All of it static HTML and CSS, working from a double-clicked index.html like everything else.</li>
+    
+    <li><strong>Exported websites have a graph.</strong> The sidebar's new Graph button opens a map of the whole site: every page a dot sized by how connected it is, every link between notes a line. Hovering a dot lights up its neighborhood, clicking one opens that page, drag pans and scroll zooms, and the page you came from is marked. The layout is computed by the app's own graph engine at export time and shipped with the site — readers download a finished picture, not a physics engine, so it opens instantly, looks identical for everyone, and the site stays true to its no-server promise. Second of the Publish-parity items from the 24 Aug plan.</li>
+    
+    <li><strong>Exported websites can be searched.</strong> A box at the top of every page's sidebar searches the full text of the whole site as you type — pages whose title matches rank first, each result shows the line that matched, Enter opens the top one, Escape brings the navigation back. True to the export's one rule, the words ship inside the site itself (in the same <code>site-data.js</code> the link previews already read), so search works with no server anywhere: from a web host, a USB stick, or a double-clicked index.html alike. First of the remaining Publish-parity items from the 24 Aug plan; the graph view is next.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.15">
+    <h2><a href="#v1.0.15">Version 1.0.15</a><span class="date">September 2, 2026</span></h2>
+    <ul>
+    <li><strong>A folder's table &amp; board setup can finally be removed.</strong> The only &quot;Remove this setup&quot; button lived on a screen the app could never show — the Help audit caught it. Now the folder's row under <strong>Boards</strong> or <strong>Tables</strong> offers <strong>Remove this setup…</strong> in its right-click menu. It warns first, counting exactly what goes: every view saved for that folder (tables and boards share one setup, so both go together) and the property types the folder learned. Notes are never touched — every file keeps its properties as written. The e2e stub also learned that removing a directory removes it: deleted fixtures used to resurrect on the next read, which made every &quot;and now it's gone&quot; flow untestable.</li>
+    
+    <li><strong>The Help got its second full line-by-line check.</strong> Every topic audited against what the app actually does. What changed: the Tables topic now covers the <strong>Note</strong> row, bulk editing several rows at once, that stray spaces join capitalisation as not-part-of-a-property's- name, and that a never-ticked checkbox counts as unchecked; two instructions pointing at a <strong>Remove this setup</strong> button you can't actually reach are gone; the setup dialog's type list no longer claims it guesses links; web capture's size and time limits are stated; the AI tasks note says the vault-wide sweep only happens with the whole vault selected; the trial topic tells Android users plainly that buying isn't ready there yet; and app-store installs are told updates come from the store.</li>
+    
+    <li><strong>Web capture can't be flooded or stalled.</strong> The 25 MB ceiling used to be checked before the download (against a size the server declares, and can lie about) and again after (too late — the memory is already spent). The limit is now enforced while the page arrives, chunk by chunk, and the whole download gets one minute of wall clock — a server that trickles forever is refused the same as one that floods.</li>
+    
+    <li><strong>A Microsoft Store install stops hearing about updates from GitHub.</strong> The tester notice could announce a new version before the Store's own rollout reached you — an update the app can't install anyway. A Store install now leaves updates to the Store (and Settings says so); sideloaded and tester builds keep the notice, which is who it's for.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.14">
+    <h2><a href="#v1.0.14">Version 1.0.14</a><span class="date">September 1, 2026</span></h2>
+    <ul>
+    <li><strong>A trailing space is not a second property.</strong> <code>status :</code> in a note's frontmatter yields a key with an invisible trailing space, which made a second property with an IDENTICAL label beside the real one — the same invisible-twin problem the capitalisation fix killed, one character wider. Edge whitespace now joins capitalisation as not-part-of-the-name: the spellings match as one property everywhere, the setup dialog and filter bar offer the clean word, and padded duplicates in an existing setup heal on load.</li>
+    
+    <li><strong>A leftover <code>title</code> in a folder's setup is cleaned up.</strong> <code>title</code> is reserved for the note's name, so a property by that name (from before the reservation) was dead weight that could never show; it is now removed when the folder loads, and leaves the file at the next save.</li>
+    
+    <li><strong>Big folders stop paying for every keystroke.</strong> Typing in the filter bar was recomputing the table's column list — a walk over every note's properties — on each keypress, defeating the cache built to prevent exactly that. Unnoticeable in a small folder; a 3,000-note folder will feel it.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.13">
+    <h2><a href="#v1.0.13">Version 1.0.13</a><span class="date">August 31, 2026</span></h2>
+    <ul>
+    <li><strong>A table shows the properties your notes actually have.</strong> A folder's table learned its columns once, when it was first set up, so a property you added to a note afterwards was invisible — you could even filter by it and still not see it, which is a filter you cannot check. Columns now come from the notes: add <code>owner:</code> to a note and the column is there. The <strong>Properties</strong> button lists everything the folder knows about, and unchecking one hides that column for this view. A property you never wanted is a column you can see and hide in a click, which is a much smaller problem than one you cannot find at all.</li>
+    
+    <li><strong>Properties you add later can be filtered on.</strong> A folder's table learned its properties once, when you first set it up, and had no way to hear about one you added afterwards — so a property written on Tuesday was missing from the filter list for ever, with nothing on screen admitting it existed. The property dropdown now also lists what it can see in your notes, under &quot;In your notes — not set up yet&quot;, and choosing one adds it to the folder. Nothing is added on its own, which is still what keeps a typo from becoming a column, and a property with a fixed set of values arrives knowing the values already in use.</li>
+    
+    <li><strong><code>Status</code> and <code>status</code> are the same property.</strong> A folder that had both spellings written in it showed the property twice in the filter list — identical labels, different results, no way to tell which was which. Capitalisation is no longer part of a property's identity: the two are matched as one, and filtering on it finds notes written either way. Your notes are left exactly as you wrote them — nothing rewrites a key in a file behind your back — and a property you set from the app is written back using the spelling that note already uses. A folder that already had both spellings in its setup — from before this landed — heals itself the next time you open it, keeping the values both spellings knew about.</li>
+    
+    <li><strong>One spelling per property, even before it's set up.</strong> A folder with <code>Status:</code> in some notes and <code>status:</code> in others — and no table setup yet — showed one merged column with half its cells blank, because the heading unified the spellings and the cells didn't. They agree now. The setup dialog was worse: it offered the same word twice, both ticked, and Create wrote both spellings into the folder's setup — the original duplicate-property bug coming back through the newest door. It proposes one, spelled the way most notes write it, and its type guessing judges both spellings as one property — so <code>Priority: 1</code> in two notes and <code>priority: high</code> in a third reads as text, instead of as a number that flags the third note the moment you adopt it. And it no longer proposes an empty &quot;tags&quot; list (or anything else that's blank everywhere) on folders where nothing is tagged.</li>
+    
+    <li><strong>A property's type can be forgotten.</strong> The Properties panel's × drops a property back to plain text — useful when a list of values is wrong, or a date-ness was guessed from notes that only looked like dates. The column stays and your notes are never touched.</li>
+    
+    <li><strong><code>title</code> belongs to the note's name, whatever the capitalisation.</strong> A frontmatter <code>Title:</code> line was half-in: offered for adoption as a property while a filter on it read the note's name. Every spelling of it now means the name — never a column of its own, never offered, filters and sorts on it read the name. And the Properties panel leads with a <strong>Note</strong> row, so a hidden Note column finally has a listed way back.</li>
+    
+    <li><strong>A box nobody ever ticked counts as unchecked.</strong> &quot;Done is unchecked&quot; used to match only notes that literally carried <code>done: false</code> — which nobody writes by hand — so an open-tasks view hid exactly the tasks never marked at all, the newest ones. A missing checkbox now counts as unchecked; &quot;is checked&quot; still requires a real tick, so nothing sneaks into &quot;done&quot;.</li>
+    
+    <li><strong>The Calendar is a calendar before you've dated anything.</strong> Opening it on a new vault used to replace the month with a sentence explaining how to add a date — so the one screen that shows what the Calendar IS was the screen a new person never saw. The month, with today on it, is always there now; the hint sits above it and leaves as soon as anything has a date.</li>
+    
+    <li><strong>A saved view can't go quietly wrong over a spelling any more.</strong> The <code>Status</code>/<code>status</code> fix unified how values were read, but a view FILE could still name the spelling that got folded away — and everything that trusted the file's spelling missed silently: a saved filter matched nothing (the table just went blank), a sort did nothing, and a board collapsed every card into its &quot;No value&quot; column. Views now resolve their filters, sorts, and grouping to the real property the moment they load, wherever the spelling came from.</li>
+    
+    <li><strong>A column from an older saved view shows its values again.</strong> A view written before the <code>Status</code>/<code>status</code> fix could name the spelling that got folded away: the heading looked right while every cell under it was blank, and clicking one opened a plain text box instead of the property's own editor.</li>
+    
+    <li><strong>A filter written before the <code>Status</code>/<code>status</code> fix keeps its operators.</strong> A saved filter naming the spelling that got folded away quietly came back as plain text: the operator menu lost &quot;is any of&quot; and the value box stopped offering the values to choose between. Nothing errored, which is what made it hard to spot. Capitalisation is now irrelevant in the last place it still mattered.</li>
+    
+    <li><strong>No more empty Tags column on every folder.</strong> Vellen adds a <code>tags</code> entry to every note behind the scenes, so the new columns-from-your-notes rule was putting an all-empty Tags column on folders where nothing is tagged. A property has to actually be filled in somewhere before it earns a column — unless you set it up deliberately, which still shows it straight away.</li>
+    
+    <li><strong>Showing or hiding a column no longer saves your half-built filter.</strong> The Properties checkboxes save immediately by design — looking is not editing — but they were saving the whole working copy, unsaved filter and sort edits included. Same for the ×: forgetting a type mid-edit committed the edit. Both now touch only what they say they touch, and forgetting the type of a property that's currently <em>hidden</em> no longer wipes the view's saved column order.</li>
+    
+    <li><strong>The filter bar lets go of a forgotten type.</strong> After × dropped a select back to plain text, the bar could keep offering &quot;is any of&quot; on values the property no longer has — a condition that matches every row and could even be saved into the view that way. The bar now follows the folder's setup the moment it changes.</li>
+    
+    <li><strong>Bulk edit's &quot;＋ New option…&quot; can't erase anything.</strong> Pressing Enter with the box still empty used to mean &quot;clear this property on every selected note&quot; — twelve notes updated by an unfinished thought. It now asks you to type the option first and stands still.</li>
+    
+    <li><strong>Nothing your files say is lost on save.</strong> A table's setup and view files are rebuilt from what the app understands every time they're saved — so a field written by a NEWER Vellen was silently stripped the moment an older one touched the folder, and in a vault synced across devices that don't update in lockstep, sync then spread the stripped file everywhere. Fields this version has no name for now ride through every save untouched, and a file's version number is kept instead of being rewritten downwards.</li>
+    
+    <li><strong>When old duplicate spellings disagree about a property's type, the one that knows the values wins.</strong> Folding a <code>ref</code>/<code>Ref</code> pair used to keep whichever was written first — and if that was plain text, the other's list of values was dropped for good, flagging everything already written under them. A select that actually carries its values now survives the fold whichever order the pair was written in. (The spelling still comes from the first.)</li>
+    
+    <li><strong>&quot;Local AI — nothing leaves this device&quot; only says that when it's true.</strong> The line was decided by which provider was answering, so it went on promising that while your notes crossed the network to an Ollama server on another computer — which is the setup Vellen's own Help recommends for phones and tablets. It now names that machine instead: <em>Local AI at 192.168.1.20 — no cloud provider</em>.</li>
+    
+    <li><strong>A local AI address typed without <code>http://</code> works.</strong> <code>localhost:8080</code> was saved as written, which built requests that could never connect — and the privacy line treated the address as another machine. The <code>http://</code> is added for you now. The backup box also stops calling that address an &quot;AI key in plain text&quot;: it's a server address, and the warning that cries wolf teaches you to ignore the one that matters.</li>
+    
+    <li><strong>A settings backup can find your AI keys again.</strong> Keys moved into the system keychain, and the backup was still looking in the old place, so ticking &quot;include my AI keys&quot; saved a file with none in it and said otherwise. It reads them properly now, tells you how many went in, and a restored key works straight away instead of waiting for a restart.</li>
+    
+    <li><strong>Restoring a settings backup checks what it's restoring.</strong> A damaged or hand-edited backup file could plant entries for providers that don't exist (or blank keys that showed a provider as connected but never worked) — and count them as restored. Only real providers with real keys come back now.</li>
+    
+    <li><strong>A saved xAI key shows as connected.</strong> Settings listed the providers by hand and xAI had been left off, so the panel offered to set up an account that was already working — with Test key and Disconnect hidden. The list is derived from the providers themselves now.</li>
+    
+    <li><strong>A full pass over the Help.</strong> Every topic checked against what the app actually does. The corrections worth knowing about: bold that wrapped onto a second line was printing as literal <code>**</code> and stealing the emphasis from the next phrase (24 places); the Views list left out Calendar and Tables; the AI privacy paragraph didn't mention that a question about tasks sends every unticked checkbox in the vault, or that recent chat turns travel with each follow-up; the encryption topic said an older copy of Vellen would pause rather than damage its notes, which is backwards; <code>query</code> blocks need the word <code>query</code> on the fence line, and the example didn't have it; and the trial topic said 14 days everywhere when Windows is 15, and named payment on stores that don't take it yet.</li>
+    
+    <li><strong>Help catches up with the tables rework and the published site.</strong> Two instructions were sending people to a delete button that no longer exists — a row under Boards or Tables is a folder now, and a view is deleted by the × on its own tab. The Tables topic is rewritten around how tables actually work: columns follow your notes, what the Properties button does, adopting a property from the filter bar, why a date has to be written <code>2026-08-27</code>, and that capitalisation doesn't count. The website-export topic now describes what it has been shipping since v1.0.12 — &quot;Mentioned in&quot; backlinks, link previews, and the <code>custom.css</code> / <code>custom.js</code> you can theme it with.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.12">
+    <h2><a href="#v1.0.12">Version 1.0.12</a><span class="date">August 30, 2026</span></h2>
+    <ul>
+    <li><strong>Published sites say who links to a page.</strong> Every exported page now carries a &quot;Mentioned in&quot; list of the notes that link to it, each with the line the mention sits on, so you can tell what a link was about before clicking it. Plain HTML — no script — so it works on any host and from a double-clicked file alike.</li>
+    
+    <li><strong>Links preview on hover.</strong> Point at a link in a published site and a small card shows the target's title and opening lines. The data is embedded in the site itself rather than fetched, which is why it keeps working when you open the folder locally instead of uploading it.</li>
+    
+    <li><strong>Published sites follow dark mode.</strong> Pages were light-only. They now use the app's own palette and follow the reader's system setting.</li>
+    
+    <li><strong>A site is yours to restyle.</strong> Exports write <code>custom.css</code> and <code>custom.js</code> beside the pages, linked last so they override everything, and re-exporting never overwrites them — the theme is a handful of CSS variables you can redefine in a few lines. The export message now says that re-exporting to the same place is how you update a site.</li>
+    
+    <li><strong>A folder's saved views stay in that folder.</strong> Moving from one folder's table to another's left the first folder's views — tabs, filters, sorts — on screen and live, while the app already believed you were somewhere else. Saving in that moment wrote the view you were looking at into the folder you had just arrived at, so a filter called &quot;Blocked&quot; set up for Applications could end up belonging to Projects. Nothing was ever global: the screen and the app briefly disagreed about which folder you were in, and a running sync could stretch that moment out indefinitely. A folder's table now starts clean when you arrive, and a view can only be written to the folder it was loaded from.</li>
+    
+    <li><strong>Boards and Tables in the sidebar list folders, not every saved view.</strong> One row per folder, named after the folder, opening that folder's original table or board — and every other way you've saved of reading that folder is a tab along the top of the screen it opens. The list used to name every saved view in the vault, alphabetically, so two views of one folder sat rows apart with a third folder's view between them and nothing to say which belonged where. A folder with more than one shows the count.</li>
+    
+    <li><strong>&quot;Table view&quot; on a folder menu opens a table.</strong> It used to open whatever that folder happened to have — so a folder whose only view was a board answered the request with the board, every time. A table is now selected if the folder has one and created if it doesn't, and the new table appears as its own tab you can rename or remove. Asking while that folder's board was already on screen also used to do nothing at all, because nothing about the screen had changed.</li>
+    
+    <li><strong>Opening a folder's table says that it is opening.</strong> While a folder's setup was being read the screen was blank, which looks exactly like a menu item that did nothing — and if a sync happened to be running, the read never started at all and the blank stayed. It reads the folder now whether or not a sync is in progress, re-reads when the sync finishes, and says &quot;Opening…&quot; in the meantime.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.11">
+    <h2><a href="#v1.0.11">Version 1.0.11</a><span class="date">August 30, 2026</span></h2>
+    <ul>
+    <li><strong>A due date in a note now carries a small calendar icon instead of the 📅 emoji.</strong> On Apple platforms that emoji draws as a calendar page reading &quot;JUL 17&quot;, so every dated task showed two dates that disagreed — and the wrong one was larger and in colour. The marker is now drawn as the app's own calendar icon: the same shape as the Calendar row in the sidebar, in the same muted colour as the date, and with no numbers on it to be mistaken for one. Unlike the other marks Vellen hides, it stays hidden when you click onto the line — the emoji is something the app writes, not something you type, and having the wrong date flash back into view under the caret was the whole problem. The caret steps over the marker in one press and one backspace removes it. Your files are unchanged, so a vault opened in Obsidian still means the same thing.</li>
+    
+    <li><strong>You can type a due date again.</strong> In the Tasks view, typing the first digit of a month closed the field — and whatever you typed next landed on the list behind it and threw you out of the Tasks view entirely. Typing a date was impossible. Nothing is saved while you type now: the date is written when you press Enter or click away, and only if it actually changed. Escape abandons the edit, and the × is still how you clear a date. The field also opens empty rather than on today, so tapping the chip to see what it does no longer dates the task for you.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.10">
+    <h2><a href="#v1.0.10">Version 1.0.10</a><span class="date">August 29, 2026</span></h2>
+    <ul>
+    <li><strong>Brief status messages appear on phones now.</strong> The small self-dismissing toast the app uses for transient results was only ever drawn on desktop, so on a phone those messages went nowhere at all — including the note explaining what the App Store's free-trial sheet was, on the very device most likely to meet it.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.9">
+    <h2><a href="#v1.0.9">Version 1.0.9</a><span class="date">August 29, 2026</span></h2>
+    <ul>
+    <li><strong>Vellen no longer asks you to sign in over and over.</strong> When the App Store sheet that registers your free trial was dismissed — or couldn't complete for any reason — the app asked again every single time you opened a vault, with nothing that could ever stop it. It now asks once per launch at most, and once you've dismissed it, not again at all.</li>
+    <li><strong>And it explains itself.</strong> Dismissing that sheet now leaves a short note saying what it was: the App Store registering your 14-day trial, no charge, trial running either way. It reads like a purchase because it technically is one — for $0.00 — and nothing on the sheet said so.</li>
+    <li><strong>Reschedule from the keyboard.</strong> On the Calendar, select anything and ⌥/Alt+← → moves it a day, ⌥/Alt+↑ ↓ a week. It keeps focus, so you can keep going. Dragging was the only way to move something, which meant the calendar didn't work at all without a mouse.</li>
+    <li><strong>Amber text is readable in the light theme now.</strong> Twelve places used a colour picked to work as a background tint — overdue chips, the WIP counts on a board, the &quot;matches nothing&quot; filter note, the flagged-value badges, warning callouts — and as text on a light background it fell below the accessibility standard. All of them now use a darker shade meant for reading; the tints themselves are unchanged.</li>
+    <li>An overdue date chip in the Tasks view responds to hover again; it had been silently overridden.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.8">
+    <h2><a href="#v1.0.8">Version 1.0.8</a><span class="date">August 28, 2026</span></h2>
+    <ul>
+    <li><strong>Tasks can have due dates — and still don't need them.</strong> Every row in the Tasks view now ends in a date chip: <code>＋ Due</code> on a task with no date, the day itself once it has one, amber the moment it's past, and a count of everything overdue in the toolbar. Set it, change it, or take it off without opening the note. Nothing about an undated task changed, because most tasks shouldn't have a date.</li>
+    <li>The date is written into the task line as <code>📅 2026-09-02</code> — the convention Obsidian's Tasks plugin uses — so a vault opened in either app means the same thing. Type it by hand and Vellen reads it; the Tasks view shows you the words and keeps the marker out of the way.</li>
+    <li><strong>The Calendar.</strong> A new row under <strong>Views</strong>, beside Graph and Tasks: one screen for the whole vault showing what's coming due — dated notes and dated tasks together, a month at a time. Nothing to create or name. Drag anything to another day and the note itself is rewritten, in the field it already used. Finished tasks stay on the grid, greyed out. Late days are tinted, and a backlog from before the month you're looking at is counted in the header rather than left off-screen. On a phone it's an agenda instead of a grid.</li>
+    <li>The two-day-old <strong>per-folder calendar view</strong> is gone with it — the wrong shape, built carefully. Any calendar view you saved opens as the table it always was underneath, rather than disappearing.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.7">
+    <h2><a href="#v1.0.7">Version 1.0.7</a><span class="date">August 28, 2026</span></h2>
+    <ul>
+    <li><strong>Android: your vaults are named for themselves again.</strong> Every vault in the switcher showed the name of the folder you'd granted access to — usually &quot;Documents&quot; — so a list of vaults read as four identical rows. Each now shows its own folder's name.</li>
+    
+    <li><strong>Change a property on many notes at once.</strong> Tick rows in a table (shift-click for a range, the header box for all) and a bar appears: choose a property, set its value, apply to everything selected. The case it was built for is the ordinary one — someone leaves the team and forty notes still name them as owner. Selection only ever means rows you can currently see, so a filter change can't leave a hidden note enrolled in the next change, and the result is reported plainly, including any note skipped for having unresolved sync conflicts.</li>
+    
+    <li><strong>Add a new option without leaving the table.</strong> Any status-style property's editor — in a cell or in the bulk bar — now offers <strong>＋ New option…</strong>: name a value the property has never seen and it joins the list and lands on the notes in one step. If a note already carries a value the property doesn't know, its cell offers to adopt it instead (and a board card stuck in the holding column can add itself as a column). A value still never joins the list just by being typed — that's how a typo used to invent a column — but now there's a deliberate way to say &quot;this one is real&quot;.</li>
+    
+    <li><strong>Boards finish the job:</strong> <strong>+ Add card</strong> at the foot of every column makes a note that already belongs there; every card and column has a <strong>⋯ menu</strong> (Move to…, Collapse, Move left/right, WIP limits) — which is also how cards move on a tablet, where there's no dragging; and columns can be reordered by dragging their heading, which sets the order everywhere that property is used. Views can be renamed, deleted, and — once a folder's last view is gone — the whole setup removed, leaving the folder exactly as it was.</li>
+    
+    <li><strong>The &quot;values didn't match&quot; notice is a badge, not a banner.</strong> It sits quietly in the corner with a count; click for the full sentence. Nothing hidden, just proportionate.</li>
+    
+    <li><strong>Help caught up.</strong> The Kanban topic describes boards as they work now rather than the old builder, there's a new topic for Tables, and the boards topic is no longer hidden on phones.</li>
+    
+    <li><strong>Boards and Tables: two tools, one engine.</strong> Boards are still boards — their own sidebar home, their own + that asks up front which property's values become the columns (pick one, or mint a new status-style property right there), so a board always opens working. Tables are the new second tool: any folder as a spreadsheet — sort, filter with a bar that reads like a sentence, edit values in place. The two stay connected where it counts, through your notes: change a status in a table and the board's card moves; drag the card and the table updates. Both run on the same typed engine, so a typo'd status can never invent a board column again (it shows flagged in the holding column instead), cards carry excerpts, due dates that warn when overdue, task counts and tags — and card order, WIP limits and collapsed columns now sync between devices. Boards grouped by tags show a card on every column whose tag it carries. Your existing boards convert automatically on first launch, with the originals left untouched so older devices keep working. And for the first time, boards and tables exist on phones: swipe between columns, tap a card or row to open the note.</li>
+    
+    <li><strong>&quot;Export as website&quot; no longer appears on phones.</strong> The export needs you to pick a destination folder, which phones can't do — so tapping it could only answer with an error. The folder menu now offers it on desktop only, matching the command palette's existing behavior.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.6">
+    <h2><a href="#v1.0.6">Version 1.0.6</a><span class="date">August 27, 2026</span></h2>
+    <ul>
+    <li><strong>Android can see its tables.</strong> On Android the vault lives behind the system's storage framework, and the bases store was reading <code>.base</code> files with the plain filesystem — which quietly answers &quot;nothing there&quot; for such a vault. So a freshly synced Android phone offered to turn a folder into a base whose schema and saved views were already on its disk. Every <code>.base</code> read and write now goes through the same platform-aware bridge as notes and sync; nothing changes on desktop or iPhone.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.5">
+    <h2><a href="#v1.0.5">Version 1.0.5</a><span class="date">August 27, 2026</span></h2>
+    <ul>
+    <li><strong>Sync always asks before removing a table's schema or saved views.</strong> The deletion dialog normally appears only from three files up, so a single note deleted on one device doesn't nag the others — but that meant one or two <code>.base</code> files could be removed silently, and a table's whole memory is only a few files. Any <code>.base</code> deletion now asks, regardless of count.</li>
+    
+    <li><strong>An open table follows sync.</strong> A table used to load its schema and saved views once, when opened — if a sync then delivered changes from another device into the open table, you could be marooned in a half-loaded picture (a filter applied with no tabs to escape it). The table now re-reads its <code>.base</code> files the moment any sync finishes; unsaved sort or filter drafts survive the refresh.</li>
+    
+    <li><strong>The phone's top bar names the table you're looking at.</strong> Opening a folder's Table view on iPhone left the previously open note's title in the top bar (&quot;Untitled 2&quot; hanging over the Projects table). The bar now names what the screen shows — the folder's name while its table is up, the note title otherwise.</li>
+    
+    <li><strong>Table views can be renamed and deleted, and names never collide.</strong> Double-click a view's tab to rename it in place; the × beside the active tab deletes the view after a confirm (your notes are never touched — only the saved way of looking at them). The last view can't be deleted, and every path that names a view now keeps names unique — saving a second &quot;All notes&quot; becomes &quot;All notes 2&quot; instead of two identical tabs. The view tab is also always visible now, even when there's only one, so a view's name isn't a secret.</li>
+    
+    <li><strong>Choosing Keep in the sync deletion dialog now settles the question instead of re-asking it forever.</strong> When sync notices files were removed on another device, it shows them and asks before removing them here. Before, choosing Keep only skipped the removal — the next sync recomputed the identical plan and asked again, every time. Now Keep means keep <em>everywhere</em>: the kept files are treated as new, so the next sync puts them back on your other devices, and the dialog doesn't return. (Found via a real mixed-version case: an older build that couldn't see the new hidden <code>.base</code> folders kept trashing them on Drive, and the newer Mac kept asking about the same five files.)</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.4">
+    <h2><a href="#v1.0.4">Version 1.0.4</a><span class="date">August 27, 2026</span></h2>
+    <ul>
+    <li><strong>A stale Google sign-in now heals itself instead of dead-ending.</strong> Vellen's sign-in survives reinstalls (tokens live in the keychain), but the copy it keeps of when the access token expires is only a prediction stamped with the device's clock — and a clock that was ever moved forward (say, while testing a trial) leaves a token that looks fresh locally but is long expired at Google. Drive then answered &quot;invalid authentication credentials&quot; on a screen whose only button was Back. Now Google's verdict outranks the local clock: any 401 forces a token refresh and one retry, on every Drive call — joining a vault, background sync, all of it. And if the sign-in really is dead (revoked, or its refresh expired), the &quot;Get your notes&quot; screen clears the dead tokens and puts you back in front of the Sign in with Google button with one line saying why — never a dead end.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.3">
+    <h2><a href="#v1.0.3">Version 1.0.3</a><span class="date">August 27, 2026</span></h2>
+    <ul>
+    <li><strong>Bases: see any folder as a table.</strong> Right-click a folder and choose &quot;Table view&quot; — the first time, Vellen reads the properties your notes already carry in frontmatter, guesses each one's type (dates, selects, checkboxes, numbers, tags, links), and one confirmation later the folder is a live table: sortable columns, typed values, saved views that sync with your vault. Your notes stay plain Markdown; the table is a face over them, exactly like boards. A value that doesn't fit its type is shown flagged — never hidden — and a typo'd status can no longer invent a phantom board column. A filter bar turns views into answers — &quot;not Done&quot;, &quot;due before the end of this week&quot;, &quot;unowned&quot; — and it reads like a sentence: <em>Where Status is Blocked <strong>and</strong> Owner is any of Tom, Yuki</em>, with the and/or as a word you click between the conditions rather than an abstract dropdown. Name the same property twice and the bar folds the rows into one &quot;is any of&quot; — because two conditions on one property always means &quot;or&quot;. Under the bar, a live line reads the filter back with its match count (&quot;0 of 6 notes match: …&quot;), so an empty result explains itself instead of looking broken. Cells edit in place: click a status for its options, a date for a picker, a checkbox to toggle — and clicking a flagged stray value offers the valid choices, so a typo'd status is one click from healed. Opening a note from the table and pressing Back returns you to the table. On iPhone the same views render as a clean read-only list.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.2">
+    <h2><a href="#v1.0.2">Version 1.0.2</a><span class="date">August 26, 2026</span></h2>
+    <ul>
+    <li><strong>No more stray blue lines on iPad with a hardware keyboard.</strong> With a Magic Keyboard (or any hardware keyboard) attached, iPadOS drew its system focus ring around the editor's text area and clipped it against the scroll edges — showing up as odd blue line fragments along the editor. The caret already shows where you're typing; the ring is suppressed.</li>
+    </ul>
+  </section>
+
+  <section class="release" id="v1.0.1">
+    <h2><a href="#v1.0.1">Version 1.0.1</a><span class="date">August 25, 2026</span></h2>
+    <ul>
+    <li><strong>Vellen 1.0 — the first App Store release.</strong> The version numbering steps up from 0.1.x to 1.0.x as Vellen heads to the Apple App Store and Microsoft Store. Same app, same pace of updates.</li>
+    
+    <li><strong>The iPhone and iPad app now wears the Vellen icon.</strong> iOS builds had shipped with the framework's placeholder icon — the desktop icon set was made long ago, but the iOS icon catalog generated with the Xcode project was never refilled. All eighteen sizes now carry the mark.</li>
+    </ul>
+  </section>
+
+  <footer>
+    © 2026 CapitalCalcs LLC &nbsp;·&nbsp; <a href="index.html">Vellen</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp; <a href="support.html">Support</a>
+  </footer>
+</main>
+</body>
+</html>
