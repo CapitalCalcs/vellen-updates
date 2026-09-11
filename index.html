@@ -3,83 +3,505 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vellen — Notes that connect</title>
-<meta name="description" content="Vellen is a notes app for people who want their notes to be plain Markdown files they own — with linking, whiteboards, boards, and private end-to-end encrypted sync.">
+<title>Vellen — Notes that are files</title>
+<meta name="description" content="Vellen is a notes app built on one idea: your notes are plain Markdown files in a folder you own. Links, a graph, boards, whiteboards, tasks — and private sync through your own Drive. No account, no servers, no subscription.">
+<meta property="og:title" content="Vellen — Notes that are files">
+<meta property="og:description" content="Plain Markdown files you own, with links, boards, whiteboards and private end-to-end encrypted sync. No account. No subscription.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vellen.capitalcalcs.com/">
+<meta property="og:image" content="https://vellen.capitalcalcs.com/assets/hero-light.webp">
+<meta name="theme-color" content="#faf6ed" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#191613" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='10' y='10' width='80' height='80' rx='22' fill='none' stroke='%23c68a28' stroke-width='9'/%3E%3Cpath d='M35 39 L50 67 L65 39' fill='none' stroke='%23c68a28' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
   :root {
-    --bg: #faf6ed; --panel: #f0e9da; --fg: #2e2718; --muted: #615848;
-    --accent: #a5720f; --accent-text: #6b4a08; --border: #e3d9c3;
+    --bg: #faf6ed; --bg-2: #f4eddd; --panel: #f0e9da; --fg: #2e2718; --muted: #615848;
+    --accent: #a5720f; --accent-text: #6b4a08; --accent-soft: rgba(165,114,15,.12);
+    --border: #e3d9c3; --shadow: 0 30px 80px -30px rgba(46,39,24,.35), 0 8px 24px -12px rgba(46,39,24,.25);
+    --hero-glow: radial-gradient(60% 50% at 50% 0%, rgba(232,176,75,.28), transparent 70%);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #191613; --panel: #14110e; --fg: #e8e0d2; --muted: #9d9182;
-      --accent: #e8b04b; --accent-text: #e8b04b; --border: #322a1f;
+      --bg: #191613; --bg-2: #14110e; --panel: #201b16; --fg: #e8e0d2; --muted: #9d9182;
+      --accent: #e8b04b; --accent-text: #e8b04b; --accent-soft: rgba(232,176,75,.12);
+      --border: #322a1f; --shadow: 0 30px 80px -30px rgba(0,0,0,.8), 0 8px 24px -12px rgba(0,0,0,.6);
+      --hero-glow: radial-gradient(60% 50% at 50% 0%, rgba(232,176,75,.16), transparent 70%);
     }
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0; background: var(--bg); color: var(--fg);
-    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
   }
-  main { max-width: 720px; margin: 0 auto; padding: 48px 24px 96px; }
-  h1, h2 { font-family: ui-serif, "New York", "Iowan Old Style", Palatino, Georgia, serif; }
-  h1 { font-size: 2.4rem; margin: 0 0 4px; }
-  h2 { font-size: 1.25rem; margin: 2.2em 0 0.5em; }
-  .tag { color: var(--muted); font-size: 1.05rem; margin: 0 0 2em; }
-  .promise {
-    background: var(--panel); border: 1px solid var(--border);
-    border-radius: 10px; padding: 18px 22px; margin: 1.5em 0;
-  }
-  .promise ul { margin: 0.6em 0 0; padding-left: 1.2em; }
-  .promise li { margin: 0.35em 0; }
+  img { max-width: 100%; height: auto; display: block; }
   a { color: var(--accent-text); }
-  strong { color: var(--fg); }
-  .brand { color: var(--accent); letter-spacing: 0.01em; }
-  .status { font-size: 0.9rem; color: var(--muted); }
-  footer { margin-top: 4em; padding-top: 1.5em; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+  h1, h2, h3, .serif { font-family: ui-serif, "New York", "Iowan Old Style", Palatino, Georgia, serif; letter-spacing: -0.01em; }
+  h1 { font-size: clamp(2.6rem, 6.5vw, 4.6rem); line-height: 1.04; margin: 0; font-weight: 600; }
+  h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); line-height: 1.12; margin: 0 0 .5em; font-weight: 600; }
+  h3 { font-size: 1.35rem; margin: 0 0 .35em; font-weight: 600; }
+  p { margin: 0 0 1em; }
+  .lede { font-size: 1.2rem; color: var(--muted); max-width: 42rem; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: 24px; }
+  section { padding-block: clamp(64px, 9vw, 120px); }
+  .eyebrow { display: inline-block; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text); font-weight: 600; margin-bottom: 14px; }
+  .muted { color: var(--muted); }
+
+  /* nav */
+  .nav { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px);
+    background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--border); }
+  .nav .wrap { display: flex; align-items: center; gap: 28px; height: 60px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--fg); font-weight: 700; font-size: 1.15rem; }
+  .brand svg { width: 26px; height: 26px; }
+  .nav nav { display: flex; gap: 22px; margin-left: auto; }
+  .nav nav a { color: var(--muted); text-decoration: none; font-size: .95rem; }
+  .nav nav a:hover { color: var(--fg); }
+  .nav .cta { margin-left: 8px; }
+  @media (max-width: 760px) { .nav nav a:not(.cta) { display: none; } }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 10px; font-weight: 600; text-decoration: none; font-size: 1rem; border: 1px solid var(--border); color: var(--fg); background: var(--panel); transition: transform .12s ease, background .12s ease; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.primary { background: var(--accent); color: #1b1408; border-color: transparent; }
+  .btn.primary:hover { filter: brightness(1.05); }
+  .btn.small { padding: 8px 14px; font-size: .9rem; }
+
+  /* hero */
+  .hero { position: relative; padding-top: clamp(56px, 8vw, 96px); padding-bottom: 0; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: 0; background: var(--hero-glow); pointer-events: none; }
+  .hero .wrap { position: relative; text-align: center; }
+  .hero h1 { max-width: 24ch; margin-inline: auto; }
+  .hero h1 em { font-style: italic; color: var(--accent-text); }
+  .hero .lede { margin: 22px auto 30px; }
+  .hero .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .hero .fine { margin-top: 14px; font-size: .9rem; color: var(--muted); }
+  .shot { margin: clamp(40px, 6vw, 72px) auto 0; border-radius: 14px 14px 0 0; border: 1px solid var(--border); border-bottom: 0; box-shadow: var(--shadow); overflow: hidden; background: var(--panel); }
+  .shot img { width: 100%; }
+  .hero .shot { max-width: 1120px; }
+
+  /* pillars */
+  .pillars { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-2); padding-block: 48px; }
+  .pillars .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .pillar h3 { font-family: inherit; font-size: 1.05rem; letter-spacing: 0; }
+  .pillar p { color: var(--muted); margin: 0; font-size: .98rem; }
+  .pillar .ic { width: 28px; height: 28px; color: var(--accent-text); margin-bottom: 10px; }
+  @media (max-width: 760px) { .pillars .wrap { grid-template-columns: 1fr; gap: 24px; } }
+
+  /* feature rows */
+  .feature { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(28px, 5vw, 64px); align-items: center; padding-block: clamp(40px, 6vw, 80px); }
+  .feature.flip .text { order: 2; }
+  .feature .text p { color: var(--muted); }
+  .feature .text ul { padding-left: 1.1em; color: var(--muted); margin: 0; }
+  .feature .text li { margin: .35em 0; }
+  .feature .shot { margin: 0; border-radius: 14px; border-bottom: 1px solid var(--border); }
+  @media (max-width: 860px) { .feature { grid-template-columns: 1fr; } .feature.flip .text { order: 0; } }
+
+  /* grid of smaller features */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 22px 22px 18px; }
+  .card h3 { font-family: inherit; font-size: 1.05rem; letter-spacing: 0; margin-bottom: .3em; }
+  .card p { color: var(--muted); margin: 0; font-size: .96rem; }
+  .card code { font: .88em ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+  /* philosophy */
+  .philosophy { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .philosophy .wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(28px, 6vw, 80px); }
+  .philosophy h2 { position: sticky; top: 90px; }
+  .belief + .belief { margin-top: 2.2em; }
+  .belief h3 { margin-bottom: .3em; }
+  .belief p { color: var(--muted); margin: 0; }
+  @media (max-width: 860px) { .philosophy .wrap { grid-template-columns: 1fr; } .philosophy h2 { position: static; } }
+
+  /* sync */
+  .sync .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(28px, 6vw, 72px); align-items: start; }
+  .steps { list-style: none; padding: 0; margin: 0; counter-reset: s; }
+  .steps li { position: relative; padding-left: 52px; margin-bottom: 20px; color: var(--muted); }
+  .steps li strong { color: var(--fg); display: block; margin-bottom: 2px; }
+  .steps li::before { counter-increment: s; content: counter(s); position: absolute; left: 0; top: 2px; width: 34px; height: 34px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-text); display: grid; place-items: center; font-weight: 700; font-family: ui-serif, Georgia, serif; }
+  .promise { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px; }
+  .promise h3 { font-family: inherit; font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); }
+  .promise ul { margin: 0; padding-left: 1.1em; color: var(--muted); }
+  .promise li { margin: .45em 0; }
+  @media (max-width: 860px) { .sync .wrap { grid-template-columns: 1fr; } }
+
+  /* platforms */
+  .platforms { text-align: center; background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .platforms .lede { margin-inline: auto; }
+  .stores { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 28px 0 10px; }
+  .store { display: inline-flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 12px; border: 1px solid var(--border); background: var(--panel); color: var(--fg); text-decoration: none; text-align: left; min-width: 210px; opacity: .78; }
+  .store .ic { width: 26px; height: 26px; color: var(--fg); flex: none; }
+  .store small { display: block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .store b { display: block; font-size: 1rem; }
+  .store .soon { margin-left: auto; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); background: var(--accent-soft); padding: 3px 8px; border-radius: 999px; }
+  .phones { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 640px; margin: 44px auto 0; }
+  .phones .shot { margin: 0; border-radius: 22px; border-bottom: 1px solid var(--border); }
+  @media (max-width: 560px) { .phones { grid-template-columns: 1fr; max-width: 300px; } }
+
+  /* pricing */
+  .pricing .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 6vw, 72px); align-items: center; }
+  .price-card { background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 32px; box-shadow: var(--shadow); }
+  .price { font-family: ui-serif, Georgia, serif; font-size: 3.4rem; line-height: 1; font-weight: 600; }
+  .price small { font-size: 1rem; font-family: inherit; color: var(--muted); font-weight: 400; margin-left: 6px; }
+  .price-card ul { padding-left: 1.1em; color: var(--muted); margin: 18px 0 22px; }
+  .price-card li { margin: .4em 0; }
+  .price-card .fine { font-size: .88rem; color: var(--muted); margin: 0; }
+  @media (max-width: 860px) { .pricing .wrap { grid-template-columns: 1fr; } }
+
+  /* faq */
+  details { border-top: 1px solid var(--border); padding: 16px 0; }
+  details:last-of-type { border-bottom: 1px solid var(--border); }
+  summary { cursor: pointer; font-weight: 600; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--accent-text); font-weight: 400; font-size: 1.3rem; line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details p { color: var(--muted); margin: 10px 0 0; max-width: 60ch; }
+  .faq .wrap { max-width: 760px; }
+
+  /* closing + footer */
+  .closing { text-align: center; }
+  .closing h2 { max-width: 28ch; margin-inline: auto; }
+  footer { border-top: 1px solid var(--border); padding: 32px 0 48px; color: var(--muted); font-size: .9rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--fg); }
+  footer .spacer { flex: 1; }
 </style>
 </head>
 <body>
-<main>
-  <h1><span class="brand">Vellen</span></h1>
-  <p class="tag">Notes that connect. Yours, in a folder you choose, forever.</p>
 
-  <p>Vellen is a notes app built on one conviction: <strong>your notes should
-  be plain files you own</strong> — readable by any app, in a folder you
-  picked, on your own device. Everything else is built on top of that, never
-  instead of it.</p>
-
-  <div class="promise">
-    <ul>
-      <li><strong>Plain Markdown files.</strong> No proprietary database, no lock-in. Your vault opens in any text editor.</li>
-      <li><strong>Notes that link.</strong> Wikilinks, backlinks, embeds, tags, and a graph of how your thinking connects.</li>
-      <li><strong>More than text.</strong> Whiteboards for spatial thinking, boards for tasks, daily notes for the everyday.</li>
-      <li><strong>Private sync, if you want it.</strong> Optional sync through your own Google Drive with end-to-end encryption — we run no servers and can't read your notes. Or skip it entirely.</li>
-      <li><strong>No account. No tracking. No training.</strong> The details are in the <a href="privacy.html">privacy policy</a> — it's short and it means it.</li>
-    </ul>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Vellen home">
+      <svg viewBox="0 0 100 100" fill="none" aria-hidden="true"><rect x="10" y="10" width="80" height="80" rx="22" stroke="#c68a28" stroke-width="7"/><path d="M35 39 L50 67 L65 39" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Vellen
+    </a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#philosophy">Why Vellen</a>
+      <a href="#sync">Sync &amp; privacy</a>
+      <a href="#pricing">Pricing</a>
+      <a href="changelog.html">What's new</a>
+      <a class="btn small primary cta" href="#download">Get Vellen</a>
+    </nav>
   </div>
+</header>
 
-  <h2>Vellen and your Google Drive</h2>
-  <p>Vellen's optional sync connects to <strong>your own</strong> Google
-  Drive to keep your notes in step across your devices. It uses Google's
-  narrowest Drive permission (<code>drive.file</code>): Vellen can only see
-  and manage the sync folder it creates — never the rest of your Drive.
-  Notes can be end-to-end encrypted before they leave your device, and
-  nothing is ever sent to us: CapitalCalcs runs no servers, and your Google
-  data is never collected by, shared with, or visible to anyone but you.
-  Details in the <a href="privacy.html">privacy policy</a>.</p>
+<main id="top">
 
-  <h2>Where it runs</h2>
-  <p>macOS, Windows, iPhone, iPad, and Android.</p>
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">A notes app for people who keep their notes</span>
+    <h1>Your notes are <em>files.</em><br>That's the whole idea.</h1>
+    <p class="lede">Vellen writes plain Markdown into a folder you choose, on your own device. Everything it adds — links, a graph, boards, whiteboards, private sync — is built on top of that, never instead of it.</p>
+    <div class="actions">
+      <a class="btn primary" href="#download">Get Vellen</a>
+      <a class="btn" href="#features">See what it does</a>
+    </div>
+    <p class="fine">No account. No servers. No subscription.</p>
+    <figure class="shot">
+      <picture>
+        <source srcset="assets/hero-dark.webp" media="(prefers-color-scheme: dark)">
+        <img src="assets/hero-light.webp" width="2000" height="1250" alt="Vellen on a Mac: a project note in the editor, the notes library on the left, and the Links panel on the right listing every note that mentions this one." fetchpriority="high">
+      </picture>
+    </figure>
+  </div>
+</section>
 
-  <h2>Availability</h2>
-  <p class="status">Vellen is in closed testing ahead of public launch. If
-  you'd like to help test, or want to hear when it opens up, write to
-  <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>.</p>
+<section class="pillars" aria-label="Three promises">
+  <div class="wrap">
+    <div class="pillar">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h6"/></svg>
+      <h3>Plain files you own</h3>
+      <p>No proprietary database, nothing to export. Your vault opens in any text editor, on any computer, in ten years — with or without Vellen.</p>
+    </div>
+    <div class="pillar">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M2 20h20"/><path d="M9 11l2 2 4-4"/></svg>
+      <h3>Works offline</h3>
+      <p>Everything happens on your device. Writing, searching, linking, boards — none of it waits for a connection or a login.</p>
+    </div>
+    <div class="pillar">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.4"/></svg>
+      <h3>No account, ever</h3>
+      <p>There's nothing to sign up for because there's nowhere your notes are sent. We don't run servers. We can't read your writing, and we don't want to.</p>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    © 2026 CapitalCalcs LLC &nbsp;·&nbsp; <a href="privacy.html">Privacy policy</a> &nbsp;·&nbsp; <a href="changelog.html">What's new</a>
-  </footer>
+<section id="features">
+  <div class="wrap">
+    <span class="eyebrow">What it does</span>
+    <h2>Write. Link. Find it again.</h2>
+    <p class="lede">The folder is not the idea — the link is. Vellen is built so a thought you wrote down in March finds its way back to you in September.</p>
+
+    <div class="feature">
+      <div class="text">
+        <h3>Notes that connect</h3>
+        <p>Type <code>[[</code> and link to any note. The Links panel shows every note that mentions the one you're reading — even the ones that never linked back. The graph shows the shape of your thinking.</p>
+        <ul>
+          <li>Wikilinks, backlinks and unlinked mentions</li>
+          <li>Tags, properties and saved searches</li>
+          <li>A graph you can filter by tag or narrow to one note</li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <picture>
+          <source srcset="assets/graph-dark.webp" media="(prefers-color-scheme: dark)">
+          <img src="assets/graph-light.webp" width="1800" height="1350" alt="The graph view: notes as nodes, links as lines, with the current note highlighted." loading="lazy">
+        </picture>
+      </figure>
+    </div>
+
+    <div class="feature flip">
+      <div class="text">
+        <h3>Boards made from your notes</h3>
+        <p>Give the notes in a folder a few properties — a status, an owner, a date — and that folder becomes a table or a kanban board. Drag a card between columns and the note's property changes. The board is a view; the notes are still the notes.</p>
+        <ul>
+          <li>Table and board views of any folder, saved with it</li>
+          <li>Filter, sort and group by any property</li>
+          <li>A task dashboard that reads every checkbox in your vault, with due dates</li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <picture>
+          <source srcset="assets/board-dark.webp" media="(prefers-color-scheme: dark)">
+          <img src="assets/board-light.webp" width="1800" height="1350" alt="A Projects folder shown as a kanban board with Planned, In progress and Done columns, each card a note." loading="lazy">
+        </picture>
+      </figure>
+    </div>
+
+    <div class="feature">
+      <div class="text">
+        <h3>Whiteboards for thinking sideways</h3>
+        <p>Some ideas aren't a list yet. Put cards on a canvas, draw arrows between them, drop a whole note in as a card. The whiteboard is a file in your folder like everything else.</p>
+        <ul>
+          <li>Text cards, note cards, web links, groups</li>
+          <li>Connect cards with labelled arrows</li>
+          <li>Pinch, pan and zoom on a tablet</li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <picture>
+          <source srcset="assets/canvas-dark.webp" media="(prefers-color-scheme: dark)">
+          <img src="assets/canvas-light.webp" width="1800" height="1350" alt="A whiteboard with text cards connected by curved arrows and a note embedded as a card." loading="lazy">
+        </picture>
+      </figure>
+    </div>
+
+    <div class="feature flip">
+      <div class="text">
+        <h3>The everyday, handled</h3>
+        <p>Daily notes from a template. Tasks that gather themselves from wherever you wrote them. A calendar of what you wrote when. Version history with diffs, so an edit is never the end of a sentence you liked.</p>
+        <ul>
+          <li>Daily notes and templates with dates, times and cursor placement</li>
+          <li>Tasks with due dates, overdue at a glance</li>
+          <li>Every version of every note, kept, comparable, restorable</li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <picture>
+          <source srcset="assets/tasks-dark.webp" media="(prefers-color-scheme: dark)">
+          <img src="assets/tasks-light.webp" width="1800" height="1350" alt="The task dashboard: open checkboxes from six notes, grouped by note, with due dates on the right." loading="lazy">
+        </picture>
+      </figure>
+    </div>
+
+    <div class="grid" style="margin-top: 24px">
+      <div class="card"><h3>Live Markdown</h3><p>Formatting shows as you type — headings, emphasis, lists, checkboxes, callouts — and the file underneath stays plain text.</p></div>
+      <div class="card"><h3>Tables, diagrams, maths</h3><p>Markdown tables with an editor that helps, Mermaid diagrams, and LaTeX maths rendered in place.</p></div>
+      <div class="card"><h3>Search that finds it</h3><p>Full-text search across the vault, find-and-replace, and smart folders that fill themselves from rules you set.</p></div>
+      <div class="card"><h3>Tabs and split view</h3><p>Two notes side by side. Open the note you're linking to without losing the one you're writing.</p></div>
+      <div class="card"><h3>Capture from the web</h3><p>A browser clipper and in-app web capture turn a page into a note with its source kept.</p></div>
+      <div class="card"><h3>Publish a folder</h3><p>Turn any folder into a static website you can host anywhere — your notes, your domain, no middleman.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="philosophy" class="philosophy">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Why Vellen</span>
+      <h2>What we believe about notes</h2>
+    </div>
+    <div>
+      <div class="belief">
+        <h3>A note should outlive the app that wrote it.</h3>
+        <p>Most notes apps keep your writing inside themselves — a database, a cloud, a format that only they can read. Leave, and you export. Vellen never has that conversation with you. Your notes are Markdown files in a folder you picked. Open them with anything. Back them up however you already do. If Vellen vanished tomorrow, you would lose nothing.</p>
+      </div>
+      <div class="belief">
+        <h3>Your writing is nobody's business.</h3>
+        <p>We don't run servers, so there is nothing to sign up for and nothing to leak. Sync, if you turn it on, goes through <em>your</em> cloud drive, and you can seal it with end-to-end encryption before it leaves your device. No analytics, no telemetry, no model trained on your journal.</p>
+      </div>
+      <div class="belief">
+        <h3>Structure should come from the writing, not before it.</h3>
+        <p>You shouldn't have to decide where a thought lives before you've had it. Write first. Link when a connection occurs to you. Add a property when a folder starts to look like a list. The board, the graph and the task list are views over what you already wrote — never a separate thing to maintain.</p>
+      </div>
+      <div class="belief">
+        <h3>Buy it once.</h3>
+        <p>A notes app is something you trust with years of thinking. It shouldn't stop working the month you cancel. Vellen is a one-time purchase, with a full-featured trial first so you can decide with your own notes in it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sync" class="sync">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Sync &amp; privacy</span>
+      <h2>Your Drive, not our server</h2>
+      <p class="lede" style="margin-bottom: 28px">Connect your own Google Drive and your notes follow you to every device. We never see them: there is no Vellen server for them to pass through.</p>
+      <ol class="steps">
+        <li><strong>Sign in to your own Google account.</strong> Vellen asks for Google's narrowest Drive permission — it can see and manage only the folder it creates, never the rest of your Drive.</li>
+        <li><strong>Turn on end-to-end encryption, if you like.</strong> Notes are sealed on your device with a passphrase only you know before they upload. Not even Google can read them.</li>
+        <li><strong>Write anywhere.</strong> Edits on one device arrive on the others. If two devices change the same note, both versions are kept — Vellen never silently picks one.</li>
+      </ol>
+      <p class="muted">Or skip sync entirely. Vellen is complete without it.</p>
+    </div>
+    <aside class="promise">
+      <h3>What we promise</h3>
+      <ul>
+        <li><strong>No account</strong> with us — there is nothing to create.</li>
+        <li><strong>No servers.</strong> Sync is a conversation between your devices and your Drive.</li>
+        <li><strong>No data collected.</strong> No analytics, no crash telemetry, no usage tracking.</li>
+        <li><strong>No training.</strong> Your notes are never used to train anything.</li>
+        <li><strong>Data-loss guards.</strong> Sync refuses to act on a Drive that suddenly looks empty, asks before removing several notes, and keeps conflict copies rather than overwriting.</li>
+        <li>The <a href="privacy.html">privacy policy</a> is short and means it.</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section id="ai">
+  <div class="wrap">
+    <div class="feature" style="padding-block: 0">
+      <div class="text">
+        <span class="eyebrow">AI, on your terms</span>
+        <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem)">Bring your own key, or run it at home</h2>
+        <p>Ask questions of your own writing. Have it search the web and draft a note from what it finds, with sources. Use the provider you already pay — OpenAI, Anthropic, Google, Qwen or xAI — or point Vellen at a local model so nothing leaves your machine at all.</p>
+        <ul>
+          <li>Vellen adds no fee and is not a party to the traffic</li>
+          <li>Nothing is sent anywhere until you add a key</li>
+          <li>Entirely optional; the app is whole without it</li>
+        </ul>
+      </div>
+      <div class="card" style="padding: 28px">
+        <p class="muted" style="margin:0 0 8px; font-size:.85rem; letter-spacing:.08em; text-transform:uppercase">How it's different</p>
+        <p style="margin:0">Most apps put AI on a subscription and route your notes through their own service to do it. Vellen has no service. Your key goes to your provider, your notes go with the question you asked, and the answer comes back to a file on your disk. Change providers in a menu. Turn it off and it's gone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="download" class="platforms">
+  <div class="wrap">
+    <span class="eyebrow">Where it runs</span>
+    <h2>Mac, iPhone, iPad and Windows</h2>
+    <p class="lede">The same app, the same files, on every screen you write on. Vellen is in the final stages of store review right now — leave your address and we'll tell you the day it's live.</p>
+    <div class="stores">
+      <span class="store" aria-disabled="true">
+        <svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.9 1.2 1.9 2.6 3.2 2.5 1.3-.1 1.8-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.2-1.2 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.9-1.1-2.9-4.4zM14 5.2c.7-.8 1.2-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1.1 3.1 1.1.1 2.3-.6 3-1.4z"/></svg>
+        <span><small>Mac</small><b>Mac App Store</b></span><span class="soon">Soon</span>
+      </span>
+      <span class="store" aria-disabled="true">
+        <svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.9 1.2 1.9 2.6 3.2 2.5 1.3-.1 1.8-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.2-1.2 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.9-1.1-2.9-4.4zM14 5.2c.7-.8 1.2-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1.1 3.1 1.1.1 2.3-.6 3-1.4z"/></svg>
+        <span><small>iPhone &amp; iPad</small><b>App Store</b></span><span class="soon">Soon</span>
+      </span>
+      <span class="store" aria-disabled="true">
+        <svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5l7.5-1v7H3zM11.5 4.3L21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.3z"/></svg>
+        <span><small>Windows</small><b>Microsoft Store</b></span><span class="soon">Soon</span>
+      </span>
+    </div>
+    <p><a class="btn primary" href="mailto:admin@capitalcalcs.com?subject=Tell%20me%20when%20Vellen%20is%20out&amp;body=Please%20let%20me%20know%20when%20Vellen%20is%20available.">Tell me when it's out</a></p>
+    <p class="muted" style="font-size:.9rem">One purchase covers iPhone, iPad and Mac together. Android is next.</p>
+    <div class="phones">
+      <figure class="shot">
+        <img src="assets/phone-light.webp" width="800" height="1342" alt="Vellen on an iPhone in light mode: a note with a heading, a link and a tip callout." loading="lazy">
+      </figure>
+      <figure class="shot">
+        <img src="assets/phone-dark.webp" width="800" height="1342" alt="The same note on an iPhone in dark mode." loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="pricing">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Pricing</span>
+      <h2>Try it for two weeks. Then buy it once.</h2>
+      <p class="lede">Every feature is on from the first minute — sync, encryption, boards, whiteboards, AI. If Vellen isn't for you, your notes are still just files in a folder; nothing to export, nothing to cancel.</p>
+      <p class="muted">Prices are per store, so the App Store purchase covers iPhone, iPad and Mac together, and the Microsoft Store purchase covers Windows. Each is a one-time payment. No subscription, ever.</p>
+    </div>
+    <div class="price-card">
+      <p class="muted" style="margin:0 0 6px; font-size:.85rem; letter-spacing:.08em; text-transform:uppercase">Full-feature trial, then</p>
+      <div class="price">$39.99<small>one time</small></div>
+      <ul>
+        <li><strong>14 days free</strong>, every feature, nothing charged to start</li>
+        <li>One purchase for iPhone, iPad and Mac</li>
+        <li>Free updates — no version to buy again</li>
+        <li>Your notes stay yours whether you buy or not</li>
+      </ul>
+      <a class="btn primary" href="#download">Get Vellen</a>
+      <p class="fine" style="margin-top:14px">On Windows the Microsoft Store runs a 15-day trial of its own; same idea, one day longer.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <span class="eyebrow">Questions</span>
+    <h2>The ones people ask first</h2>
+    <details>
+      <summary>Can I use the notes I already have?</summary>
+      <p>If they're Markdown files, yes — point Vellen at the folder and they're your vault, links and all. Most notes apps can export to Markdown; once yours has, you're done.</p>
+    </details>
+    <details>
+      <summary>Do I have to use sync?</summary>
+      <p>No. Vellen is complete on one device. Sync exists for people with a Mac and a phone, and it goes through your own Google Drive, never through us.</p>
+    </details>
+    <details>
+      <summary>What happens to my notes if I stop using Vellen?</summary>
+      <p>Nothing. They're Markdown files in a folder you chose. Whiteboards are JSON files beside them. Open them in any editor or in another app that reads Markdown.</p>
+    </details>
+    <details>
+      <summary>Is there a subscription?</summary>
+      <p>No. One purchase, per store, forever. Updates are free. The trial is the full app for two weeks.</p>
+    </details>
+    <details>
+      <summary>Does the AI see my notes?</summary>
+      <p>Only the provider you chose, only when you ask, and only the notes involved in the question. Vellen has no service in the middle. Use a local model and nothing leaves your machine.</p>
+    </details>
+    <details>
+      <summary>What does "end-to-end encrypted" mean here?</summary>
+      <p>Your notes are sealed on your device with a passphrase only you know, before they upload to your Drive. Google stores files it can't read. The copies on your own devices stay plain, so forgetting the passphrase costs you nothing locally — you get a recovery phrase too, and any device that still has your notes can rebuild the Drive copy. Nobody can open the sealed copy for you, including us. That's the point.</p>
+    </details>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>Notes that connect. Yours, in a folder you choose, forever.</h2>
+    <p class="lede" style="margin-inline:auto">Vellen is made by a small company that keeps its own notes in it.</p>
+    <div class="actions" style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
+      <a class="btn primary" href="#download">Get Vellen</a>
+      <a class="btn" href="changelog.html">What's new</a>
+    </div>
+  </div>
+</section>
+
 </main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 CapitalCalcs LLC</span>
+    <span class="spacer"></span>
+    <a href="privacy.html">Privacy policy</a>
+    <a href="support.html">Support</a>
+    <a href="changelog.html">What's new</a>
+    <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>
+  </div>
+</footer>
+
 </body>
 </html>
