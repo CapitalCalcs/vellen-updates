@@ -101,7 +101,7 @@
   .card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 22px 22px 18px; }
   .card h3 { font-family: inherit; font-size: 1.05rem; letter-spacing: 0; margin-bottom: .3em; }
   .card p { color: var(--muted); margin: 0; font-size: .96rem; }
-  .card code { font: .88em ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
+  .card code, .feature code { font: .88em ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
   @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
 
@@ -292,7 +292,7 @@
     <div class="feature flip">
       <div class="text">
         <h3>The everyday, handled</h3>
-        <p>Daily notes from a template. Tasks that gather themselves from wherever you wrote them. A calendar of what you wrote when. Version history with diffs, so an edit is never the end of a sentence you liked.</p>
+        <p>Daily notes from a template. Tasks that gather themselves from wherever you wrote them, with due dates and an overdue count. Version history with diffs, so an edit is never the end of a sentence you liked.</p>
         <ul>
           <li>Daily notes and templates with dates, times and cursor placement</li>
           <li>Tasks with due dates, overdue at a glance</li>
@@ -303,6 +303,25 @@
         <picture>
           <source srcset="assets/tasks-dark.webp" media="(prefers-color-scheme: dark)">
           <img src="assets/tasks-light.webp" width="1800" height="1350" alt="The task dashboard: open checkboxes from six notes, grouped by note, with due dates on the right." loading="lazy">
+        </picture>
+      </figure>
+    </div>
+
+    <div class="feature">
+      <div class="text">
+        <h3>A calendar you never have to fill in</h3>
+        <p>The other half of the task list. Tasks answers "what is there to do"; the Calendar answers "what's coming up, and what did I already miss". Every dated note and every task with a due date lands on it by itself — there is nothing to create or set up.</p>
+        <ul>
+          <li>Notes dated with a <code>due</code>, <code>deadline</code> or <code>date</code> property, and tasks with due dates, on one month grid</li>
+          <li>Drag anything to another day and the note itself is rewritten</li>
+          <li>Late work doesn't hide: past days with unfinished tasks are tinted, and older overdue items are counted in the header</li>
+          <li>Not a separate calendar app — every date lives in your own Markdown, so it syncs and means the same thing in any other editor</li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <picture>
+          <source srcset="assets/calendar-dark.webp" media="(prefers-color-scheme: dark)">
+          <img src="assets/calendar-light.webp" width="1800" height="1350" alt="The Calendar view: a month grid with dated notes and due tasks on their days, today marked, and an overdue count in the header." loading="lazy">
         </picture>
       </figure>
     </div>
@@ -378,7 +397,8 @@
       <div class="text">
         <span class="eyebrow">AI, on your terms</span>
         <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem)">Bring your own key, or run it at home</h2>
-        <p>Ask questions of your own writing. Have it search the web and draft a note from what it finds, with sources. Use the provider you already pay — OpenAI, Anthropic, Google, Qwen or xAI — or point Vellen at a local model so nothing leaves your machine at all.</p>
+        <p>Ask questions of your own writing, and get answers with citation chips that open the note they came from. Have it search the web and draft a note from what it finds, with sources. Use the provider you already pay — OpenAI, Anthropic, Google, Qwen or xAI — or point Vellen at a local model so nothing leaves your machine at all.</p>
+        <p><strong>It knows Vellen, too.</strong> Ask "how do I make a board?" or "does this sync?" and it answers from the app's own Help — real menu names and the shortcuts for your device, never an invented feature. The manual is comprehensive; this is the way to read it without reading it.</p>
         <ul>
           <li>Vellen adds no fee and is not a party to the traffic</li>
           <li>Nothing is sent anywhere until you add a key</li>
@@ -471,6 +491,10 @@
     <details>
       <summary>Does the AI see my notes?</summary>
       <p>Only the provider you chose, only when you ask, and only the notes involved in the question. Vellen has no service in the middle. Use a local model and nothing leaves your machine.</p>
+    </details>
+    <details>
+      <summary>Where do I go when I'm stuck?</summary>
+      <p>Help is built in, and it's thorough — every feature, every shortcut, written for the device you're holding. If you've set up AI, you can simply ask it: "how do I add a property?" gets an answer drawn from that Help, not a guess. And there's a person at <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>.</p>
     </details>
     <details>
       <summary>What does "end-to-end encrypted" mean here?</summary>
