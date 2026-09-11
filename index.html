@@ -139,6 +139,22 @@
   .phones .shot { margin: 0; border-radius: 22px; border-bottom: 1px solid var(--border); }
   @media (max-width: 560px) { .phones { grid-template-columns: 1fr; max-width: 300px; } }
 
+  /* what works where */
+  .where { max-width: 1120px; margin: 56px auto 0; text-align: left; }
+  .where h3 { font-family: inherit; font-size: 1.05rem; letter-spacing: 0; margin-bottom: 4px; }
+  .where p { color: var(--muted); font-size: .96rem; max-width: 60ch; }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
+  table.support { border-collapse: collapse; width: 100%; min-width: 640px; font-size: .95rem; }
+  table.support th, table.support td { padding: 12px 16px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+  table.support th { font-weight: 600; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  table.support th:not(:first-child), table.support td:not(:first-child) { text-align: center; width: 17%; }
+  table.support tr:last-child td { border-bottom: 0; }
+  table.support td:first-child { font-weight: 600; }
+  table.support td small { display: block; font-weight: 400; color: var(--muted); }
+  .yes { color: var(--accent-text); font-weight: 700; }
+  .part { color: var(--fg); font-size: .88rem; }
+  .no { color: var(--muted); }
+
   /* pricing */
   .pricing .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 6vw, 72px); align-items: center; }
   .price-card { background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 32px; box-shadow: var(--shadow); }
@@ -182,6 +198,7 @@
       <a href="#philosophy">Why Vellen</a>
       <a href="#sync">Sync &amp; privacy</a>
       <a href="#pricing">Pricing</a>
+      <a href="#where">What works where</a>
       <a href="changelog.html">What's new</a>
       <a class="btn small primary cta" href="#download">Get Vellen</a>
     </nav>
@@ -258,7 +275,7 @@
         <h3>Boards made from your notes</h3>
         <p>Give the notes in a folder a few properties — a status, an owner, a date — and that folder becomes a table or a kanban board. Drag a card between columns and the note's property changes. The board is a view; the notes are still the notes.</p>
         <ul>
-          <li>Table and board views of any folder, saved with it</li>
+          <li>Table and board views of any folder, saved with it — read-only on iPhone, editable everywhere else</li>
           <li>Filter, sort and group by any property</li>
           <li>A task dashboard that reads every checkbox in your vault, with due dates</li>
         </ul>
@@ -313,7 +330,7 @@
         <p>The other half of the task list. Tasks answers "what is there to do"; the Calendar answers "what's coming up, and what did I already miss". Every dated note and every task with a due date lands on it by itself — there is nothing to create or set up.</p>
         <ul>
           <li>Notes dated with a <code>due</code>, <code>deadline</code> or <code>date</code> property, and tasks with due dates, on one month grid</li>
-          <li>Drag anything to another day and the note itself is rewritten</li>
+          <li>Drag anything to another day and the note itself is rewritten (on a phone the calendar is a list of days you tap)</li>
           <li>Late work doesn't hide: past days with unfinished tasks are tinted, and older overdue items are counted in the header</li>
           <li>Not a separate calendar app — every date lives in your own Markdown, so it syncs and means the same thing in any other editor</li>
         </ul>
@@ -330,9 +347,9 @@
       <div class="card"><h3>Live Markdown</h3><p>Formatting shows as you type — headings, emphasis, lists, checkboxes, callouts — and the file underneath stays plain text.</p></div>
       <div class="card"><h3>Tables, diagrams, maths</h3><p>Markdown tables with an editor that helps, Mermaid diagrams, and LaTeX maths rendered in place.</p></div>
       <div class="card"><h3>Search that finds it</h3><p>Full-text search across the vault, find-and-replace, and smart folders that fill themselves from rules you set.</p></div>
-      <div class="card"><h3>Tabs and split view</h3><p>Two notes side by side. Open the note you're linking to without losing the one you're writing.</p></div>
-      <div class="card"><h3>Capture from the web</h3><p>A browser clipper and in-app web capture turn a page into a note with its source kept.</p></div>
-      <div class="card"><h3>Publish a folder</h3><p>Turn any folder into a static website you can host anywhere — your notes, your domain, no middleman.</p></div>
+      <div class="card"><h3>Tabs and split view</h3><p>Two notes side by side. Open the note you're linking to without losing the one you're writing. Computer and iPad; a phone shows one note at a time.</p></div>
+      <div class="card"><h3>Capture from the web</h3><p>In-app web capture on every device, plus a browser clipper on the computer, turn a page into a note with its source kept.</p></div>
+      <div class="card"><h3>Publish a folder</h3><p>Turn any folder into a static website you can host anywhere — your notes, your domain, no middleman. A desktop feature; sync brings the notes to it.</p></div>
     </div>
   </div>
 </section>
@@ -441,6 +458,36 @@
       <figure class="shot">
         <img src="assets/phone-dark.webp" width="800" height="1342" alt="The same note on an iPhone in dark mode." loading="lazy">
       </figure>
+    </div>
+
+    <div class="where" id="where">
+      <h3>What works where</h3>
+      <p>The same files everywhere, but not every screen is a desk. Here is exactly what each device can do today, so nothing is a surprise.</p>
+      <div class="tablewrap">
+        <table class="support">
+          <thead><tr><th>Feature</th><th>Mac &amp; Windows</th><th>iPad</th><th>iPhone</th></tr></thead>
+          <tbody>
+            <tr><td>Writing, links, graph, search, tags &amp; properties<small>Live Markdown, backlinks, tables, diagrams, maths, callouts</small></td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Sync &amp; end-to-end encryption</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Boards &amp; tables<small>Kanban and table views of a folder</small></td><td class="yes">✓</td><td class="yes">✓</td><td class="part">Read-only<small>swipe between columns, tap a card to open its note</small></td></tr>
+            <tr><td>Whiteboards</td><td class="yes">✓</td><td class="yes">✓<small>touch gestures</small></td><td class="yes">✓<small>touch gestures</small></td></tr>
+            <tr><td>Tasks dashboard</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Calendar</td><td class="yes">✓<small>month grid, drag to reschedule</small></td><td class="yes">✓<small>month grid, drag to reschedule</small></td><td class="part">List of days<small>tap to open; no drag</small></td></tr>
+            <tr><td>Tabs &amp; split view</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—<small>one note at a time</small></td></tr>
+            <tr><td>Version history, trash, smart folders</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Daily notes &amp; templates</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>AI with a cloud provider</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>AI with a local model</td><td class="yes">✓<small>runs on the computer</small></td><td class="part">Via your computer<small>points at a model on your home network</small></td><td class="part">Via your computer<small>points at a model on your home network</small></td></tr>
+            <tr><td>Capture a web page in the app</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Browser clipper</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+            <tr><td>Import from other apps<small>Evernote, Notion; Apple Notes on a Mac</small></td><td class="yes">✓</td><td class="no">—<small>import on the computer; sync brings it over</small></td><td class="no">—</td></tr>
+            <tr><td>Export &amp; publish<small>PDF, share as a web page, publish a folder as a website</small></td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+            <tr><td>Keyboard shortcuts &amp; command palette</td><td class="yes">✓</td><td class="no">—<small>every command is in the ⋯ menu</small></td><td class="no">—<small>every command is in the ⋯ menu</small></td></tr>
+            <tr><td>Quick capture from any app<small>a system-wide shortcut that opens a capture box</small></td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:12px; font-size:.88rem">Android follows the Mac and Windows column once it ships. Anything marked — is on the list, not off the table.</p>
     </div>
   </div>
 </section>
