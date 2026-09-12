@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.23, September 12, 2026</p>
+  <p class="updated">Latest: version 1.0.24, September 12, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,19 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.24">
+    <h2><a href="#v1.0.24">Version 1.0.24</a><span class="date">September 12, 2026</span></h2>
+    <ul>
+    <li><strong>Whiteboard branches fold, and cards select in groups.</strong> A card with cards branching off it now carries a small <strong>−</strong> in its corner: click it (or press − with the card selected) and everything downstream tucks away behind a <strong>+N</strong> badge that says how many are hidden; click again, or press +, to bring them back. Right-click (long-press on a phone) offers the same. A folded card drags its hidden branch along with it, and Tidy tree treats it as a single card, so a big map can be worked one limb at a time. Nothing is removed from the file to fold it — the card simply gains <code>collapsed: true</code>, which any other JSON Canvas app ignores and shows in full. And on a computer, <strong>Shift+click</strong> adds cards to the selection, <strong>Shift+drag</strong> on empty space lassoes them, and the whole selection then moves, colors, or deletes together (the Delete button counts them). The in-app Help's whiteboard topic covers both.</li>
+    
+    <li><strong>Drag a whiteboard card onto another to move its branch there.</strong> The target card lights up as you hover; let go and the dragged card becomes its child — the arrow is re-pointed (label and colour kept), the card lines up as the new parent's last child, and everything below it comes along in the same shape. A card set down beside another just moves, as before. A card can't be dropped on itself or on anything below it, since that would tie the tree into a loop, and a folded target unfolds so you can see what you did.</li>
+    
+    <li><strong>Tidy tree leaves room for arrow labels.</strong> A level whose arrows carry labels is now set far enough right that the widest label sits in clear space between the cards, measured in the font it is drawn in — &quot;if both viable&quot; was being squeezed into the standard gap and half hidden behind the cards on either side. Levels without labels keep the usual spacing, and the columns stay straight. Arrow labels on every board also now sit just above the line instead of on it, with a slightly wider halo, so the line never runs through the words.</li>
+    
+    <li><strong>The whiteboard toolbar fits the window.</strong> With a card selected it held twenty-one things — and in anything short of a full-screen window the colour swatches, and whatever came after them, were cut off with no way to reach them. The four &quot;+ …&quot; buttons are now one <strong>+ Add</strong> menu (Text card, Note from your vault, Web link, Group) and the eight swatches one <strong>Color</strong> menu whose button shows the selection's current colour as a dot. And the row now measures itself: whatever still doesn't fit folds into a <strong>⋯</strong> menu at the right end, least-missed tools first (Delete is the last to go), and comes back as the window widens. Every tool is one tap away at any width. A phone keeps its scrolling row.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.23">
     <h2><a href="#v1.0.23">Version 1.0.23</a><span class="date">September 12, 2026</span></h2>
