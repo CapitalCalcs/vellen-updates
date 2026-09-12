@@ -313,7 +313,7 @@
         <ul>
           <li>Daily notes and templates with dates, times and cursor placement</li>
           <li>Tasks with due dates, overdue at a glance</li>
-          <li>Every version of every note, kept, comparable, restorable</li>
+          <li>Versions kept as you write, comparable and restorable; name the ones that matter and they sync too</li>
         </ul>
       </div>
       <figure class="shot">
@@ -348,7 +348,7 @@
       <div class="card"><h3>Tables, diagrams, maths</h3><p>Markdown tables with an editor that helps, Mermaid diagrams, and LaTeX maths rendered in place.</p></div>
       <div class="card"><h3>Search that finds it</h3><p>Full-text search across the vault, find-and-replace, and smart folders that fill themselves from rules you set.</p></div>
       <div class="card"><h3>Tabs and split view</h3><p>Two notes side by side. Open the note you're linking to without losing the one you're writing. Computer and iPad; a phone shows one note at a time.</p></div>
-      <div class="card"><h3>Capture from the web</h3><p>In-app web capture on every device, plus a browser clipper on the computer, turn a page into a note with its source kept.</p></div>
+      <div class="card"><h3>Capture from the web</h3><p>In-app web capture on every device, plus a browser clipper for Chrome, Edge or Brave on the computer, turn a page into a note with its source kept.</p></div>
       <div class="card"><h3>Publish a folder</h3><p>Turn any folder into a static website you can host anywhere — your notes, your domain, no middleman. A desktop feature; sync brings the notes to it.</p></div>
     </div>
   </div>
@@ -388,7 +388,7 @@
       <h2>Your Drive, not our server</h2>
       <p class="lede" style="margin-bottom: 28px">Connect your own Google Drive and your notes follow you to every device. We never see them: there is no Vellen server for them to pass through.</p>
       <ol class="steps">
-        <li><strong>Sign in to your own Google account.</strong> Vellen asks for Google's narrowest Drive permission — it can see and manage only the folder it creates, never the rest of your Drive.</li>
+        <li><strong>Sign in to your own Google account.</strong> Vellen asks for Google's narrowest Drive permission — it can see and manage only the folder it creates, never the rest of your Drive. (Notes go in through the app; a file dropped into that Drive folder by hand isn't pulled in.)</li>
         <li><strong>Turn on end-to-end encryption, if you like.</strong> Notes are sealed on your device with a passphrase only you know before they upload. Not even Google can read them.</li>
         <li><strong>Write anywhere.</strong> Edits on one device arrive on the others. If two devices change the same note, both versions are kept — Vellen never silently picks one.</li>
       </ol>
@@ -414,7 +414,7 @@
       <div class="text">
         <span class="eyebrow">AI, on your terms</span>
         <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem)">Bring your own key, or run it at home</h2>
-        <p>Ask questions of your own writing, and get answers with citation chips that open the note they came from. Have it search the web and draft a note from what it finds, with sources. Use the provider you already pay — OpenAI, Anthropic, Google, Qwen or xAI — or point Vellen at a local model so nothing leaves your machine at all.</p>
+        <p>Ask questions of your own writing, and get answers with citation chips that open the note they came from. With Anthropic, have it search the web and draft a note from what it finds, with sources. Use the provider you already pay — OpenAI, Anthropic, Google, Qwen or xAI — or point Vellen at a local model so nothing leaves your machine at all.</p>
         <p><strong>It knows Vellen, too.</strong> Ask "how do I make a board?" or "does this sync?" and it answers from the app's own Help — real menu names and the shortcuts for your device, never an invented feature. The manual is comprehensive; this is the way to read it without reading it.</p>
         <ul>
           <li>Vellen adds no fee and is not a party to the traffic</li>
@@ -469,17 +469,17 @@
           <tbody>
             <tr><td>Writing, links, graph, search, tags &amp; properties<small>Live Markdown, backlinks, tables, diagrams, maths, callouts</small></td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
             <tr><td>Sync &amp; end-to-end encryption</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><td>Boards &amp; tables<small>Kanban and table views of a folder</small></td><td class="yes">✓</td><td class="yes">✓</td><td class="part">Read-only<small>swipe between columns, tap a card to open its note</small></td></tr>
+            <tr><td>Boards &amp; tables<small>Kanban and table views of a folder</small></td><td class="yes">✓</td><td class="yes">✓<small>reorder cards from the menu</small></td><td class="part">Read-only<small>swipe between columns, tap a card to open its note</small></td></tr>
             <tr><td>Whiteboards</td><td class="yes">✓</td><td class="yes">✓<small>touch gestures</small></td><td class="yes">✓<small>touch gestures</small></td></tr>
             <tr><td>Tasks dashboard</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
             <tr><td>Calendar</td><td class="yes">✓<small>month grid, drag to reschedule</small></td><td class="yes">✓<small>month grid, drag to reschedule</small></td><td class="part">List of days<small>tap to open; no drag</small></td></tr>
             <tr><td>Tabs &amp; split view</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—<small>one note at a time</small></td></tr>
             <tr><td>Version history, trash, smart folders</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
             <tr><td>Daily notes &amp; templates</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><td>AI with a cloud provider</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>AI with a cloud provider<small>web search with Anthropic</small></td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
             <tr><td>AI with a local model</td><td class="yes">✓<small>runs on the computer</small></td><td class="part">Via your computer<small>points at a model on your home network</small></td><td class="part">Via your computer<small>points at a model on your home network</small></td></tr>
             <tr><td>Capture a web page in the app</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><td>Browser clipper</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+            <tr><td>Browser clipper<small>Chrome, Edge, Brave</small></td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
             <tr><td>Import from other apps<small>Evernote, Notion; Apple Notes on a Mac</small></td><td class="yes">✓</td><td class="no">—<small>import on the computer; sync brings it over</small></td><td class="no">—</td></tr>
             <tr><td>Export &amp; publish<small>PDF, share as a web page, publish a folder as a website</small></td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
             <tr><td>Keyboard shortcuts &amp; command palette</td><td class="yes">✓</td><td class="no">—<small>every command is in the ⋯ menu</small></td><td class="no">—<small>every command is in the ⋯ menu</small></td></tr>
@@ -504,9 +504,9 @@
       <p class="muted" style="margin:0 0 6px; font-size:.85rem; letter-spacing:.08em; text-transform:uppercase">Full-feature trial, then</p>
       <div class="price">$39.99<small>one time</small></div>
       <ul>
-        <li><strong>14 days free</strong>, every feature, nothing charged to start</li>
+        <li><strong>14 days free</strong>, every feature — the App Store shows a $0.00 sheet to register the trial; nothing is charged</li>
         <li>One purchase for iPhone, iPad and Mac</li>
-        <li>Free updates — no version to buy again</li>
+        <li>Every 1.x update included — no subscription, nothing recurring</li>
         <li>Your notes stay yours whether you buy or not</li>
       </ul>
       <a class="btn primary" href="#download">Get Vellen</a>
@@ -533,7 +533,7 @@
     </details>
     <details>
       <summary>Is there a subscription?</summary>
-      <p>No. One purchase, per store, forever. Updates are free. The trial is the full app for two weeks.</p>
+      <p>No. One purchase, per store, and every update to that version is included — nothing recurring, ever. If a future major version (a 2.0) ever carries an upgrade price, it will be a one-time purchase too, and your current version keeps working exactly as it is. The trial is the full app for two weeks.</p>
     </details>
     <details>
       <summary>Does the AI see my notes?</summary>
