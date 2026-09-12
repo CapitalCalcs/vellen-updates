@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.24, September 12, 2026</p>
+  <p class="updated">Latest: version 1.0.25, September 12, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,19 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.25">
+    <h2><a href="#v1.0.25">Version 1.0.25</a><span class="date">September 12, 2026</span></h2>
+    <ul>
+    <li><strong>Help catches up with the whiteboard.</strong> The whiteboard topic now says that Tidy tree gives labelled arrows a wider gap, and points at the Color menu (not swatches) for colouring a selection; &quot;All keyboard shortcuts&quot; gains a whiteboard table — Tab, Enter, ⌘/Ctrl+Enter, Shift+Tab, − and +, Shift+click and Shift+drag, Delete, Escape. The split-panes row of that table had been showing its backslash twice.</li>
+    
+    <li><strong>A note's outline becomes a map, and a map becomes notes.</strong> On the whiteboard, <strong>+ Add → Map from a note's outline…</strong> reads a note's headings and bullet lists and lays them out as a tree — the title as the root, headings as branches, bullets as cards, nested as the note nests; prose and code are left behind. Going the other way, right-click (long-press on a phone) a card with cards branching off it: <strong>Branch → outline note</strong> writes the branch as a note beside the board (heading plus nested bullets — mapping it again gives the same tree back); <strong>Branch → checklist note</strong> does the same with <code>- [ ]</code> on every line, so the Tasks view picks them up at once; and <strong>Branch → a note per card</strong> makes a folder named after the card with one note per card below it, each carrying <code>status: To do</code>, a title from its first line and a link to its parent — and turns those cards into note cards, so a Kanban board on that folder, grouped by status, shows the branch as a pipeline while the map stays in step with it.</li>
+    
+    <li><strong>A note card no longer says its title twice.</strong> A card showing a note whose first heading only repeats the file name now shows that title once, in the card's title bar; a heading that says something different is kept. Frontmatter never shows on a card. The Tasks and Boards Help topics now point at the whiteboard's Branch → … commands as a way in.</li>
+    
+    <li><strong>A mapped note is the root of its map.</strong> &quot;Map from a note's outline&quot; now puts the note itself at the root as a note card, so the board shows under the note's &quot;On whiteboards&quot; and a double-click on the root opens the note. And a selected card's four connection dots are now drawn whole on its edges rather than clipped to half-moons.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.24">
     <h2><a href="#v1.0.24">Version 1.0.24</a><span class="date">September 12, 2026</span></h2>
