@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.21, September 9, 2026</p>
+  <p class="updated">Latest: version 1.0.22, September 12, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,18 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.22">
+    <h2><a href="#v1.0.22">Version 1.0.22</a><span class="date">September 12, 2026</span></h2>
+    <ul>
+    <li><strong>&quot;Qwen 3&quot; finds the Qwen 3 you actually pulled.</strong> Help says to run &quot;ollama pull qwen3:8b&quot;; the model chip said &quot;Qwen 3&quot; and asked Ollama for &quot;qwen3&quot;; to Ollama those are different names, so the answer was &quot;404: model 'qwen3' not found&quot; under a green &quot;AI is connected&quot;. Vellen now asks Ollama what it has before it asks it anything else, and a family name settles on the installed tag — the chip shows the name that answers. A name nothing installed answers to is refused up front, with the list of what is installed and where to pick from it, instead of by the server with a bare 404.</li>
+    
+    <li><strong>Local AI works again.</strong> Settings said &quot;AI is connected · Local (Ollama)&quot; and the chat said &quot;Couldn't reach the AI provider. Check your internet connection&quot; — while the model was running on the same machine. Vellen's own network permission was the culprit: it allowed &quot;any http address&quot;, and the rule it used silently meant &quot;any http address on the default port&quot;. Every cloud provider sits on the default port and was fine; Ollama sits on 11434 and was refused, and a model on another computer at home (the Help's own example) would have been refused the same way. The permission now says what was meant. A test now evaluates the app's real permission file against the real addresses — so it can't drift back.</li>
+    <li><strong>A local model that can't be reached is blamed on the right thing.</strong> &quot;Check your internet connection&quot; was the one message for every provider, wrong for the one that doesn't use the internet. The message now names the address it tried and asks whether Ollama is running there; and if Vellen's own permissions ever refuse an address again, it says that's an app bug and where to report it, instead of sending you to look at the Wi-Fi.</li>
+    
+    <li><strong>Sync is now tested the way it runs.</strong> Every earlier test of syncing stopped at the edge of Google Drive, because the test harness had no Drive to talk to. It has one now — a small, faithful Drive that lives inside the test page, with real checksums — and seven end-to-end scenarios run the actual sync code against it: the first sync on a fresh account, a note edited elsewhere arriving while one edited here goes up, &quot;already up to date&quot;, deletions from another device (asked first; Keep keeps), a note changed on both sides keeping both, and a Drive folder that really was emptied being refused with the notes untouched. Nothing in the app changed; what changed is how much of it a regression can hide behind.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.21">
     <h2><a href="#v1.0.21">Version 1.0.21</a><span class="date">September 9, 2026</span></h2>
