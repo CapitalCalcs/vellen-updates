@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.22, September 12, 2026</p>
+  <p class="updated">Latest: version 1.0.23, September 12, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,18 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.23">
+    <h2><a href="#v1.0.23">Version 1.0.23</a><span class="date">September 12, 2026</span></h2>
+    <ul>
+    <li><strong>The whiteboard is now a mind map you can type.</strong> Select a card and press Tab: a new card branches off it, already placed to the right, already joined by an arrow, already open for typing. Enter adds a card beside it on the same branch. Both work mid-sentence inside a card's text too (Tab, and ⌘/Ctrl+Enter), and Shift+Tab climbs to the parent — so a brainstorm runs as fast as you can think. When it gets messy, <strong>Tidy tree</strong> lays the whole tree out left to right in clean columns with every parent centred on its branches, keeping the root where you put it and leaving everything else alone. Nothing about the file changed: a tree is ordinary cards and ordinary arrows, so the board still opens anywhere a JSON Canvas does, and a tree you drew by hand tidies the same way. + Child, + Sibling and Tidy tree are buttons too, for a phone or a tablet. And reopening a card for editing now puts the cursor at the end of its text, where you almost always want it.</li>
+    
+    <li><strong>Three things an end-of-week read of the week's own fixes turned up.</strong> A local AI server that answers the model-list request with a polite &quot;unknown endpoint&quot; (LM Studio does) was being read as &quot;no models installed&quot; and refused; it is now left to answer for itself. A Drive listing whose connection drops after the headers arrive was still being read as an empty Drive — the one shape the 9 Sep fix hadn't covered — and the two root-folder lookups that could have created a second &quot;Vellen&quot; folder on an incomplete answer now go through the same checks as every other listing. And the model field in Settings → AI could be overwritten by the local provider's background check while another provider's panel was open, or while you were typing a name.</li>
+    <li><strong>Help no longer contradicts itself about the web</strong>, and the AI's chapter picker ignores bold sentences (only bold names count as a chapter's subjects).</li>
+    
+    <li><strong>The AI now finds features by their names, not just their chapter titles.</strong> Asked &quot;what is the clipper?&quot;, it answered that Vellen has no clipper — the manual's chapter is called &quot;Saving web pages&quot;, and a word that appeared only inside a chapter counted for almost nothing when choosing what the AI gets to read. Now a word the manual says rarely and repeatedly, or names in bold, weighs as much as a chapter title, so &quot;callout&quot;, &quot;backlink&quot;, &quot;font&quot;, &quot;quick capture&quot; and the clipper reach their chapters; and a long word no longer matches a short one it merely begins with (&quot;backlink&quot; was matching every chapter that said &quot;back&quot;). Help also now names <strong>backlinks</strong> and the <strong>outline</strong> in so many words.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.22">
     <h2><a href="#v1.0.22">Version 1.0.22</a><span class="date">September 12, 2026</span></h2>
