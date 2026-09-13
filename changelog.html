@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.28, September 13, 2026</p>
+  <p class="updated">Latest: version 1.0.29, September 13, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,15 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.29">
+    <h2><a href="#v1.0.29">Version 1.0.29</a><span class="date">September 13, 2026</span></h2>
+    <ul>
+    <li><strong>The graph settles in about half the time on a big vault.</strong> A 3,000-note, 15,000-link vault took seven seconds to arrange. The physics is unchanged; its bookkeeping was the cost — a fresh hash map of neighbour buckets every tick and every pair visited twice. It now sorts nodes into a grid of reused typed arrays and sees each pair once, with a tighter neighbourhood that still covers the spacing unlinked notes settle at; and the dots are drawn as one shape rather than three thousand. Measured: 8.7 → 4.4 ms a step.</li>
+    <li><strong>Vellen now times its own slow phases, and the diagnostics say so.</strong> Opening a vault (each step and the total), arranging the graph, a search, collecting tasks and Tidy tree each record how long they took; Settings → About → Copy diagnostics includes a &quot;Timings (this session)&quot; section. A hands-on pass spent a day trying to time a release build from outside with screenshots and got numbers that were plausible and wrong; this is the answer from inside.</li>
+    <li><strong>Big-vault housekeeping.</strong> Opening a note re-rendered every row of the sidebar (600 ms at 3,000 notes — a row now redraws only when the change names it or something below it); the hover-only delete button is created only for the hovered row (a third of the sidebar's DOM); and the indexing progress line updates ten times a second instead of once per fifty files, which on a cached open re-rendered the app sixty times for a line nobody could see.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.28">
     <h2><a href="#v1.0.28">Version 1.0.28</a><span class="date">September 13, 2026</span></h2>
