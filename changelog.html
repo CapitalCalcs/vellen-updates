@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.26, September 13, 2026</p>
+  <p class="updated">Latest: version 1.0.27, September 13, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,15 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.27">
+    <h2><a href="#v1.0.27">Version 1.0.27</a><span class="date">September 13, 2026</span></h2>
+    <ul>
+    <li><strong>A device whose notes folder was just encrypted from another device no longer falls silent.</strong> A two-device pass found the iPhone quietly stopped syncing — in both directions — the moment the Mac turned encryption on: it fetched the keyring, refused (correctly) to sync without the passphrase, and then said nothing at all. The refusal now shows as a banner where you are, with an &quot;Open encryption settings&quot; button that lands on the passphrase box; Settings → Sync carries the same sentence; Recent sync activity records &quot;Paused — needs your passphrase&quot; instead of a history that simply stops; and background sync waits for the unlock rather than retrying every few minutes. Once unlocked, sync resumes on its own. The sentence itself now names the screen (&quot;Settings → Encryption&quot;) rather than telling you to scroll down to a section that moved.</li>
+    <li><strong>A note you deleted that comes back — because another device edited it after you deleted it — now says so.</strong> The edit surviving is the rule and stays; what was missing was any word about it. A short notice names the note and the reason, and Recent sync activity lists it as &quot;came back … edited elsewhere after you deleted it&quot; rather than as a new arrival. An edit/delete clash no longer counts as &quot;1 to resolve&quot; in that history either — there is no conflict copy to resolve.</li>
+    <li><strong>The &quot;Get your notes&quot; list labels its count honestly.</strong> &quot;10 items&quot; beside a vault the Mac calls &quot;14 notes · 1 whiteboard&quot; looked like a disagreement; it is a count of the folder's top-level entries, and now says so.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.26">
     <h2><a href="#v1.0.26">Version 1.0.26</a><span class="date">September 13, 2026</span></h2>
