@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.29, September 13, 2026</p>
+  <p class="updated">Latest: version 1.0.30, September 13, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,14 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.30">
+    <h2><a href="#v1.0.30">Version 1.0.30</a><span class="date">September 13, 2026</span></h2>
+    <ul>
+    <li><strong>An outside edit that lands right after an autosave is no longer missed.</strong> For two seconds after Vellen saved a note it treated any change to that file as the echo of its own write and ignored it — so a line appended by another program (or another device's sync) inside that window never reached the editor, no banner appeared, and the next keystrokes were refused by the safety check with nothing on screen to say why. The file's content now decides what is Vellen's own: an outside change shows at once on a clean note and raises the &quot;changed outside this window&quot; banner on one with unsaved typing. A file that vanishes under unsaved typing is likewise noticed whatever the clock says, and the words are kept. Failed-create notices name the note without its extension.</li>
+    <li><strong>Opening a big vault: the folder listing is one round trip.</strong> The timings shipped in v1.0.29 answered the question they were built for: of a 3,000-note vault's 2.4 s open, 1.07 s was &quot;scanning the folder&quot; — not disk time (27 ms in one process) but three thousand crossings of the webview boundary, one per note, to read its date and size. The app now walks the vault natively and answers once; the old walk stays as the fallback. A second line in the timings, &quot;launch: webview start → open vault begins&quot;, now separates app start-up from the vault open, since the 5.9 s the pass saw from launch held only 2.4 s of the latter.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.29">
     <h2><a href="#v1.0.29">Version 1.0.29</a><span class="date">September 13, 2026</span></h2>
