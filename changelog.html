@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.25, September 12, 2026</p>
+  <p class="updated">Latest: version 1.0.26, September 13, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,20 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.26">
+    <h2><a href="#v1.0.26">Version 1.0.26</a><span class="date">September 13, 2026</span></h2>
+    <ul>
+    <li><strong>Three things a hands-on pass through the iPhone build turned up.</strong> The whiteboard's fold badge and connection dots shrank with the board's zoom — on a map just laid out, the badge was about 7 points across, well under a fingertip; they now hold their size on screen whatever the zoom (and are drawn a little larger on phones, with a wider tap area). &quot;Map from a note's outline&quot; placed the new tree from a fixed point, on top of whatever was already on the board; it now starts below the lowest existing card. And the phone's hint bar still said &quot;long-press a card: remove&quot; when long-press has become the phone's menu — open, branch, fold, remove; it says so now.</li>
+    <li><strong>Maintenance note.</strong> The iOS row of the webview matrix records the pass: WKWebView on iOS 26.5 / Xcode 26.6, editor, whiteboard and Tasks all behaving.</li>
+    
+    <li><strong>Five more from the same kind of pass, on Android.</strong> The Tasks view's checkbox was a 15-pixel target on a row that opens the note, so a near-miss threw you out of the list instead of ticking the task; it now has a generous tap area around it (larger still on phones) that ticks the task. Right-click and long-press menus on phones and tablets have 44-point rows, and the destructive item is set off from the rest by a rule and a gap. A map made from a note's outline is now moved clear of existing cards as a whole — the earlier fix placed only the root, and a tree's upper branches fanned back up over the old cards. When a local AI server can't be reached or refuses the request, Settings now says that, instead of claiming a key has expired (a local server has no key). And the Tasks view shows a task's words rather than its markdown — <code>**bold**</code>, <code>==highlight==</code> and links are rendered as text, while the note keeps its marks.</li>
+    
+    <li><strong>Straight quotes stay straight.</strong> On a Mac, typing between two quotes in a note — <code>'v'</code> — could have macOS swap them for curly ones, and the cursor then landed outside the opening quote so the rest of the word arrived in the wrong place (<code>ellen123‘v’</code>); a command copied from that note broke in the terminal. Vellen now declines the system's smart-quote and similar substitutions while Auto-correct is off, and always inside code, fenced or inline. Spelling underlines are unaffected.</li>
+    
+    <li><strong>What an App Store reviewer sees, fixed at the source.</strong> A hands-on pass along the review notes on a fresh iPhone found the app asking the App Store about the trial — and, on opening the folder, showing the $0.00 trial sheet — before the licence had been accepted, with the sheet's explanation hidden under the licence text. Nothing now talks to the store, and no folder opens, until &quot;I Agree&quot;. The phone's ⋯ menu ran off the bottom of the screen with Settings out of sight and no hint that it scrolled; it now fits the screen when it can and shows &quot;⌄ more&quot; when it can't. The AI sheet's title row keeps clear of the status bar, and its ✕ is finger-sized. And a phone no longer says your notes are &quot;on your computer&quot;.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.25">
     <h2><a href="#v1.0.25">Version 1.0.25</a><span class="date">September 12, 2026</span></h2>
