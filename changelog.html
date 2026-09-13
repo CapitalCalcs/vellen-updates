@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.27, September 13, 2026</p>
+  <p class="updated">Latest: version 1.0.28, September 13, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,24 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.28">
+    <h2><a href="#v1.0.28">Version 1.0.28</a><span class="date">September 13, 2026</span></h2>
+    <ul>
+    <li><strong>After unlocking an encrypted notes folder, background sync now actually resumes.</strong> v1.0.27's fix for the silent phone cleared the banner and pulled the other device's edits the moment you entered the passphrase — and then stopped again: the background timer parked by the refusal was never restarted, so a note written on the phone sat there until a relaunch or Sync now. Found on a real iPhone within an hour of shipping, on the exact test written to close it. Now the timer restarts whenever a sync succeeds while it is parked; the test goes on to edit a note after the unlock and watches it reach Drive, sealed, by itself.</li>
+    <li><strong>Rename a note from its row.</strong> A new note is &quot;Untitled&quot; until you name it, and on a phone the row's long-press menu offered everything but a rename — the only way was ⋯ → Rename… on the open note. Right-click (or long-press) a note or whiteboard in the list → <strong>Rename…</strong> now turns the row into a name box; <strong>F2</strong> on a focused row does the same. It asks first when other notes link to it, like the editor's pencil.</li>
+    <li><strong>Local AI: what Settings says is now what is true.</strong> A hands-on pass against Ollama, LM Studio and a few impostors turned up nine ways the AI panel and Settings misreported the state of a local server:</li>
+    <ul>
+    <li>A green &quot;AI is connected&quot; survived a model that didn't exist, a server that was down, and a web page that was not an AI at all. A check that doesn't get a proper answer is now an amber &quot;<strong>set up, but couldn't be verified just now</strong>&quot; with the reason under it — never green.</li>
+    <li>Connecting to an address that answers with a web page (a router's admin page, say) went green, and asking it said &quot;the AI returned an empty response&quot; — sending you to change models. It now says the address answered but not like an AI server, and names where Ollama and LM Studio usually listen.</li>
+    <li>A stopped server showed a raw transport string (&quot;error sending request for url…&quot;) where the friendly sentence already existed; the sentence now says &quot;Couldn't reach the local AI server at …&quot; with a step for Ollama <em>and</em> LM Studio, since the field invites both.</li>
+    <li>After a failed model, picking a different one left the old complaint under the new name until you pressed Test connection; changing the model now re-checks at once.</li>
+    <li>LM Studio answers an unknown model name with whatever it has loaded, silently; Settings now says &quot;the server answered as X, not Y&quot;.</li>
+    <li>An answer whose connection died mid-sentence was presented as finished, with Save as note offered. It is now marked <strong>Cut off</strong>, the Save button says so, and Retry is suggested.</li>
+    <li>A doubled full stop in the Settings detail line; &quot;add a provider key&quot; under a field that takes an address. Help's troubleshooting list now describes these messages, and names the whiteboard's fold menu items (the AI had invented an &quot;Unfold&quot; entry because Help said &quot;the same choice&quot; without naming it).</li>
+    </ul>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.27">
     <h2><a href="#v1.0.27">Version 1.0.27</a><span class="date">September 13, 2026</span></h2>
