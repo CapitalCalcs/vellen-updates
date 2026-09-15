@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.31, September 13, 2026</p>
+  <p class="updated">Latest: version 1.0.32, September 14, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,34 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.32">
+    <h2><a href="#v1.0.32">Version 1.0.32</a><span class="date">September 14, 2026</span></h2>
+    <p>Everything below comes from the first full unattended round of hands-on<br>passes (14 Sep 2026: iOS, Android, reviewer, sync, local AI, big vault,<br>files, accessibility — 61 findings, <code>reports/passes/2026-09-14-*.md</code>).</p>
+    <ul>
+    <li><strong>A note that isn't UTF-8 text can no longer be destroyed by typing in it.</strong> A <code>.md</code> in an old code page (the kind an imported Windows vault is full of) showed � for every accented letter, and the first autosave wrote those replacement characters over the original bytes for good, with no version kept. Such a note now opens read-only with a banner saying why; <strong>Edit anyway</strong> keeps a byte-for-byte copy under <code>.history/raw/</code> first.</li>
+    <li><strong>Reinstalling on Android and choosing the same folder opens your notes again</strong> instead of creating an empty &quot;My notes (1)&quot; beside them — which showed the welcome note and none of your writing, with nothing to say why. The drawer's item is now &quot;Open a folder as a notes folder…&quot;.</li>
+    <li><strong>Local AI works from the built Android app.</strong> Requests to a local server carried the app's own origin, which Ollama refuses (403) — and the refusal was reported as &quot;can't reach the server&quot;. Local requests now send no origin, and a server that <em>answers</em> no is described as refusing, with the status.</li>
+    <li><strong>Diagnostics no longer leak a word of a note's name.</strong> A three-word file name in an error left its middle word between the redaction markers; the whole path goes now, spaces and all.</li>
+    <li><strong>Android's Back button closes what is on top first</strong>: an open ⋯ menu or the drawer, before anything behind them moves — and it keeps working after the app has been sent to the background and brought back (every press used to quit the app from then on).</li>
+    <li><strong>iPhone and iPad: the app no longer scrolls out from under the status bar</strong> on a swipe, and tapping a field no longer zooms the page and leaves it zoomed (the &quot;Connect&quot; button, the encryption unlock screen and the note-details ✕ all went off-screen that way). Fields keep at least 16 px text on touch screens; pinch-zoom is unchanged.</li>
+    <li><strong>Menus fit the phone.</strong> The whiteboard card menu ran past the right edge with &quot;Remove from board (the note itself is untouched)&quot; cut at &quot;unto…&quot;; menus now wrap within the screen.</li>
+    <li><strong>A folder renamed or moved in Finder is followed.</strong> Its notes used to stay listed under the old name, unopenable (&quot;may still be downloading&quot;), and then appear twice once anything touched them. A note renamed in Finder while open keeps its tab too, with a notice, instead of the tab closing without a word.</li>
+    <li><strong>Sync says the right thing after a delete/edit clash.</strong> &quot;1 needs your review (copies saved)&quot; over a note that simply came back — nothing to review, no copy saved — is now &quot;1 note you deleted came back, edited elsewhere&quot;; that sync shows in the recent list rather than being filed as quiet; and the conflict copy an edit/edit clash creates is uploaded by the same sync, not the next one.</li>
+    <li><strong>Vellen's AI can answer &quot;what format are my notes in, and where do they live?&quot;</strong> A Help topic, <em>Where your notes are stored — plain Markdown files</em>, now exists for it to read (it used to search the web and conclude Vellen might not exist).</li>
+    <li><strong>Branch → note never makes a second note with an existing title</strong> (which made every <code>[[link]]</code> to it ambiguous); it numbers the new one and says so.</li>
+    <li><strong>Boards say when notes are off the columns</strong>: &quot;3 without a status →&quot; beside the count, linking to the &quot;No status&quot; column — a new board over a folder read &quot;4 notes&quot; above three empty columns with the fourth column off the edge of an iPad.</li>
+    <li><strong>Calendar cells show a few chips and &quot;+N more&quot;</strong> instead of crushing eighteen items into 6-pixel slivers.</li>
+    <li><strong>The graph on a phone shows its screen and progress at once</strong> rather than a blank page for the 25 seconds a 3,000-note graph took to build, and the finished layout is framed in the viewport instead of a corner. Tidy tree says when a tree is taller than the screen and starts at its top.</li>
+    <li><strong>Touch targets meet the 44-point floor</strong> on phones and tablets — the note action row (Delete no longer one of five identical circles), the calendar's month arrows, the conflict banner's buttons (which now wrap instead of running off the screen), the <code>[[</code> note picker, AI provider chips, the whiteboard toolbar; checkboxes grow with the text size.</li>
+    <li><strong>Phone header names the view</strong> — Tasks, Graph, Calendar — instead of the note you left; search excerpts read as prose, not Markdown source; Help paragraphs re-flow on a phone; the whiteboard's gesture hint wraps instead of stopping mid-word; Android's first frame is dark, not white.</li>
+    <li><strong>Local AI wording.</strong> The green headline names the model that is actually answering (LM Studio uses whatever it has loaded); &quot;Refresh model list&quot; works on LM Studio; the row under an amber &quot;couldn't be verified&quot; no longer says &quot;is connected&quot;; a settled model name is said once; small models no longer echo &quot;[Note]&quot; from the citation example.</li>
+    <li><strong>Screen readers:</strong> the notes list is a named tree that announces the note you arrow to; the note editor is &quot;Note text&quot;; every property field is named by its property and every Remove says what it removes; the Settings, note-panel and saved-view tab lists move with the arrow keys and take one Tab stop; whiteboard and board cards are reachable by keyboard; a note's tab is named for the note alone; the four sidebar &quot;+&quot; buttons say what they add; &quot;Links (2)&quot;.</li>
+    <li><strong>Store screen:</strong> &quot;Vellen couldn't reach the App Store just now — your trial is unaffected&quot; replaces &quot;The App Store record: couldn't be read just now.&quot;; the unlock covers &quot;your iPhone, iPad and Mac&quot; rather than &quot;this store's ecosystem&quot;; encryption settings say &quot;this device&quot; on a phone; a web-search answer's continuation no longer runs into the previous sentence.</li>
+    <li><strong>Open a particular folder at launch</strong> — <code>open -a Vellen --args --vault &lt;folder&gt;</code> on a Mac (or <code>--vault=&lt;folder&gt;</code>) opens that folder instead of the remembered one. For scripted and automated use; it becomes the remembered folder like any other.</li>
+    <li><strong>Pass infrastructure:</strong> the preflight checks the Anthropic key is live, refuses an installed app too old for <code>--vault</code>, and reads reachability by status; a round builds the Mac bundle from HEAD first and can be resumed; each pass frees port 1420, restarts the Simulator app, boots the named devices and tears everything down after; the Android pass's spurious conflict banner (a resume rescan reading a half-written file) is fixed by never reading a note while our own write is in flight.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.31">
     <h2><a href="#v1.0.31">Version 1.0.31</a><span class="date">September 13, 2026</span></h2>
