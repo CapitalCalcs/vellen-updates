@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.33, September 14, 2026</p>
+  <p class="updated">Latest: version 1.0.34, September 15, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,15 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.34">
+    <h2><a href="#v1.0.34">Version 1.0.34</a><span class="date">September 15, 2026</span></h2>
+    <ul>
+    <li><strong>Find and replace has a button in the note's header (&quot;ab→&quot;, beside the pin) and a choice of This note or All notes.</strong> Stripping the colons out of a <code>10:23:05:23:07:31:0A</code> in the note you're editing is the everyday case (Robert, 15 Sep 2026), and it belongs in the same dialog as the vault-wide replace rather than only behind ⌘F. The header button opens on This note; the command palette's &quot;Find and replace in all notes…&quot; opens on All notes; either can be switched at the top. Both scopes get the same protection — the note is saved to History first, the message afterwards has Undo — and the button says what it will do: &quot;Replace in “Ids”&quot;, &quot;Remove in 4 notes&quot;. The phone gets the header button and a &quot;Find and replace in this note…&quot; command, one note only.</li>
+    <li><strong>&quot;Replace in all notes…&quot; is a command with its own dialog, not a row under the search box.</strong> The row was one tap away on every platform, took the search box's text verbatim (so <code>tag:work</code> listed the notes tagged work while Replace hunted for those literal characters), and its dialog promised that every note was &quot;covered by backups&quot; while it took no version of anything — a note never opened in Vellen had no history at all, and its old wording was simply gone (Robert, 15 Sep 2026: &quot;more dangerous than useful&quot;). Now, on a keyboard layout, the command palette's &quot;Replace in all notes…&quot; opens a dialog with Find and Replace with, a live count of exactly what it would touch, and a button that says the number (&quot;Replace in 4 notes&quot;; &quot;Remove in 4 notes&quot; when Replace with is empty). Before any note is rewritten, every note gets a named version (&quot;Before replacing X with Y&quot;) — and if one of those can't be saved, nothing is replaced, as with restores and sync conflicts. Afterwards the message has Undo, which puts each note back unless it has been edited again since. The phone has no vault-wide replace at all (see the entry above for what it has); the sidebar search box only searches.</li>
+    <li><strong>A ✕ in the search box</strong> empties it in one tap — results and the replace row go with it, and the cursor stays in the box for the next search. Escape still does the same on a keyboard; on a phone there is no Escape, and the only way to put a search away was to backspace the words out one by one (Robert, 15 Sep 2026). Finger-sized on touch.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.33">
     <h2><a href="#v1.0.33">Version 1.0.33</a><span class="date">September 14, 2026</span></h2>
