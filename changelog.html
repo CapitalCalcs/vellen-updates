@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.32</p>
+  <p class="updated">Latest: version 1.0.33, September 14, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -85,8 +85,19 @@
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
 
+  <section class="release" id="v1.0.33">
+    <h2><a href="#v1.0.33">Version 1.0.33</a><span class="date">September 14, 2026</span></h2>
+    <ul>
+    <li><strong>Boards and Tables are in the phone's drawer</strong>, always — a board or table set up on a Mac, iPad or PC opens on the phone in its read-only layout. The rows were hidden unless the notes folder already held one, so a phone had no way in and nothing said the features existed.</li>
+    <li><strong>The status line tells the truth while a conflict banner is up</strong>: &quot;Not saved — waiting on you&quot; instead of an endless &quot;Saving…&quot;.</li>
+    <li><strong>The name-clash message names the note the way you see it</strong> (&quot;final&quot;, not &quot;final.md&quot;).</li>
+    <li><strong>AI answers built from the built-in Help say so</strong> — &quot;From Vellen Help: Whiteboard&quot; under the answer, the same way &quot;Notes sent for context&quot; names the notes it read; the chip opens that Help topic. A manual answer and a made-up one used to look identical.</li>
+    <li><strong>On a phone, a big vault's graph opens on the current note's neighbourhood</strong> (above 500 notes, the first time) instead of arranging the whole thing — 3,000 notes took a minute and drew an unreadable blob. Untick &quot;Current note only&quot; for everything; the choice is remembered. The Mac still opens the full graph.</li>
+    </ul>
+  </section>
+
   <section class="release" id="v1.0.32">
-    <h2><a href="#v1.0.32">Version 1.0.32</a></h2>
+    <h2><a href="#v1.0.32">Version 1.0.32</a><span class="date">September 14, 2026</span></h2>
     <p>Everything below comes from the first full unattended round of hands-on<br>passes (14 Sep 2026: iOS, Android, reviewer, sync, local AI, big vault,<br>files, accessibility — 61 findings, <code>reports/passes/2026-09-14-*.md</code>).</p>
     <ul>
     <li><strong>A note that isn't UTF-8 text can no longer be destroyed by typing in it.</strong> A <code>.md</code> in an old code page (the kind an imported Windows vault is full of) showed � for every accented letter, and the first autosave wrote those replacement characters over the original bytes for good, with no version kept. Such a note now opens read-only with a banner saying why; <strong>Edit anyway</strong> keeps a byte-for-byte copy under <code>.history/raw/</code> first.</li>
@@ -114,7 +125,7 @@
   </section>
 
   <section class="release" id="v1.0.31">
-    <h2><a href="#v1.0.31">Version 1.0.31</a></h2>
+    <h2><a href="#v1.0.31">Version 1.0.31</a><span class="date">September 13, 2026</span></h2>
     <ul>
     <li><strong>Vellen follows the system text size on phones and tablets.</strong> The size set under Accessibility → Display &amp; Text Size now scales the sidebar, menus, panels and note text (up to about 1.6×, so every screen stays usable at the largest settings). Until now the app rendered pixel-for-pixel the same at the largest accessibility size as at the default — the one app on the phone that didn't answer. Settings → Appearance has a switch to turn it off; Vellen's own text-size buttons still work on top.</li>
     <li><strong>Screen readers and the keyboard.</strong> Task checkboxes in a note now carry their task's words as their name (&quot;Task: Buy milk&quot;) instead of a bare &quot;checkbox&quot;, and sit outside the Tab order so the app's own controls come first. The formatting toolbar is one Tab stop with the arrow keys moving inside it, as its role has always promised; the two &quot;H&quot; and two &quot;A&quot; buttons have distinct names (Heading / Highlight, Smaller text / Larger text). The properties panel's &quot;Add property&quot; field has a proper label.</li>
@@ -122,7 +133,7 @@
   </section>
 
   <section class="release" id="v1.0.30">
-    <h2><a href="#v1.0.30">Version 1.0.30</a></h2>
+    <h2><a href="#v1.0.30">Version 1.0.30</a><span class="date">September 13, 2026</span></h2>
     <ul>
     <li><strong>An outside edit that lands right after an autosave is no longer missed.</strong> For two seconds after Vellen saved a note it treated any change to that file as the echo of its own write and ignored it — so a line appended by another program (or another device's sync) inside that window never reached the editor, no banner appeared, and the next keystrokes were refused by the safety check with nothing on screen to say why. The file's content now decides what is Vellen's own: an outside change shows at once on a clean note and raises the &quot;changed outside this window&quot; banner on one with unsaved typing. A file that vanishes under unsaved typing is likewise noticed whatever the clock says, and the words are kept. Failed-create notices name the note without its extension.</li>
     <li><strong>Opening a big vault: the folder listing is one round trip.</strong> The timings shipped in v1.0.29 answered the question they were built for: of a 3,000-note vault's 2.4 s open, 1.07 s was &quot;scanning the folder&quot; — not disk time (27 ms in one process) but three thousand crossings of the webview boundary, one per note, to read its date and size. The app now walks the vault natively and answers once; the old walk stays as the fallback. A second line in the timings, &quot;launch: webview start → open vault begins&quot;, now separates app start-up from the vault open, since the 5.9 s the pass saw from launch held only 2.4 s of the latter.</li>
@@ -130,7 +141,7 @@
   </section>
 
   <section class="release" id="v1.0.29">
-    <h2><a href="#v1.0.29">Version 1.0.29</a></h2>
+    <h2><a href="#v1.0.29">Version 1.0.29</a><span class="date">September 13, 2026</span></h2>
     <ul>
     <li><strong>The graph settles in about half the time on a big vault.</strong> A 3,000-note, 15,000-link vault took seven seconds to arrange. The physics is unchanged; its bookkeeping was the cost — a fresh hash map of neighbour buckets every tick and every pair visited twice. It now sorts nodes into a grid of reused typed arrays and sees each pair once, with a tighter neighbourhood that still covers the spacing unlinked notes settle at; and the dots are drawn as one shape rather than three thousand. Measured: 8.7 → 4.4 ms a step.</li>
     <li><strong>Vellen now times its own slow phases, and the diagnostics say so.</strong> Opening a vault (each step and the total), arranging the graph, a search, collecting tasks and Tidy tree each record how long they took; Settings → About → Copy diagnostics includes a &quot;Timings (this session)&quot; section. A hands-on pass spent a day trying to time a release build from outside with screenshots and got numbers that were plausible and wrong; this is the answer from inside.</li>
@@ -139,7 +150,7 @@
   </section>
 
   <section class="release" id="v1.0.28">
-    <h2><a href="#v1.0.28">Version 1.0.28</a></h2>
+    <h2><a href="#v1.0.28">Version 1.0.28</a><span class="date">September 13, 2026</span></h2>
     <ul>
     <li><strong>After unlocking an encrypted notes folder, background sync now actually resumes.</strong> v1.0.27's fix for the silent phone cleared the banner and pulled the other device's edits the moment you entered the passphrase — and then stopped again: the background timer parked by the refusal was never restarted, so a note written on the phone sat there until a relaunch or Sync now. Found on a real iPhone within an hour of shipping, on the exact test written to close it. Now the timer restarts whenever a sync succeeds while it is parked; the test goes on to edit a note after the unlock and watches it reach Drive, sealed, by itself.</li>
     <li><strong>Rename a note from its row.</strong> A new note is &quot;Untitled&quot; until you name it, and on a phone the row's long-press menu offered everything but a rename — the only way was ⋯ → Rename… on the open note. Right-click (or long-press) a note or whiteboard in the list → <strong>Rename…</strong> now turns the row into a name box; <strong>F2</strong> on a focused row does the same. It asks first when other notes link to it, like the editor's pencil.</li>
@@ -157,7 +168,7 @@
   </section>
 
   <section class="release" id="v1.0.27">
-    <h2><a href="#v1.0.27">Version 1.0.27</a></h2>
+    <h2><a href="#v1.0.27">Version 1.0.27</a><span class="date">September 13, 2026</span></h2>
     <ul>
     <li><strong>A device whose notes folder was just encrypted from another device no longer falls silent.</strong> A two-device pass found the iPhone quietly stopped syncing — in both directions — the moment the Mac turned encryption on: it fetched the keyring, refused (correctly) to sync without the passphrase, and then said nothing at all. The refusal now shows as a banner where you are, with an &quot;Open encryption settings&quot; button that lands on the passphrase box; Settings → Sync carries the same sentence; Recent sync activity records &quot;Paused — needs your passphrase&quot; instead of a history that simply stops; and background sync waits for the unlock rather than retrying every few minutes. Once unlocked, sync resumes on its own. The sentence itself now names the screen (&quot;Settings → Encryption&quot;) rather than telling you to scroll down to a section that moved.</li>
     <li><strong>A note you deleted that comes back — because another device edited it after you deleted it — now says so.</strong> The edit surviving is the rule and stays; what was missing was any word about it. A short notice names the note and the reason, and Recent sync activity lists it as &quot;came back … edited elsewhere after you deleted it&quot; rather than as a new arrival. An edit/delete clash no longer counts as &quot;1 to resolve&quot; in that history either — there is no conflict copy to resolve.</li>
@@ -166,7 +177,7 @@
   </section>
 
   <section class="release" id="v1.0.26">
-    <h2><a href="#v1.0.26">Version 1.0.26</a></h2>
+    <h2><a href="#v1.0.26">Version 1.0.26</a><span class="date">September 13, 2026</span></h2>
     <ul>
     <li><strong>Three things a hands-on pass through the iPhone build turned up.</strong> The whiteboard's fold badge and connection dots shrank with the board's zoom — on a map just laid out, the badge was about 7 points across, well under a fingertip; they now hold their size on screen whatever the zoom (and are drawn a little larger on phones, with a wider tap area). &quot;Map from a note's outline&quot; placed the new tree from a fixed point, on top of whatever was already on the board; it now starts below the lowest existing card. And the phone's hint bar still said &quot;long-press a card: remove&quot; when long-press has become the phone's menu — open, branch, fold, remove; it says so now.</li>
     <li><strong>Maintenance note.</strong> The iOS row of the webview matrix records the pass: WKWebView on iOS 26.5 / Xcode 26.6, editor, whiteboard and Tasks all behaving.</li>
@@ -180,7 +191,7 @@
   </section>
 
   <section class="release" id="v1.0.25">
-    <h2><a href="#v1.0.25">Version 1.0.25</a></h2>
+    <h2><a href="#v1.0.25">Version 1.0.25</a><span class="date">September 12, 2026</span></h2>
     <ul>
     <li><strong>Help catches up with the whiteboard.</strong> The whiteboard topic now says that Tidy tree gives labelled arrows a wider gap, and points at the Color menu (not swatches) for colouring a selection; &quot;All keyboard shortcuts&quot; gains a whiteboard table — Tab, Enter, ⌘/Ctrl+Enter, Shift+Tab, − and +, Shift+click and Shift+drag, Delete, Escape. The split-panes row of that table had been showing its backslash twice.</li>
     
@@ -193,7 +204,7 @@
   </section>
 
   <section class="release" id="v1.0.24">
-    <h2><a href="#v1.0.24">Version 1.0.24</a></h2>
+    <h2><a href="#v1.0.24">Version 1.0.24</a><span class="date">September 12, 2026</span></h2>
     <ul>
     <li><strong>Whiteboard branches fold, and cards select in groups.</strong> A card with cards branching off it now carries a small <strong>−</strong> in its corner: click it (or press − with the card selected) and everything downstream tucks away behind a <strong>+N</strong> badge that says how many are hidden; click again, or press +, to bring them back. Right-click (long-press on a phone) offers the same. A folded card drags its hidden branch along with it, and Tidy tree treats it as a single card, so a big map can be worked one limb at a time. Nothing is removed from the file to fold it — the card simply gains <code>collapsed: true</code>, which any other JSON Canvas app ignores and shows in full. And on a computer, <strong>Shift+click</strong> adds cards to the selection, <strong>Shift+drag</strong> on empty space lassoes them, and the whole selection then moves, colors, or deletes together (the Delete button counts them). The in-app Help's whiteboard topic covers both.</li>
     
@@ -206,7 +217,7 @@
   </section>
 
   <section class="release" id="v1.0.23">
-    <h2><a href="#v1.0.23">Version 1.0.23</a></h2>
+    <h2><a href="#v1.0.23">Version 1.0.23</a><span class="date">September 12, 2026</span></h2>
     <ul>
     <li><strong>The whiteboard is now a mind map you can type.</strong> Select a card and press Tab: a new card branches off it, already placed to the right, already joined by an arrow, already open for typing. Enter adds a card beside it on the same branch. Both work mid-sentence inside a card's text too (Tab, and ⌘/Ctrl+Enter), and Shift+Tab climbs to the parent — so a brainstorm runs as fast as you can think. When it gets messy, <strong>Tidy tree</strong> lays the whole tree out left to right in clean columns with every parent centred on its branches, keeping the root where you put it and leaving everything else alone. Nothing about the file changed: a tree is ordinary cards and ordinary arrows, so the board still opens anywhere a JSON Canvas does, and a tree you drew by hand tidies the same way. + Child, + Sibling and Tidy tree are buttons too, for a phone or a tablet. And reopening a card for editing now puts the cursor at the end of its text, where you almost always want it.</li>
     
@@ -218,7 +229,7 @@
   </section>
 
   <section class="release" id="v1.0.22">
-    <h2><a href="#v1.0.22">Version 1.0.22</a></h2>
+    <h2><a href="#v1.0.22">Version 1.0.22</a><span class="date">September 12, 2026</span></h2>
     <ul>
     <li><strong>&quot;Qwen 3&quot; finds the Qwen 3 you actually pulled.</strong> Help says to run &quot;ollama pull qwen3:8b&quot;; the model chip said &quot;Qwen 3&quot; and asked Ollama for &quot;qwen3&quot;; to Ollama those are different names, so the answer was &quot;404: model 'qwen3' not found&quot; under a green &quot;AI is connected&quot;. Vellen now asks Ollama what it has before it asks it anything else, and a family name settles on the installed tag — the chip shows the name that answers. A name nothing installed answers to is refused up front, with the list of what is installed and where to pick from it, instead of by the server with a bare 404.</li>
     
@@ -230,7 +241,7 @@
   </section>
 
   <section class="release" id="v1.0.21">
-    <h2><a href="#v1.0.21">Version 1.0.21</a></h2>
+    <h2><a href="#v1.0.21">Version 1.0.21</a><span class="date">September 9, 2026</span></h2>
     <ul>
     <li><strong>What's new, on the website.</strong> Every release note from this file is now published at vellen.capitalcalcs.com/changelog.html, in the same words, with the release date — so you can see what changed, and what was wrong before it, without opening the app.</li>
     
@@ -241,7 +252,7 @@
   </section>
 
   <section class="release" id="v1.0.20">
-    <h2><a href="#v1.0.20">Version 1.0.20</a></h2>
+    <h2><a href="#v1.0.20">Version 1.0.20</a><span class="date">September 7, 2026</span></h2>
     <ul>
     <li><strong>Selecting a paragraph no longer paints two overlapping blocks.</strong> The line you're on has a faint tint that stops at the text; a selection across a wrapped paragraph is drawn the way every editor draws it, out to the edges of the writing area. Together they made a stepped block in two shades. While anything is selected, the selection is now the only highlight; the line tint returns when you click or move on.</li>
     
@@ -252,7 +263,7 @@
   </section>
 
   <section class="release" id="v1.0.19">
-    <h2><a href="#v1.0.19">Version 1.0.19</a></h2>
+    <h2><a href="#v1.0.19">Version 1.0.19</a><span class="date">September 6, 2026</span></h2>
     <ul>
     <li><strong>Edit ▸ Select All selects the note, not the whole app.</strong> On a Mac, picking Select All from the menu bar lit up everything — sidebar, tabs, panels and note together — because the menu item was the system's own action, aimed at the window rather than at what you were editing (⌘A on the keyboard never did this; the editor handles that itself). The item is now Vellen's: it selects all of the note under the cursor, or the text field you're typing in, or a whiteboard card's text — and with nothing focused, it selects nothing at all.</li>
     
@@ -261,7 +272,7 @@
   </section>
 
   <section class="release" id="v1.0.18">
-    <h2><a href="#v1.0.18">Version 1.0.18</a></h2>
+    <h2><a href="#v1.0.18">Version 1.0.18</a><span class="date">September 5, 2026</span></h2>
     <ul>
     <li><strong>The report that arrives after the restart.</strong> Diagnostics used to live only in memory, so a report made after reopening the app said &quot;no errors recorded this session&quot; — precisely when there was most to say. The last 60 events now carry across launches (labelled as an earlier session's), every message and stack trace is stripped of file paths before it is recorded rather than at one caller, and a save that fails while the app is quitting or closing is written down instead of being swallowed. Help's description of the report now matches it: the only path it shows is your notes folder's own location.</li>
     
@@ -280,7 +291,7 @@
   </section>
 
   <section class="release" id="v1.0.17">
-    <h2><a href="#v1.0.17">Version 1.0.17</a></h2>
+    <h2><a href="#v1.0.17">Version 1.0.17</a><span class="date">September 4, 2026</span></h2>
     <ul>
     <li><strong>The sidebar no longer scrolls sideways, and the app no longer shifts inside its window.</strong> The Graph, Tasks, Calendar and Ask AI rows were four pixels wider than the sidebar, which was enough for a horizontal scrollbar; the rows fit now. Separately, the page around the whole app could scroll by a few pixels whenever anything ran slightly taller than the window — so a click-drag on empty space nudged everything. The frame is fixed now; only the sidebar, editor and panels scroll.</li>
     
@@ -303,7 +314,7 @@
   </section>
 
   <section class="release" id="v1.0.16">
-    <h2><a href="#v1.0.16">Version 1.0.16</a></h2>
+    <h2><a href="#v1.0.16">Version 1.0.16</a><span class="date">September 4, 2026</span></h2>
     <ul>
     <li><strong>A new task line is ready to type into — no spacebar first.</strong> The checklist button and Enter both insert \<code>- [ ] \</code> with its space, but on Mac and iOS the caret could end up on the wrong side of a line-ending space, so typed text landed between the brackets and the space — \<code>- [ ]text\</code> — and no checkbox appeared until you pressed space yourself. Text typed right after the brackets now always lands after the space (and supplies one if it's somehow missing), so click the button and just type, hit Enter and just type. Pressing space there deliberately still means exactly what it says.</li>
     
@@ -318,7 +329,7 @@
   </section>
 
   <section class="release" id="v1.0.15">
-    <h2><a href="#v1.0.15">Version 1.0.15</a></h2>
+    <h2><a href="#v1.0.15">Version 1.0.15</a><span class="date">September 2, 2026</span></h2>
     <ul>
     <li><strong>A folder's table &amp; board setup can finally be removed.</strong> The only &quot;Remove this setup&quot; button lived on a screen the app could never show — the Help audit caught it. Now the folder's row under <strong>Boards</strong> or <strong>Tables</strong> offers <strong>Remove this setup…</strong> in its right-click menu. It warns first, counting exactly what goes: every view saved for that folder (tables and boards share one setup, so both go together) and the property types the folder learned. Notes are never touched — every file keeps its properties as written. The e2e stub also learned that removing a directory removes it: deleted fixtures used to resurrect on the next read, which made every &quot;and now it's gone&quot; flow untestable.</li>
     
@@ -331,7 +342,7 @@
   </section>
 
   <section class="release" id="v1.0.14">
-    <h2><a href="#v1.0.14">Version 1.0.14</a></h2>
+    <h2><a href="#v1.0.14">Version 1.0.14</a><span class="date">September 1, 2026</span></h2>
     <ul>
     <li><strong>A trailing space is not a second property.</strong> <code>status :</code> in a note's frontmatter yields a key with an invisible trailing space, which made a second property with an IDENTICAL label beside the real one — the same invisible-twin problem the capitalisation fix killed, one character wider. Edge whitespace now joins capitalisation as not-part-of-the-name: the spellings match as one property everywhere, the setup dialog and filter bar offer the clean word, and padded duplicates in an existing setup heal on load.</li>
     
@@ -342,7 +353,7 @@
   </section>
 
   <section class="release" id="v1.0.13">
-    <h2><a href="#v1.0.13">Version 1.0.13</a></h2>
+    <h2><a href="#v1.0.13">Version 1.0.13</a><span class="date">August 31, 2026</span></h2>
     <ul>
     <li><strong>A table shows the properties your notes actually have.</strong> A folder's table learned its columns once, when it was first set up, so a property you added to a note afterwards was invisible — you could even filter by it and still not see it, which is a filter you cannot check. Columns now come from the notes: add <code>owner:</code> to a note and the column is there. The <strong>Properties</strong> button lists everything the folder knows about, and unchecking one hides that column for this view. A property you never wanted is a column you can see and hide in a click, which is a much smaller problem than one you cannot find at all.</li>
     
@@ -395,7 +406,7 @@
   </section>
 
   <section class="release" id="v1.0.12">
-    <h2><a href="#v1.0.12">Version 1.0.12</a></h2>
+    <h2><a href="#v1.0.12">Version 1.0.12</a><span class="date">August 30, 2026</span></h2>
     <ul>
     <li><strong>Published sites say who links to a page.</strong> Every exported page now carries a &quot;Mentioned in&quot; list of the notes that link to it, each with the line the mention sits on, so you can tell what a link was about before clicking it. Plain HTML — no script — so it works on any host and from a double-clicked file alike.</li>
     
@@ -416,7 +427,7 @@
   </section>
 
   <section class="release" id="v1.0.11">
-    <h2><a href="#v1.0.11">Version 1.0.11</a></h2>
+    <h2><a href="#v1.0.11">Version 1.0.11</a><span class="date">August 30, 2026</span></h2>
     <ul>
     <li><strong>A due date in a note now carries a small calendar icon instead of the 📅 emoji.</strong> On Apple platforms that emoji draws as a calendar page reading &quot;JUL 17&quot;, so every dated task showed two dates that disagreed — and the wrong one was larger and in colour. The marker is now drawn as the app's own calendar icon: the same shape as the Calendar row in the sidebar, in the same muted colour as the date, and with no numbers on it to be mistaken for one. Unlike the other marks Vellen hides, it stays hidden when you click onto the line — the emoji is something the app writes, not something you type, and having the wrong date flash back into view under the caret was the whole problem. The caret steps over the marker in one press and one backspace removes it. Your files are unchanged, so a vault opened in Obsidian still means the same thing.</li>
     
@@ -425,14 +436,14 @@
   </section>
 
   <section class="release" id="v1.0.10">
-    <h2><a href="#v1.0.10">Version 1.0.10</a></h2>
+    <h2><a href="#v1.0.10">Version 1.0.10</a><span class="date">August 29, 2026</span></h2>
     <ul>
     <li><strong>Brief status messages appear on phones now.</strong> The small self-dismissing toast the app uses for transient results was only ever drawn on desktop, so on a phone those messages went nowhere at all — including the note explaining what the App Store's free-trial sheet was, on the very device most likely to meet it.</li>
     </ul>
   </section>
 
   <section class="release" id="v1.0.9">
-    <h2><a href="#v1.0.9">Version 1.0.9</a></h2>
+    <h2><a href="#v1.0.9">Version 1.0.9</a><span class="date">August 29, 2026</span></h2>
     <ul>
     <li><strong>Vellen no longer asks you to sign in over and over.</strong> When the App Store sheet that registers your free trial was dismissed — or couldn't complete for any reason — the app asked again every single time you opened a vault, with nothing that could ever stop it. It now asks once per launch at most, and once you've dismissed it, not again at all.</li>
     <li><strong>And it explains itself.</strong> Dismissing that sheet now leaves a short note saying what it was: the App Store registering your 14-day trial, no charge, trial running either way. It reads like a purchase because it technically is one — for $0.00 — and nothing on the sheet said so.</li>
@@ -443,7 +454,7 @@
   </section>
 
   <section class="release" id="v1.0.8">
-    <h2><a href="#v1.0.8">Version 1.0.8</a></h2>
+    <h2><a href="#v1.0.8">Version 1.0.8</a><span class="date">August 28, 2026</span></h2>
     <ul>
     <li><strong>Tasks can have due dates — and still don't need them.</strong> Every row in the Tasks view now ends in a date chip: <code>＋ Due</code> on a task with no date, the day itself once it has one, amber the moment it's past, and a count of everything overdue in the toolbar. Set it, change it, or take it off without opening the note. Nothing about an undated task changed, because most tasks shouldn't have a date.</li>
     <li>The date is written into the task line as <code>📅 2026-09-02</code> — the convention Obsidian's Tasks plugin uses — so a vault opened in either app means the same thing. Type it by hand and Vellen reads it; the Tasks view shows you the words and keeps the marker out of the way.</li>
@@ -453,7 +464,7 @@
   </section>
 
   <section class="release" id="v1.0.7">
-    <h2><a href="#v1.0.7">Version 1.0.7</a></h2>
+    <h2><a href="#v1.0.7">Version 1.0.7</a><span class="date">August 28, 2026</span></h2>
     <ul>
     <li><strong>Android: your vaults are named for themselves again.</strong> Every vault in the switcher showed the name of the folder you'd granted access to — usually &quot;Documents&quot; — so a list of vaults read as four identical rows. Each now shows its own folder's name.</li>
     
@@ -474,14 +485,14 @@
   </section>
 
   <section class="release" id="v1.0.6">
-    <h2><a href="#v1.0.6">Version 1.0.6</a></h2>
+    <h2><a href="#v1.0.6">Version 1.0.6</a><span class="date">August 27, 2026</span></h2>
     <ul>
     <li><strong>Android can see its tables.</strong> On Android the vault lives behind the system's storage framework, and the bases store was reading <code>.base</code> files with the plain filesystem — which quietly answers &quot;nothing there&quot; for such a vault. So a freshly synced Android phone offered to turn a folder into a base whose schema and saved views were already on its disk. Every <code>.base</code> read and write now goes through the same platform-aware bridge as notes and sync; nothing changes on desktop or iPhone.</li>
     </ul>
   </section>
 
   <section class="release" id="v1.0.5">
-    <h2><a href="#v1.0.5">Version 1.0.5</a></h2>
+    <h2><a href="#v1.0.5">Version 1.0.5</a><span class="date">August 27, 2026</span></h2>
     <ul>
     <li><strong>Sync always asks before removing a table's schema or saved views.</strong> The deletion dialog normally appears only from three files up, so a single note deleted on one device doesn't nag the others — but that meant one or two <code>.base</code> files could be removed silently, and a table's whole memory is only a few files. Any <code>.base</code> deletion now asks, regardless of count.</li>
     
@@ -496,1140 +507,32 @@
   </section>
 
   <section class="release" id="v1.0.4">
-    <h2><a href="#v1.0.4">Version 1.0.4</a></h2>
+    <h2><a href="#v1.0.4">Version 1.0.4</a><span class="date">August 27, 2026</span></h2>
     <ul>
     <li><strong>A stale Google sign-in now heals itself instead of dead-ending.</strong> Vellen's sign-in survives reinstalls (tokens live in the keychain), but the copy it keeps of when the access token expires is only a prediction stamped with the device's clock — and a clock that was ever moved forward (say, while testing a trial) leaves a token that looks fresh locally but is long expired at Google. Drive then answered &quot;invalid authentication credentials&quot; on a screen whose only button was Back. Now Google's verdict outranks the local clock: any 401 forces a token refresh and one retry, on every Drive call — joining a vault, background sync, all of it. And if the sign-in really is dead (revoked, or its refresh expired), the &quot;Get your notes&quot; screen clears the dead tokens and puts you back in front of the Sign in with Google button with one line saying why — never a dead end.</li>
     </ul>
   </section>
 
   <section class="release" id="v1.0.3">
-    <h2><a href="#v1.0.3">Version 1.0.3</a></h2>
+    <h2><a href="#v1.0.3">Version 1.0.3</a><span class="date">August 27, 2026</span></h2>
     <ul>
     <li><strong>Bases: see any folder as a table.</strong> Right-click a folder and choose &quot;Table view&quot; — the first time, Vellen reads the properties your notes already carry in frontmatter, guesses each one's type (dates, selects, checkboxes, numbers, tags, links), and one confirmation later the folder is a live table: sortable columns, typed values, saved views that sync with your vault. Your notes stay plain Markdown; the table is a face over them, exactly like boards. A value that doesn't fit its type is shown flagged — never hidden — and a typo'd status can no longer invent a phantom board column. A filter bar turns views into answers — &quot;not Done&quot;, &quot;due before the end of this week&quot;, &quot;unowned&quot; — and it reads like a sentence: <em>Where Status is Blocked <strong>and</strong> Owner is any of Tom, Yuki</em>, with the and/or as a word you click between the conditions rather than an abstract dropdown. Name the same property twice and the bar folds the rows into one &quot;is any of&quot; — because two conditions on one property always means &quot;or&quot;. Under the bar, a live line reads the filter back with its match count (&quot;0 of 6 notes match: …&quot;), so an empty result explains itself instead of looking broken. Cells edit in place: click a status for its options, a date for a picker, a checkbox to toggle — and clicking a flagged stray value offers the valid choices, so a typo'd status is one click from healed. Opening a note from the table and pressing Back returns you to the table. On iPhone the same views render as a clean read-only list.</li>
     </ul>
   </section>
 
   <section class="release" id="v1.0.2">
-    <h2><a href="#v1.0.2">Version 1.0.2</a></h2>
+    <h2><a href="#v1.0.2">Version 1.0.2</a><span class="date">August 26, 2026</span></h2>
     <ul>
     <li><strong>No more stray blue lines on iPad with a hardware keyboard.</strong> With a Magic Keyboard (or any hardware keyboard) attached, iPadOS drew its system focus ring around the editor's text area and clipped it against the scroll edges — showing up as odd blue line fragments along the editor. The caret already shows where you're typing; the ring is suppressed.</li>
     </ul>
   </section>
 
   <section class="release" id="v1.0.1">
-    <h2><a href="#v1.0.1">Version 1.0.1</a></h2>
+    <h2><a href="#v1.0.1">Version 1.0.1</a><span class="date">August 25, 2026</span></h2>
     <ul>
     <li><strong>Vellen 1.0 — the first App Store release.</strong> The version numbering steps up from 0.1.x to 1.0.x as Vellen heads to the Apple App Store and Microsoft Store. Same app, same pace of updates.</li>
     
     <li><strong>The iPhone and iPad app now wears the Vellen icon.</strong> iOS builds had shipped with the framework's placeholder icon — the desktop icon set was made long ago, but the iOS icon catalog generated with the Xcode project was never refilled. All eighteen sizes now carry the mark.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.141">
-    <h2><a href="#v0.1.141">Version 0.1.141</a></h2>
-    <ul>
-    <li><strong>The unlock screen now shows what the App Store has on record.</strong> A quiet line under the actions reports the store's own answer — unlock owned, free trial started on a given date, no record yet, or &quot;couldn't be read just now&quot; — so you can see at a glance whether your purchase and trial are anchored with Apple, separately from what this device remembers.</li>
-    
-    <li><strong>&quot;Restore purchase&quot; tells the truth about trials.</strong> Restoring on an account with a recorded free trial but no unlock purchase used to report &quot;No previous purchase was found&quot; — technically about the unlock, but reading as if nothing existed at all. It now says the trial is on record when it is.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.140">
-    <h2><a href="#v0.1.140">Version 0.1.140</a></h2>
-    <ul>
-    <li><strong>The unlock screen now opens on iPhone and Android.</strong> Settings' &quot;Unlock…&quot; button and the command palette's &quot;Unlock Vellen&quot; both closed what they were in and showed nothing on phones — the screen they open was only ever rendered in the desktop and tablet layout. Buying, restoring a purchase, and seeing your licence now work on a phone like everywhere else.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.139">
-    <h2><a href="#v0.1.139">Version 0.1.139</a></h2>
-    <ul>
-    <li><strong>The trial's day count now updates the moment the App Store answers — and its answer can no longer be lost.</strong> Three fixes from the reinstall test on iPhone: a store reply of &quot;couldn't tell&quot; no longer erases a trial date the app had already verified moments earlier; the date recovered by the silent $0 re-purchase on reinstall is now kept directly instead of only triggering a second lookup that could fail; and the trial bar now refreshes when the store's date arrives instead of showing the number computed at launch until the next restart. Together these make delete-and-reinstall land on the correct remaining days instead of appearing to restart at 14.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.138">
-    <h2><a href="#v0.1.138">Version 0.1.138</a></h2>
-    <ul>
-    <li><strong>The 14-day trial now survives deleting and reinstalling the app on iPhone and iPad.</strong> The trial's start date is meant to be anchored in your App Store account by a one-time free &quot;purchase&quot; — but the code that talks to the App Store was only ever compiled into the Mac build, so on iOS the only record of the trial was a local date that deleting the app erased. Reinstalling granted a fresh 14 days every time. iOS now carries the same StoreKit code as the Mac: the first launch records the trial with Apple (you'll see a one-time $0.00 confirmation sheet), and from then on the countdown follows your Apple account, not the install.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.137">
-    <h2><a href="#v0.1.137">Version 0.1.137</a></h2>
-    <ul>
-    <li><strong>Walking away from a note always leaves a version behind.</strong> Version history used to skip its automatic snapshot if you left a note within five minutes of the previous one — so closing a tab, switching notes, or quitting the app shortly after a snapshot left your newest edits safe on disk yet missing from history. Every way of leaving an edited note now captures it exactly as you left it. Identical content is still stored only once, and each note now keeps up to 200 automatic snapshots (was 50) so a busy day of editing can't crowd out the morning's history.</li>
-    
-    <li><strong>Exported websites show each title once.</strong> Pages made with &quot;Export as website…&quot; stamped the note's name at the top even when the note opened with its own <code># heading</code> — so most pages started with the same title twice. A note's own heading now wins; the exporter adds one only for notes that start straight into prose.</li>
-    
-    <li><strong>An <code>index</code> note becomes your site's front page.</strong> If the folder you export contains a note named <code>index</code>, it now becomes the website's home page — before, the generated table of contents silently overwrote it. Folders without one still get the automatic contents page.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.136">
-    <h2><a href="#v0.1.136">Version 0.1.136</a></h2>
-    <ul>
-    <li><strong>Whiteboard text cards keep what you typed.</strong> Typing in a text card and clicking the canvas to finish threw the text away — the card snapped back to &quot;Double-click to edit&quot; as if nothing had happened. (Pressing Esc saved it, which is why it slipped through.) Clicking away now saves the draft first, and the same fix covers group labels, arrow labels and the rename box.</li>
-    
-    <li><strong>The sidebar claims one place at a time.</strong> Three highlight fixes in the VIEWS group: a background tab's whiteboard row no longer stays lit while a board or the graph fills the screen (desktop and phone); the <strong>Boards</strong> heading no longer lights up alongside the board you're on — a heading now carries the highlight only while its list is collapsed and the row can't show it, and Whiteboards gained the same collapsed signal; and whiteboard names sit beside their icons again instead of being flung to the row's far edge.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.135">
-    <h2><a href="#v0.1.135">Version 0.1.135</a></h2>
-    <ul>
-    <li><strong>Quick capture opens dark, not white.</strong> The capture window could flash white before its content painted — sometimes long enough to look like a hung, empty window. It's now dark from the very first frame: the window surface itself is painted before any content exists, and the page carries its colors inline instead of waiting for the app to load. On Mac its title bar is now the same seamless overlay style as the main window, so no strip of system chrome sits over a dark box.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.134">
-    <h2><a href="#v0.1.134">Version 0.1.134</a></h2>
-    <ul>
-    <li><strong>Desktop can pull down a synced vault again.</strong> Clicking your vault's name on Windows and macOS jumped straight to the folder picker when you only had one vault open — so &quot;Get a synced vault from Drive…&quot;, the same thing the phones offer, was there but unreachable for most people. The menu now always opens: your other vaults if you have any, <strong>Open another folder…</strong>, and <strong>Get a synced vault from Drive…</strong>.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.133">
-    <h2><a href="#v0.1.133">Version 0.1.133</a></h2>
-    <ul>
-    <li><strong>The phone gets the Views menu too.</strong> The notes list (the ☰ drawer) now has the same labeled VIEWS group as the desktop sidebar: Graph, Tasks, Whiteboards and Ask AI as named rows. Whiteboards live there now instead of doubling as files in the list — with their own ＋, and the same long-press menu (rename, pin, duplicate, trash) — and a folder holding only whiteboards no longer shows as a ghost. The ⋯ menu's Graph and Tasks shortcuts still work. (No Boards row yet: boards don't have a phone layout, and a row that leads nowhere isn't a feature.)</li>
-    
-    <li><strong>Ask AI, now on your phone.</strong> The first phone home for Vellen's AI: Ask AI in the drawer opens the chat full screen — the same chat as desktop, with threads, follow-ups, citation chips, the answer buttons and the exact what-gets-sent line. ✕ (or your phone's back button) brings your note back; opening a cited note closes the chat and takes you there. Same rules as everywhere: your key, your provider, nothing through Vellen's servers.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.132">
-    <h2><a href="#v0.1.132">Version 0.1.132</a></h2>
-    <ul>
-    <li><strong>The rail is three tabs now: Note · Links · AI.</strong> Outline and Info merged into one Note tab — the outline and the note's properties stacked together, each with its own collapsible header, the way phones already pair them. With the AI aboard, the two lightest panes no longer each claim a tab of their own.</li>
-    
-    <li><strong>The docked AI stays docked.</strong> Switching to the graph or a board used to make the docked chat leap out as a floating window over the new view. It now simply waits with the rail and is right where you left it when you come back to a note. Opening Ask AI somewhere with no rail (the graph, boards) opens the window on purpose — and remembers that's where you put it.</li>
-    
-    <li><strong>The buttons under an AI answer look like buttons now.</strong> Copy, Save as note, Insert into note and Retry were tiny muted text that was easy to read past — footnote styling on the answer's most useful actions. They are now proper bordered chips, the same family as the &quot;Notes sent for context&quot; chips above them.</li>
-    
-    <li><strong>Asking the AI for notes that mention a name now finds every mention.</strong> &quot;Check my notes for entries naming Marcus&quot; used to count &quot;check&quot;, &quot;entries&quot; and &quot;naming&quot; as part of the topic — so a daily note that simply says &quot;Marcus&quot; could be judged not relevant enough to send, and the answer missed it. Words that describe the request (&quot;check&quot;, &quot;search for&quot;, &quot;entries mentioning…&quot;) no longer count against a note's relevance; only the actual subject does.</li>
-    
-    <li><strong>Folders that hold only whiteboards no longer haunt the Library.</strong> With whiteboards living under Views, a folder containing nothing but boards — like the starter Whiteboards folder every vault ships with — showed up gray and empty-looking in the tree. It's hidden now, and comes back the moment a note lands in it. Genuinely empty folders you just created still show. Nothing on disk changes.</li>
-    
-    <li><strong>The back button is easier to find.</strong> The ← in the sidebar header now matches the Help and Settings icons in size and weight instead of whispering.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.131">
-    <h2><a href="#v0.1.131">Version 0.1.131</a></h2>
-    <ul>
-    <li><strong>AI sits beside your note now.</strong> The chat opens as the fourth tab of the right rail — Outline · Info · Links · AI — next to the note it's reading instead of floating on top of it. The rail widens to make a real reading surface while the chat is up, and hands the space back the moment you switch tabs. Want the window instead? ⧉ in the chat's header pops it out, ⇥ Dock in the window's title bar brings it home, and Vellen remembers which you prefer. Same chat either way: threads, follow-ups and the what-gets-sent line are untouched.</li>
-    
-    <li><strong>Help reads beside the app, not over it.</strong> ⧉ in Help's header pops it into a floating window that remembers its size and position — so you can try &quot;press ⌘D&quot; while actually reading it. The topic list is now five labeled groups (Get started · Write · Organize · Views · Your data), both panes fade at the bottom when there's more to scroll, the keyboard shortcuts render as key caps, and ⌘? opens Help from anywhere. Every article's wording is unchanged.</li>
-    
-    <li><strong>The sidebar says what things are.</strong> The unlabeled icon row is gone. Your vault's name at the top is now the vault switcher — click it to change or add vaults. A labeled VIEWS group holds Graph, Tasks, Boards, Whiteboards and Ask AI as named rows — Boards and Whiteboards expand to their lists, each with its own + — and your whiteboards now live there rather than doubling as a folder in the tree (right-click one for rename, duplicate, pin and trash, same as before). Help and Settings moved to quiet icons at the sidebar's bottom, next to the note count; only the back arrow stays up top. Every keyboard shortcut and command works exactly as before. Phones are unchanged — the drawer already had its own layout.</li>
-    
-    <li><strong>Dangerous encryption actions look dangerous.</strong> &quot;Turn encryption off&quot; and &quot;Reset encryption&quot; now sit in their own clearly marked group at the bottom of Settings → Encryption, tinted and styled apart from the safe everyday rows — red now means careful, here and almost nowhere else. The confirmations still state exactly what happens.</li>
-    
-    <li><strong>Onboarding text retires when you're done with it.</strong> The whiteboard's gesture tips gained a ✕ (they're all in Help → Whiteboards); the editor's footer keeps just the save/sync status; and the properties pill now quietly says &quot;⚙ 3 properties&quot;, with the how-to on hover.</li>
-    
-    <li><strong>Tasks headers say when, too.</strong> A note named with a date shows it short and muted beside the title — &quot;Warehouse move · Jun 25 · Meetings&quot; — instead of repeating the full date inside the name.</li>
-    
-    <li><strong>Board cards show only what distinguishes them.</strong> A tag every card on the board shares (usually the board's own source tag) no longer repeats on every card — and filtering by it still matches everything, as it should. The date chip's hover now says where the date comes from.</li>
-    
-    <li><strong>One clear action on the unlock screen.</strong> &quot;Restore purchase&quot; and &quot;Not now&quot; become quiet links under the buy button instead of competing with it. Same words, same places to click — just an obvious first choice.</li>
-    
-    <li><strong>Little consistencies.</strong> Backlink rows say a note's name once (the full path is on hover); the Links tab shows the mention count once, not twice; the formatting toolbar announces itself properly to screen readers.</li>
-    
-    <li><strong>iPhone &amp; iPad: more than one vault — with nothing to configure.</strong> Tap your vault's name at the top of the notes list to switch vaults, create a new one (it just asks for a name), or pull down a vault you already use on another device with &quot;Get a synced vault from Drive&quot;. There are no folders to pick anywhere: every vault is its own named folder in Vellen's storage, visible in the Files app. Your existing notes move into a &quot;My notes&quot; vault automatically on first launch — everything stays on your device, and if anything at all prevents the tidy-up it simply doesn't happen and the app works exactly as before.</li>
-    
-    <li><strong>Vault switching on tablets.</strong> iPads and Android tablets use the desktop-style layout, and its sidebar had no vault switcher — phones had full multi-vault while tablets were stuck (found on the iPad device pass). The ⇄ button at the top of the sidebar now lists your vaults, with &quot;New vault…&quot; and &quot;Get a synced vault from Drive…&quot;, running the exact same code as the phone drawer's vault chip. The sidebar also shows the vault's real folder name on Android tablets instead of an internal handle.</li>
-    
-    <li><strong>The note you're on is gold, not red (graph).</strong> The current note's dot now uses the app's own accent family — a bright gold fill with a gold double ring — instead of an alarm red. Red now only ever means something needs your attention. The current note's dot is also drawn a touch larger than its neighbors and the outer ring is stronger, so finding it at a glance works by shape and size — cues that survive zooming out and color blindness in a way the red never did.</li>
-    
-    <li><strong>One checkbox, everywhere.</strong> The boxes in your notes (<code>- [ ]</code>), the Tasks panel, Settings and the graph toolbar now all draw the same rounded, gold-filled checkbox in both themes — instead of whatever square or circle your device's browser felt like drawing that day.</li>
-    
-    <li><strong>Tasks panel headers say the title once.</strong> A note's tasks are headed by its title with the folder it lives in sitting quietly beside it — no more &quot;Title (filename)&quot; repeating itself. Hover still shows the full path.</li>
-    
-    <li><strong>Previews show words, not syntax.</strong> Linked and unlinked mention snippets strip <code>##</code> marks, <code>[[...]]</code> brackets, task boxes and list bullets — you read what the note says, not how it's typed. Your notes themselves are untouched.</li>
-    
-    <li><strong>New boards start with a Blocked column.</strong> To do / Doing / Blocked / Done — because stuck work parked in &quot;Doing&quot; looks like progress. Delete the column in the builder if you don't want it.</li>
-    
-    <li><strong>One note count in the sidebar.</strong> The count now lives only in the status row at the bottom; the notes list header names the section instead of repeating the same number a few hundred pixels up.</li>
-    
-    <li><strong>The trial bar's button looks like the button it is.</strong> &quot;Unlock Vellen&quot; in the trial bar now carries the same gold fill as the purchase screen's buy button. The wording is unchanged.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.129">
-    <h2><a href="#v0.1.129">Version 0.1.129</a></h2>
-    <ul>
-    <li><strong>One Vellen folder holds all your vaults (Android).</strong> Setting up Vellen now asks only WHERE it should live — it creates a &quot;Vellen&quot; folder there, and every vault is a clearly named folder inside it, starting with &quot;My notes&quot;. Your notes are unmistakably Vellen's in the Files app, and nobody ends up with their entire Documents folder as a vault. Existing vaults stay exactly where they are.</li>
-    
-    <li><strong>Pull down a vault you already use elsewhere (Android).</strong> The vault menu gains &quot;Get a synced vault from Drive&quot;: sign in, pick the vault, and it arrives in its own named folder inside your Vellen folder — once the Vellen folder exists, no folder picker appears at all. Encrypted vaults ask for their passphrase up front, as when joining from the welcome screen.</li>
-    
-    <li><strong>The vault switcher looks like it belongs (Android).</strong> The vault's name sits on its own labeled row at the top of the notes list — showing the folder's actual name — instead of a truncated storage description crammed beside the logo. The folder picker also now opens in Documents rather than at the storage root, where Android disables &quot;Use this folder&quot;.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.128">
-    <h2><a href="#v0.1.128">Version 0.1.128</a></h2>
-    <ul>
-    <li><strong>Android: more than one vault.</strong> Tap your vault's name at the top of the notes list to switch vaults or add another — any folder you pick becomes a vault of its own, with its own sync, encryption and boards. Until now an Android install was tied to the folder it first chose, and changing meant reinstalling. Each vault's identity, keys and sync stay strictly its own; picking a folder that's already a vault simply switches to it. If a vault's folder access is ever revoked, Vellen now opens another of your vaults at launch instead of acting freshly installed.</li>
-    
-    <li><strong>Switching vaults is now a list, not a hunt.</strong> The ⇄ button lists every notes folder you've opened on this computer — one click switches; &quot;Open another folder…&quot; adds a new one. The welcome screen offers the same list, so coming back after choosing &quot;Close notes folder&quot; no longer means re-finding your folder by hand. (This is the first step of vault switching for phones and tablets, where today an install is tied to the vault it first joined — that's coming on this foundation.)</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.127">
-    <h2><a href="#v0.1.127">Version 0.1.127</a></h2>
-    <ul>
-    <li><strong>AI answers appear as they're written.</strong> The window used to sit on three dots until the whole answer existed — half a minute of nothing on a long answer or a slow model. Answers now stream in word by word, with a <strong>Stop</strong> button that keeps what has already arrived. (Web-search answers still arrive whole once the searching is done.)</li>
-    
-    <li><strong>Follow-ups stay on topic.</strong> Asking &quot;tell me more&quot; or &quot;make it shorter&quot; used to re-search your vault for those very words, attaching an unrelated note or dropping the context entirely. A follow-up now keeps working from the same notes as the question it follows — the chips under the answer show exactly which.</li>
-    
-    <li><strong>Slimmer requests.</strong> The conversation history sent along with each question now trims the AI's own previous answers much harder (your words keep their full length). Less of your data in transit, faster requests, same memory of the thread.</li>
-    
-    <li><strong>The AI window reopens fully on screen.</strong> Its position is remembered — but a spot saved while the app was maximized could reopen partly past the edge in a smaller app window (seen on Windows at the default size). The remembered position now slides back into view on open; while dragging, you can still park it hanging off the edge if you want to.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.126">
-    <h2><a href="#v0.1.126">Version 0.1.126</a></h2>
-    <ul>
-    <li><strong>A back button.</strong> Open a note from a board, a graph dot, a search result or the task list, and the place you came from was gone — the only route back was remembering which board it was and finding it in the sidebar. Vellen now keeps the route you took: <strong>←</strong> above the notes list, or Cmd/Ctrl+Shift+[, returns you to exactly where you were, one step at a time — the same board, the same graph with your filters still on. On a phone the arrow sits in the header, and Android's own Back walks the same route once anything open on top has been closed. Places that no longer exist — a note you deleted, a board you removed — are dropped from the route, so Back never lands you nowhere.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.125">
-    <h2><a href="#v0.1.125">Version 0.1.125</a></h2>
-    <ul>
-    <li><strong>The graph remembers your filters.</strong> Tag filters, &quot;current note only,&quot; step depth and the unlinked toggle all reset every time you left the graph — click a note, come back, start over. They now persist per vault, so the graph you return to is the graph you configured.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.124">
-    <h2><a href="#v0.1.124">Version 0.1.124</a></h2>
-    <ul>
-    <li><strong>AI excerpts now come from the part of the note that matters.</strong> Long notes used to be excerpted from the top, whatever you asked — so the AI could receive three screenfuls of unrelated content and miss the paragraph that answered you. Excerpts now centre on where your question's words appear: better answers, and less of your note leaving than needed.</li>
-    
-    <li><strong>AI questions about the outside world no longer send your notes along.</strong> Asking about anything at all used to attach up to six vault notes to the request if they shared even one word with the question — a note mentioning &quot;sport&quot; rode along on a question about cars. A note now has to genuinely relate to the question, and when nothing does, nothing is sent. The chips under an answer are also labelled for what they've always been: &quot;Notes sent for context.&quot;</li>
-    
-    <li><strong>The whiteboard can no longer lose work after the trial ends.</strong> An expired trial left the whiteboard looking editable while silently refusing every save — what you drew stayed on screen and vanished when you closed it. The whiteboard now declines the edit up front, with the same calm sentence as the editor, and anything already on screen always saves. Rearranging boards, pins and smart folders stays available in every state — organizing notes you can read is part of reading them.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.123">
-    <h2><a href="#v0.1.123">Version 0.1.123</a></h2>
-    <ul>
-    <li><strong>The v0.1.122 Windows build actually builds.</strong> That release's Windows half never compiled (one wrong module path in the new Microsoft Store code), so its Windows installer and MSIX were missing. No behaviour change on any platform.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.122">
-    <h2><a href="#v0.1.122">Version 0.1.122</a></h2>
-    <ul>
-    <li><strong>Microsoft Store billing is wired up.</strong> The Windows build can now read the Store's own 15-day trial, show the real price, and take the purchase — the same five questions the Mac asks Apple, answered by Microsoft. Plain-installer builds are unaffected: they have no store, say so on the unlock screen, and restrict nothing. (Written against the Store's documentation; first real test needs the Partner Center listing.)</li>
-    
-    <li><strong>Five more ways of creating notes now respect a finished trial.</strong> The Notion, Apple Notes and template-based creators, the sample template, and creating today's daily note each wrote without checking — the same shape as the Evernote import fixed in the audit. Opening a daily note that already exists is reading, and stays free in every state.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.121">
-    <h2><a href="#v0.1.121">Version 0.1.121</a></h2>
-    <ul>
-    <li><strong>The trial now survives reinstalling.</strong> An audit of the billing work found the store was never told when a trial began — the date lived only on the device, so deleting and reinstalling the app would have restarted the clock forever. The start date is now recorded with the store (as the $0 trial item), so it's the same on every device and comes back with a reinstall.</li>
-    
-    <li><strong>A finished trial now covers every way of adding notes.</strong> Quick capture, Evernote import and web clipping all kept working after expiry; each is now gated the same way as the editor. Quick capture shows the same calm sentence the editor does — and anything you'd already typed is never thrown away.</li>
-    
-    <li><strong>…and the two side doors into editing.</strong> AI (the whole panel — it shows where you stand instead, and comes back the moment you unlock) and dragging kanban cards, which rewrites the note underneath the card and had no gate at all.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.120">
-    <h2><a href="#v0.1.120">Version 0.1.120</a></h2>
-    <ul>
-    <li><strong>Quick capture works on Windows, from both routes.</strong> Opening it from the command list could leave a blank window and quietly break the rest of the app's buttons until restart — a long-documented deadlock in the framework Vellen is built on, triggered only from that route, only on Windows, and only sometimes. The keyboard shortcut route is hardened against the same class of problem while we were there.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.119">
-    <h2><a href="#v0.1.119">Version 0.1.119</a></h2>
-    <ul>
-    <li><strong>Vellen no longer freezes when quick capture is opened from the command list on Windows.</strong> 0.1.118 made that worse rather than better: the whole app stopped responding, Settings included. It's back to how 0.1.116 behaved — the capture window still opens blank from that route, but the app around it keeps working, and the keyboard shortcut is unaffected. What happened is now written to a log file so the cause can be found.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.118">
-    <h2><a href="#v0.1.118">Version 0.1.118</a></h2>
-    <ul>
-    <li><strong>Groundwork for the Windows quick-capture problem.</strong> Opening quick capture from the command list still leaves a blank window on Windows; the keyboard shortcut is unaffected and works. Vellen now records what happened when that window is opened — visible under Settings → About → diagnostics — so the cause can be identified rather than guessed at.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.117">
-    <h2><a href="#v0.1.117">Version 0.1.117</a></h2>
-    <ul>
-    <li>No user-visible changes. An attempted fix for the Windows quick-capture window that turned out not to be the cause.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.116">
-    <h2><a href="#v0.1.116">Version 0.1.116</a></h2>
-    <ul>
-    <li><strong>Quick capture's keyboard shortcut works on Windows.</strong> Ctrl+Alt+N opened a blank white window that couldn't even be closed — and had done since the feature existed, on every kind of Windows build. The capture window now identifies itself the way Windows can actually deliver, instead of through a web address that only resolved on macOS.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.115">
-    <h2><a href="#v0.1.115">Version 0.1.115</a></h2>
-    <ul>
-    <li><strong>Setting up sync on a new device no longer shows advice you can't follow.</strong> If your Google Drive held both synced vaults and some older loose files, the sync screen announced that the account &quot;still has Vellen's old single-vault layout&quot; and told you to go and sync from another computer — while listing your vaults, with Join buttons, directly underneath. That message now only appears when there genuinely is nothing to join. When there are vaults <em>and</em> older files, you're offered the vaults, with a note that some notes may still be sitting outside them.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.114">
-    <h2><a href="#v0.1.114">Version 0.1.114</a></h2>
-    <ul>
-    <li><strong>The unlock screen shows the real price, in your own currency.</strong> It said &quot;$39.99&quot; to everyone, everywhere — right in one country and wrong in the other 174 Vellen sells in. The figure now comes from the App Store itself, formatted the way the store formats it, so the button and the payment sheet always agree. If the price can't be fetched, the screen says the purchase is one-time and simply doesn't state an amount, rather than guessing at one.</li>
-    
-    <li><strong>A finished trial no longer publishes changes to your other devices.</strong> Sync still pulls, so everything from your laptop or phone keeps arriving and nothing looks broken — but this device stops sending. Anything it was holding is kept, not discarded: unlock, sync once, and all of it goes up. The sync log says plainly when something is being held.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.113">
-    <h2><a href="#v0.1.113">Version 0.1.113</a></h2>
-    <ul>
-    <li><strong>Typing is lighter.</strong> Every keystroke used to redraw the whole window — sidebar, file list, tabs, panes and the right rail — because the text and the screen update were the same step. They're separate now: your words still reach the app instantly (nothing about saving, switching tabs or detecting outside edits has changed), while the things worked out <em>from</em> the text, like the word count and the outline, refresh a few times a second instead of once per letter. The unsaved dot still appears the moment you type.</li>
-    
-    <li><strong>Graph names stop stacking on top of each other.</strong> Where notes cluster, every name was drawn regardless, so six of them landed in the same place and none could be read. Only the names that fit are drawn now: the note you're on always keeps its own, then whatever you're pointing at, then the best-connected notes. Zoom in or hover for the rest.</li>
-    
-    <li><strong>Purchasing is connected to the Mac App Store.</strong> The buy and restore buttons now talk to StoreKit instead of explaining that they can't. This changes nothing for anyone running the app from the website download — there's no store behind it, so it still says purchasing isn't available and nothing is restricted.</li>
-    
-    <li><strong>Help explains the trial and unlocking.</strong> A new topic covering the 14-day trial, what a one-time purchase means, restoring on a new machine, and — plainly — that your notes stay readable and exportable either way.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.112">
-    <h2><a href="#v0.1.112">Version 0.1.112</a></h2>
-    <ul>
-    <li><strong>You can reach the unlock screen whenever you want it.</strong> It was only reachable from the trial bar, which appears at three days left or after expiry — so for the first eleven days of the trial there was no way to buy Vellen even if you'd decided you wanted to. There's now a licence row in Settings → About &amp; updates that also tells you where you stand, and an &quot;Unlock Vellen&quot; entry in the command palette.</li>
-    
-    <li><strong>The unlock screen reads better.</strong> The reassurance about your notes being ordinary files was printed twice, forty words apart. Errors on that screen are now clearly visible in the light theme, and &quot;Restore purchase&quot; no longer sits behind a more prominent &quot;Not now&quot; — the person looking for Restore has already paid.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.111">
-    <h2><a href="#v0.1.111">Version 0.1.111</a></h2>
-    <ul>
-    <li><strong>There's an unlock screen.</strong> &quot;Unlock Vellen&quot; used to show a notice saying the store wasn't wired up. It now opens a proper screen that states where you stand, what unlocking costs, and — plainly — that your notes are ordinary Markdown files that stay readable, searchable and exportable whether you ever pay or not. Restore purchase sits beside the buy button rather than hidden in Settings, because the person who needs it has already paid. Purchasing still isn't connected to any store, and the screen says so rather than pretending.</li>
-    
-    <li><strong>Mac App Store build excludes what the Store forbids.</strong> A build flag drops the update check (the Store handles updates there, and an app that looks elsewhere for versions is a review rejection) and the Apple Notes import (it drives the Notes app through automation, which the sandbox forbids — the button would have failed rather than worked). Evernote and Notion imports are unaffected, since they read files you pick. Nothing changes in the version downloaded from the website.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.110">
-    <h2><a href="#v0.1.110">Version 0.1.110</a></h2>
-    <ul>
-    <li><strong>The AI can find your notes when you ask in a sentence.</strong> &quot;Summarize all notes in the Meetings folder that start with 2026-05&quot; answered &quot;no notes turned up&quot; while those notes sat in the sidebar behind the window. The question was reduced to keywords and handed to a search that required <em>every</em> one of them to appear — and no note contains the word &quot;summarize&quot;, so the result emptied before anything else was considered. Asking a question now ranks notes by how much of it they match rather than demanding all of it, and words describing the task rather than the subject (&quot;summarize&quot;, &quot;folder&quot;, &quot;notes&quot;) no longer count against you. Typing in the search box is unchanged: adding a word still narrows.</li>
-    
-    <li><strong>&quot;May&quot; is treated as a month.</strong> It was being filtered out as a filler word, so &quot;my meeting notes from May&quot; searched for &quot;meeting notes&quot; — which is every meeting note ever written. It's the only month that's also an ordinary English word, so it was the only one this could happen to.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.109">
-    <h2><a href="#v0.1.109">Version 0.1.109</a></h2>
-    <ul>
-    <li><strong>The graph no longer strikes a line through the current note's name.</strong> The rings marking &quot;you are here&quot; reach further out than an ordinary node, but the label was positioned from the dot's size alone — so the one note the marker exists to point at was the one whose name had a ring drawn through it. The gap now scales with the type size instead of being a fixed twelve pixels, which cleared the ring at normal zoom and stopped clearing it as you zoomed in.</li>
-    
-    <li><strong>The whiteboard toolbar is a single tidy row again.</strong> When it ran out of width the buttons broke their own labels — &quot;Web link&quot; and &quot;Connect →&quot; split across two lines, the file path wrapped, and the gesture hint folded into three — so the toolbar doubled in height with every control on a different baseline. Worst while a card was selected, since that's when Delete and the colour swatches appear. Buttons now keep their labels whole, and the gesture hint has moved to its own quiet line below the toolbar, where it has room to be read — the same place it has always been on phones and tablets.</li>
-    
-    <li><strong>The sidebar's two counts agree.</strong> The header above the file tree counted whiteboards as notes, so it read one higher than the status row at the bottom of the same sidebar (&quot;121 notes&quot; against &quot;120 notes · 1 whiteboard&quot;). Both now come from one function over one list, so they can't drift apart again.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.108">
-    <h2><a href="#v0.1.108">Version 0.1.108</a></h2>
-    <ul>
-    <li><strong>Vellen can now ask your AI provider which models it has.</strong> Settings → AI → <strong>Refresh model list</strong> fetches the current catalogue using your own key, so a model released this morning is usable this morning rather than waiting for a Vellen update. Models we have friendly names for keep them; anything new shows its own name. If the list can't be fetched, the built-in choices carry on working exactly as before.</li>
-    
-    <li><strong>xAI (Grok) is now one of the AI providers you can connect.</strong> That makes five: OpenAI, Anthropic, Google, Qwen and xAI — plus a local model on your own machine, which never sends anything anywhere. Settings → AI, paste a key, and pick a model.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.107">
-    <h2><a href="#v0.1.107">Version 0.1.107</a></h2>
-    <ul>
-    <li><strong>A rejected AI key no longer shows a green dot.</strong> The dot next to each provider meant &quot;a key is saved here&quot;, but was drawn as though it meant &quot;this works&quot; — so a key the provider had just refused still looked healthy. Green now means verified, red means rejected, amber means the key is fine but the account has no credit, and an unfilled ring means saved but not checked yet.</li>
-    
-    <li><strong>You can disconnect a provider whose key was rejected.</strong> That case only offered &quot;Replace&quot;, so the one thing you could definitely do about a key that doesn't work — stop using it — was the one thing the screen wouldn't let you do.</li>
-    
-    <li><strong>Long AI research answers no longer stop halfway.</strong> When the AI runs several web searches for one question, the provider can pause partway through and hand back what it has so far. Vellen took that as the finished answer — so a reply could stop mid-thought and still look complete. It now picks up where the pause left off and gives you the whole thing.</li>
-    
-    <li><strong>The browser clipper now tells you whether it's working.</strong> Settings → Import &amp; capture shows whether Vellen is listening and when a clip last arrived, so a setup that didn't take no longer looks exactly like one that did. It also warns about the one failure you can't fix by following the steps more carefully — another program holding the ports the clipper looks for.</li>
-    
-    <li><strong>The clipper's setup steps stay on screen.</strong> They used to appear once, in a dialog you dismissed before switching to the browser to follow them. The list also now says up front that it's Chrome, Edge or Brave only.</li>
-    
-    <li><strong>Clipped pages file into Captures</strong>, alongside quick captures, instead of a separate &quot;Web captures&quot; folder. Two folders with near-identical names doing closely related jobs was a guess every time. Notes already in &quot;Web captures&quot; stay exactly where they are — nothing was moved.</li>
-    
-    <li><strong>AI answers now start at the top.</strong> The chat used to scroll to the very bottom of a new answer, so you had to scroll up to find the beginning before you could read down. It now puts the start of the answer at the top of the window and you read downwards, normally.</li>
-    
-    <li><strong>Encryption has its own place in Settings.</strong> It used to sit at the bottom of Sync between devices, which had grown long enough that the passphrase controls were hard to find. They're now under <strong>Encryption</strong> in the settings list — and on phones and tablets too, where they'd never had a reliable home.</li>
-    
-    <li>Fixed the layout of <strong>Recent sync activity</strong>, which overlapped its own heading and ran the file names together into one unreadable line.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.106">
-    <h2><a href="#v0.1.106">Version 0.1.106</a></h2>
-    <ul>
-    <li><strong>You can now see what sync actually did.</strong> Settings → Sync between devices → <strong>Recent sync activity</strong> lists the last twenty syncs: what came in, what went out, what was removed, by name. Sync used to happen silently on a timer, and the only feedback was a dot that stopped spinning — so when something felt wrong there was nothing to look at. Most of the time the answer is reassuring: it ran and changed nothing.</li>
-    
-    <li><strong>Sync asks before removing several files at once.</strong> If a sync is about to delete more than a couple of notes, it shows you which ones first. That's normal if you deleted them on another device — and if it isn't, choose <strong>Keep</strong>: nothing is removed, and the rest of the sync carries on as usual. The stronger protection against a whole side going empty is unchanged and still refuses outright.</li>
-    
-    <li><strong>The AI can now look things up on the web.</strong> Ask about something recent — this week's news, a current price, anything after the model's training cutoff — and it searches, answers, and lists the sources it used as links at the bottom, so a note written from it still says where the facts came from months later. It decides for itself when a question needs the web; ordinary writing help and questions about your own notes don't trigger a search. Works with <strong>Anthropic (Claude)</strong> today; other providers still answer from what their model already knows, and <strong>Local (Ollama) never searches</strong>, which is the point of running it. Switch it off in <strong>Settings → AI</strong>. Searches are billed by your provider to your own key, as with everything else in the AI feature.</li>
-    
-    <li><strong>Fixed: part of a Claude answer could go missing.</strong> Vellen kept only the first block of text in a reply, so an answer delivered in several pieces arrived with the substance dropped and the preamble intact.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.105">
-    <h2><a href="#v0.1.105">Version 0.1.105</a></h2>
-    <ul>
-    <li><strong>A vault folder can no longer inherit a different vault's sync history.</strong> Vellen remembers what was last synced, and that record used to be filed under the folder's location. Put a different or rebuilt vault at a familiar location and it picked up the previous one's history, so every note the old vault had and the new one didn't looked like something you'd deleted. Sync's protection caught it and refused — but then had nowhere to go, and the notes couldn't come back down either. The record now names the vault it belongs to, and one that doesn't match is ignored. That simply means &quot;this vault hasn't synced here before&quot;: everything comes down, nothing is removed.</li>
-    
-    <li><strong>An encrypted vault only counts as unlocked for the vault you unlocked.</strong> Replacing a folder's contents while keeping its name used to leave Vellen reporting the new folder as already unlocked. Nothing was exposed — a remembered key can't open a different vault — but the app was stating something untrue at the exact moment you'd be trying to work out what had gone wrong.</li>
-    
-    <li><strong>Whiteboard groups no longer fuse together.</strong> Dragging one group far enough over another could leave both permanently stuck, moving as one, with no obvious way to separate them.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.104">
-    <h2><a href="#v0.1.104">Version 0.1.104</a></h2>
-    <ul>
-    <li><strong>A synced vault now remembers what it is, in its own folder.</strong> Vellen writes a small <code>vellen-vault.json</code> next to your notes — the same identity file it already keeps in Drive. Before, that link lived only in the app's own storage and was tied to the folder's exact location, so moving or renaming a vault folder, or reinstalling, could leave Vellen unable to tell your own vault from any other folder. It would then ask which synced vault this was — and refuse the correct answer if the folder already had notes in it. Now the folder says so itself and sync resumes on its own.</li>
-    
-    <li><strong>When sync protects you from a mass deletion, it now says which copy it saved.</strong> The protection works in both directions — it stops a gutted Drive folder from emptying this device, and stops a device that looks empty from emptying Drive — but the message only ever described the first. Pointing Vellen at a new empty folder protected the Drive copy and then reported the opposite, and suggested a recovery step that doesn't apply in that direction.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.103">
-    <h2><a href="#v0.1.103">Version 0.1.103</a></h2>
-    <ul>
-    <li><strong>If Vellen can't create a note, whiteboard or folder, it now tells you.</strong> Before, it just didn't happen — no new file, no error, nothing on screen. Saving an existing note already reported failures; creating a new one never had, so a vault Vellen couldn't write to (a disconnected drive, a full disk, a folder whose permissions had changed) looked exactly like a button that had stopped working. This covers new notes, whiteboards, folders, today's note, notes from a template, and quick capture — where it matters most, because the capture window closes when you send and there would have been no other copy of what you'd typed.</li>
-    
-    <li>New whiteboards now sync straight away rather than waiting for the next scheduled check.</li>
-    
-    <li>Your Drive sign-in now moves into the system credential store as soon as the app opens, rather than waiting until the next time it happens to be used. (In v0.1.102 it moved on the first token refresh — within an hour of using sync — so nothing sat exposed for long, but &quot;at startup&quot; is what was meant.) Any credential added in future migrates the first time it is read, so this can't be forgotten again.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.102">
-    <h2><a href="#v0.1.102">Version 0.1.102</a></h2>
-    <ul>
-    <li><strong>Your AI keys and Drive sign-in now live in your operating system's credential store</strong> — macOS Keychain, Windows Credential Manager, or the Linux Secret Service — instead of a file inside the app's own storage. They move across by themselves the first time you open this version, and only after Vellen has read the value back out of the keychain to confirm it arrived. If your system has no credential store available, nothing changes and nothing is lost. On phones and tablets they stay where they were, because the OS already keeps app storage private there.</li>
-    
-    <li><strong>Settings backups no longer include your AI keys unless you ask.</strong> A backup file tends to end up in Downloads or an email to yourself, and a working API key in plain text shouldn't be what the obvious button produces. There's a checkbox for the case it was built for — a reinstall, where the keys are the one thing not recoverable from anywhere else.</li>
-    
-    <li>Upgrading on Windows no longer force-quits Vellen without warning: the installer now asks it to close first, so anything you'd just typed is saved before the upgrade proceeds.</li>
-    
-    <li><strong>AI key checks now say what actually went wrong.</strong> &quot;Couldn't verify it just now&quot; was the end of the conversation — the provider had explained itself and Vellen kept the explanation to itself. Now the provider's own words come through, and one case gets its own plain answer: <strong>your key works but the account is out of credit</strong>, which is a billing errand rather than a broken key. Nothing needs regenerating.</li>
-    
-    <li>The line above a note is now just the edit time, word count and read time, moved to the left. It used to lead with the folder and the note's name — but the name is already on the tab and in the title right above it, and the folder is in the sidebar with the note highlighted. What's left is the part that isn't written anywhere else, and it starts where your eye does.</li>
-    
-    <li><strong>Fixed: quick captures never reached iPhone or iPad.</strong> They filed into a folder called <strong>Inbox</strong> — and on iOS, <code>Inbox</code> inside an app's documents folder is reserved by the system: apps may read and delete there, but never write. So a capture made on any device synced happily to Mac, Windows and Android, sat visibly in Google Drive, and silently refused to land on an iPhone or iPad. Captures now go to a folder called <strong>Captures</strong>, which also just says what it holds — and leaves &quot;Inbox&quot; free if you run your own inbox workflow. <strong>Existing Inbox folders are left exactly as they are</strong>; they're your notes now, and nothing is moved or renamed.</li>
-    
-    <li><strong>Sync now tells you when a file couldn't be copied.</strong> The list of files a sync failed to transfer was used to decide whether to retry and shown to nobody — which is why the problem above went unnoticed for as long as it did. A sync that can't copy something now says so.</li>
-    
-    <li><strong>Quick captures, new notes, renames, deletions and whiteboard edits now sync promptly.</strong> Typing in a note triggered a sync a few seconds later, but every other change waited for the background sync's three-minute round — so a note captured with the hotkey could sit on one machine for minutes while a single typed character went straight across. Nothing was ever lost (the files are on disk, and the next round or app launch carried them), but &quot;I captured that on my laptop and it isn't on my phone yet&quot; had a real cause, and now doesn't.</li>
-    
-    <li><strong>Fixed a whiteboard crash that hadn't happened yet.</strong> A card preview ran a different number of React hooks depending on whether the file was an image or a note — so a card changing from one to the other (a rename, or cards reordering) could crash the whiteboard. Same class as the bug that blanked the app on every whiteboard in v0.1.94, in the same file, found by a linter fifteen minutes after it was installed. Nothing had reported it; it was waiting.</li>
-    
-    <li>iOS builds now find their App Store Connect credentials the same way the Mac build does, instead of expecting them to be typed into the terminal first — the fourth ship in a row that stalled on that.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.101">
-    <h2><a href="#v0.1.101">Version 0.1.101</a></h2>
-    <ul>
-    <li><strong>Fixed: a sync conflict could show one side as blank when the file simply couldn't be read.</strong> Choosing between two versions of your own writing is the last place Vellen should guess — an unreadable version now says so and refuses the choice, instead of appearing empty. (Nothing was ever lost: the version you don't keep goes to history first. But the screen was capable of misleading you into the decision.)</li>
-    
-    <li><strong>Fixed: turning encryption off could leave sync asking for the passphrase you just removed.</strong> If the key file couldn't be deleted from your notes folder, nothing said so — and the next sync read that leftover file and insisted the vault was still encrypted. Vellen now tells you at the moment it happens, and names the file to remove.</li>
-    
-    <li>Two smaller honesty fixes from the same sweep: the diagnostics report said &quot;encrypted: no&quot; when it couldn't actually check, and a failure to remove the local key file after turning encryption off left no trace anywhere. Both now say what really happened.</li>
-    
-    <li><strong>Fixed a sync race that could quietly split one vault in two.</strong> If two of your computers upgraded from Vellen's old Drive layout at the same moment, each could claim the migration and create its own folder — after which the two devices synced happily into separate folders and stopped seeing each other's notes, with nothing to indicate anything was wrong. Every device now converges on the same folder — the one holding the notes — without needing to coordinate, including a device that arrives late or was mid-upgrade when the race happened. Found by audit rather than by anyone losing a day to it, and then hardened by a new test that runs several devices' operations interleaved: it broke the first fix twice before this one held.</li>
-    
-    <li><strong>Encryption Help and the privacy policy now state exactly what stays visible in Drive</strong> — names, sizes, dates, the vault name, and a content fingerprint per note — including what that fingerprint does and doesn't allow. It was accurate before that contents are sealed; it wasn't complete about what surrounds them.</li>
-    
-    <li><strong>New Help topic: private local AI with Ollama.</strong> A ten-minute walkthrough — install, which model to pull for your machine's memory, connecting Vellen, and how to confirm it's actually private (the line under the message box reads &quot;nothing leaves this device&quot;). Includes the phone case: point it at a computer on your own network. Written because &quot;how do I make AI completely private&quot; deserves a real answer, not a reassurance.</li>
-    
-    <li>Fixed: the Help told <strong>everyone</strong> to &quot;tap your vault's card&quot; and to &quot;tap&quot; a board card's ⋯ menu, including people using a mouse. Both had been invisible to the guard that exists to catch exactly that, because it read the Help as source code. It now also reads the Help as the person reads it — rendered, once for a computer and once for a phone — which is how the second one turned up.</li>
-    
-    <li><strong>The AI window now says what it sends, before it sends it.</strong> A line under the message box names exactly what leaves your machine for the scope you've chosen — &quot;Sends your question + up to 6 matching notes to Anthropic (Claude)&quot;, or &quot;this note&quot;, or, when you're on a local Ollama server, <strong>&quot;Local AI — nothing leaves this device.&quot;</strong> Note excerpts have always travelled with your question (that's how any cloud AI works), but until now the citation chips only reported it afterwards. Tasks questions — the widest thing Vellen sends, every open checkbox in the vault — now show citation chips too, where before they showed none.</li>
-    
-    <li><strong>&quot;Save as note&quot; asks for a name again.</strong> The window rewrite lost the naming step and started auto-naming from the answer's first line, which produced notes nobody could find a week later. The suggestion is still offered and pre-selected — one Enter accepts it.</li>
-    
-    <li><strong>The AI window no longer opens bigger than a small app window.</strong> Its starting size is now proportional to the window it opens into (still capped at the old default on a large display), so the note behind it stays visible — the entire point of a floating window. Noticed on Windows, and true on macOS and tablets too.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.100">
-    <h2><a href="#v0.1.100">Version 0.1.100</a></h2>
-    <ul>
-    <li><strong>AI chat history: 50 chats kept (was 20), by most recently used, and the limit now says so.</strong> The old cap trimmed the oldest chats silently, which read as &quot;my chats aren't being saved&quot; — a silent limit is indistinguishable from a bug. The history menu now states the policy, and the cap trims genuinely stale chats instead of an old favorite you use daily. Empty chats are still dropped, and history remains on this device, per vault.</li>
-    
-    <li><strong>Fixed: reasoning models returned &quot;The AI returned an empty response.&quot;</strong> One disease, two carriers. Claude 5 models can lead their reply with a thinking block, and Vellen read only the FIRST block — so a real answer parsed as empty. Ollama's local endpoint routes a thinking model's whole output into a separate field with the same result. Vellen now finds the actual answer wherever it sits, strips chain-of-thought so you never read the model muttering to itself, asks local servers not to think out loud, and raises the answer budget from 1,024 to 4,096 tokens — thinking models spend tokens reasoning before the first answer word, and the old cap truncated them.</li>
-    
-    <li><strong>One box, no modes — and general questions work now.</strong> The Ask / Summarize / Draft pill is gone: say what you want (&quot;draft an agenda&quot;, &quot;summarize my week&quot;, &quot;what did I decide about pricing&quot;) and the AI reads the verb from the sentence. Every request draws from three sources in priority order: your notes (cited, never embellished), the Vellen manual for app questions (real features only), and the AI's own general knowledge — always labeled as general knowledge, so an answer can never masquerade as something you wrote. Previously general questions were refused entirely (&quot;your notes don't say&quot;), and drafts couldn't see your notes at all; now a draft about something you've been researching pulls in what your vault already says. It cannot browse the web, so &quot;right now&quot; information is still out of reach. The context pill (This note · Whole vault · a folder) remains — what the AI may SEE is a real decision; how to phrase a sentence is not.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.99">
-    <h2><a href="#v0.1.99">Version 0.1.99</a></h2>
-    <ul>
-    <li><strong>Two new AI providers: Qwen, and Local (Ollama).</strong> Qwen connects like the others — a key from Alibaba Cloud Model Studio, with Flash / Plus / Max in the model picker. <strong>Local</strong> is different in kind: point Vellen at an Ollama (or LM Studio) server on your own computer and AI becomes free, offline, and fully private — your notes never leave the machine even to answer a question. No key; the model must be pulled there first (e.g. <code>ollama pull qwen3</code>). When Local is connected, Vellen prefers it over cloud keys — free first, by design.</li>
-    
-    <li><strong>Fixed: Claude Sonnet 5 and Opus 5 rejected every request</strong> (v0.1.98's model picker shipped this broken; Haiku, the default, worked). Vellen sent a default <code>temperature</code> with every Anthropic request, and the Claude 5 generation rejects that parameter outright. Temperature is now sent only when explicitly requested — and AI errors now include the provider's own explanation instead of a bare status code, which is what turned this from a guessing game into a one-line fix.</li>
-    
-    <li>Ship tooling: mobile builds are now the DEFAULT on tagged releases (<code>--no-mobile</code> to opt out), and <code>./deploy-builds.sh status</code> answers &quot;is this version fully out?&quot; per platform from artifact facts, not memory.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.98">
-    <h2><a href="#v0.1.98">Version 0.1.98</a></h2>
-    <ul>
-    <li><strong>AI is now a floating chat window</strong> (design 3a). The ✨ button used to open a one-shot drawer that covered the right side of your note and forgot each answer as you asked the next question. Now it opens a draggable, resizable window that floats <strong>over</strong> your note — the editor stays visible and fully clickable behind it — and holds a real conversation: follow-ups know what was already said.</li>
-    </ul>
-    <p>  In the window: user messages as bubbles, answers as flat text with <strong>citation chips</strong> that open the note they came from; <strong>Copy · Save as note · Insert into note · Retry</strong> under every answer; a mode pill (<strong>Ask / Summarize / Draft</strong>, or type <code>/ask</code>, <code>/summarize</code>, <code>/draft</code>); a context pill choosing what answers draw from (<strong>Whole vault</strong> by default — narrowing to <strong>This note</strong> or a folder is always an explicit choice, after a first live session where a &quot;This note&quot; default made every vault-wide question silently see one note); <strong>+ New</strong> and a recent-chats list. Minimize collapses it to a small ✨ pill bottom-right. Position, size, and chats are remembered <strong>per vault, on this device only</strong> — chat threads contain excerpts of your notes, so they never leave the machine.</p>
-    <p>  Right-click AI actions on selected text (Summarize / Improve / Ask about this) open the same window with the result as the first exchange.</p>
-    <ul>
-    <li><strong>Choosing an AI model no longer requires memorizing API strings.</strong> Settings → AI now shows model chips with the names people actually use — <strong>Haiku 4.5 · fast &amp; cheapest</strong>, <strong>Sonnet 5 · balanced</strong>, <strong>Opus 5 · most capable</strong> — one click to switch, saved instantly. &quot;Custom…&quot; keeps the raw-id field for models newer than the list. Three fixes rode along: the panel now opens on the provider you're actually <strong>connected to</strong> (it always opened on OpenAI, hiding your real settings behind a second click); the &quot;Provider&quot; label is no longer crushed to &quot;Provide&quot; by its own buttons; and the model picker is visible whenever you're connected instead of appearing only after re-clicking the provider.</li>
-    
-    <li><strong>The AI now knows Vellen.</strong> Ask it &quot;how do I make a board?&quot; and it used to know nothing — Ask searched your <em>notes</em> for context, found none, and was correctly forbidden from inventing an answer. The one thing the assistant inside Vellen couldn't discuss was Vellen.</li>
-    </ul>
-    <p>  Now, when a question is about the app, the relevant sections of the built-in Help ride along with it — the same Help that every feature updates, rendered for your device, so the answer says ⌘P on a Mac and &quot;tap&quot; on a phone. A list of everything Vellen can do is always included, so even an oddly-worded question gets pointed at the right Help topic rather than at imaginary menus. The grounding rule is unchanged: if neither your notes nor the manual contain the answer, it says so.</p>
-    <p>  Selection is deliberately frugal — only matching topics are attached, because Ask runs on your own API key and the whole manual would cost real money per question.</p>
-    <p>  Second live question, second scorer fix: &quot;how do I set up <strong>sync</strong>&quot; attached nothing, because short words couldn't title-match under the 5-character rule — &quot;sync&quot; simply doesn't have five letters to give. A whole word that starts the title word (&quot;sync|ing&quot;, &quot;tag|ging&quot;) now counts, and &quot;note(s)&quot; was stop-worded — in a notes app it appears in half the titles and carries no signal.</p>
-  </section>
-
-  <section class="release" id="v0.1.97">
-    <h2><a href="#v0.1.97">Version 0.1.97</a></h2>
-    <p>_First tester round (10 Aug 2026) — two reports, two verifications, and a<br>bug found by chasing one of them:_</p>
-    <ul>
-    <li><strong>A note made from a template no longer impersonates its template.</strong> &quot;Goal Template&quot; now makes a note called <strong>Goal</strong> — not a second file named &quot;Goal Template&quot; sitting beside the real one, which is exactly what a tester got. And copies never land in the Templates folder itself.</li>
-    
-    <li><strong>Templates can say where their notes belong.</strong> Put <code>template-folder: Projects</code> in a template's frontmatter and every note made from it lands there — per-template, no settings screen, and it syncs with the template. <code>template-…</code> keys are stripped from the copies; a template asking for a folder outside the vault (<code>../…</code>) is refused.</li>
-    
-    <li><strong>Comments in frontmatter survive board drags and property edits.</strong> Chasing the tester's round-trip question found that re-serializing frontmatter dropped <code># comment</code> lines someone had written. They're kept now (grouped before the closing fence). Verified while there: body edits never touch frontmatter at all; unquoted <code>yes</code>/<code>on</code> were never converted to booleans; quoted strings keep their type through a round-trip; renames still rewrite <code>[[links]]</code>, the <code>[[note|alias]]</code> form included — all pinned by tests rather than by reassurance.</li>
-    
-    <li><strong>A deeper review of the older code found one serious bug and a family of quiet ones:</strong></li>
-    
-    <ul>
-    <li><strong>Closing a tab with &quot;protection paused&quot; could drop your last seconds of typing.</strong> The close path only flushed the pending autosave inside the version-checkpoint step — which the protection-paused switch skips entirely. So with protection paused, closing a tab right after typing dropped the unsaved edit on the floor: the save timer fired, found the document already gone, and returned without writing. The flush now happens unconditionally, before any checkpoint logic. Pausing version history never pauses saving — versions are the safety net; the save is the note.</li>
-    </ul>
-    
-    <ul>
-    <li><strong>A failing disk now says so.</strong> Background saves — note autosaves, whiteboard edits, properties changes — reported failures to nobody: the rejection vanished into a discarded promise, recorded in local diagnostics and shown nowhere, while you kept typing into a file that wasn't updating. All three paths now surface a notice naming the file and the reason, repeated on every failed retry, because a warning that only fires once is a warning that gets missed. Whiteboards were the worst case: unlike notes they have no unsaved-dot, and Android's SAF storage has already produced one real canvas write failure in the wild.</li>
-    </ul>
-    
-    <ul>
-    <li><strong>The &quot;your notes moved&quot; note left after an iCloud rescue now carries the local date</strong> rather than UTC — the third instance of the same date bug, found by grepping for the pattern the first two taught us.</li>
-    </ul>
-    
-    <li><strong>Four fixes from a deliberate review of the week's work</strong> — all found by re-reading the new code hunting the bug classes that have actually bitten (comments describing intentions, state that never resets, guards checking the thing next to the thing):</li>
-    
-    <ul>
-    <li><strong>A board's &quot;Show more&quot; no longer leaks across boards and filters.</strong> The paging comment claimed a reset that didn't exist; three presses on one board left the next drawing 600 cards a column.</li>
-    <li><strong>The crash screen no longer holds a grudge.</strong> Its retry counter never reset, so one recovered crash meant the next unrelated error — even weeks later — got no &quot;Try again&quot; and a false &quot;isn't a one-off&quot;. Crashes now only count together when they arrive within thirty seconds.</li>
-    <li><strong>Toggling the theme no longer rebuilds the graph.</strong> It remounted the whole view to change colors, discarding the layout and re-running the full multi-second warm-up on a big vault. Colors now update in place.</li>
-    <li><strong>Crash reports keep the hostname of a failed request.</strong> Redaction was eating whole URLs, turning &quot;the Drive API rejected us&quot; and &quot;the CDN was down&quot; into the same unreadable line. The host stays; only the path — the part that could carry a note name — is removed.</li>
-    </ul>
-    </ul>
-    <p>  Also: the Mac build now verifies the signing identity actually matches the keychain <em>before</em> the 25-minute compile, and the graph stops remembering positions for deleted notes.</p>
-  </section>
-
-  <section class="release" id="v0.1.96">
-    <h2><a href="#v0.1.96">Version 0.1.96</a></h2>
-    <p>_Build-process change, invisible in the app: the Mac version is now built on<br>the development Mac rather than on GitHub's rented ones. See DISTRIBUTION.md.<br>It doesn't change the app, but it's why v0.1.94 and v0.1.95 had no Mac or<br>Windows installers — those releases were tagged and never built, because<br>GitHub had stopped allocating runners over a billing limit._</p>
-    <ul>
-    <li><strong>Whiteboards open framed properly, every time.</strong> Leaving a whiteboard and coming back dropped you at the canvas origin with your cards somewhere off screen — you had to hunt for your own work. It now fits the whole board into the window, centred, zooming out if it's large and never zooming in past normal size for a small one.</li>
-    </ul>
-    <p>  The old code meant to do this and never ran: it was guarded on the canvas element existing, inside the callback that <em>creates</em> the canvas element two lines later, so the check could never be true. The comment above it said &quot;Center content on open&quot; — which was also describing something it wouldn't have done anyway, since it only moved the top-left corner of the content and ignored the window entirely.</p>
-    <ul>
-    <li><strong>Switching straight from one whiteboard to another no longer shows the old one's cards</strong> while the new one loads.</li>
-    
-    <li><strong>The graph no longer looks like it has hung while it works.</strong> A big graph genuinely takes a few seconds to arrange — v0.1.95 got that down from 15–20 seconds to 6–7 — but it spent them behind a window that didn't repaint or respond, which reads as a crash rather than as work.</li>
-    </ul>
-    <p>  It now arranges in slices instead of one long block, so the graph visibly assembles itself on screen with <strong>&quot;Arranging 4,998 notes… 62%&quot;</strong> along the bottom. Same work, same wait, entirely different experience: busy instead of broken. Smaller vaults finish before any of that appears and look exactly as they did.</p>
-    <p>  The layout it settles into is identical to before, down to the pixel — spreading the same arithmetic across frames doesn't change the answer, and there's a test proving that rather than assuming it.</p>
-  </section>
-
-  <section class="release" id="v0.1.95">
-    <h2><a href="#v0.1.95">Version 0.1.95</a></h2>
-    <ul>
-    <li><strong>Fixed: opening a whiteboard broke the app in v0.1.94.</strong> Every whiteboard, on every platform, since v0.1.94 — the window went blank and stayed blank, including after quitting and reopening, because Vellen returns to the folder you had open.</li>
-    </ul>
-    <p>  <strong>No notes or whiteboards were harmed.</strong> Nothing was written, moved or deleted; the app never got as far as touching a file. If you hit this, your <code>.canvas</code> files are exactly as you left them.</p>
-    <p>  The cause was a one-line mistake in v0.1.94's own double-tap-to-rename fix: the new code was placed a few lines below a point where the component can exit early while a board is still loading, so it ran on some redraws and not others. React refuses to continue when that happens, and with no error boundary in that release, refusing to continue meant removing the entire interface.</p>
-    <p>  Both halves are now guarded. A check in the test suite fails the build if this arrangement ever appears again, and the error boundary below means a future one costs a panel rather than the app.</p>
-    <ul>
-    <li><strong>A broken part of the app no longer takes the whole app down with it.</strong> Until now Vellen had no error boundary anywhere: if anything threw while drawing the screen, React removed the entire interface and left a blank window — no message, no button, nothing to press. Worse, because Vellen reopens your last folder on launch, a folder that reliably triggered one left the app blank on <em>every</em> start, with no way back in.</li>
-    </ul>
-    <p>  There are now two nets. A view that breaks — a board, the graph, the task list — costs you that view and nothing else; your notes and the sidebar stay put and there's a <strong>Back to my notes</strong> button. If something breaks before the app has even drawn, you get a screen instead of a void, with <strong>Open a different folder</strong> on it, because when the folder itself is the problem that's the only door that leads anywhere.</p>
-    <p>  Every version of that screen leads with the thing that actually matters: <strong>your notes are safe.</strong> They're Markdown files in a folder, the screen tells you which folder, and you can go and open them in any other app. Found while load-testing a 5,000-note vault, which is a much better place to find it than in front of somebody.</p>
-    <ul>
-    <li><strong>&quot;Try again&quot; stops offering itself once it clearly isn't working.</strong> Two attempts is enough to know an error repeats; a third button that we expect to fail is just a slower way of saying nothing.</li>
-    
-    <li><strong>The way out of that screen is whatever actually gets you out.</strong> Which sounds obvious, and wasn't: the first cut offered <strong>Back to my notes</strong> for everything, including when it was the notes that broke — where it set the view to the view you were already on and sat there. Now it's <strong>Back to my notes</strong> for a board, the graph or the task list; <strong>Close this note</strong> (or whiteboard) when that's what crashed; <strong>Open a different folder</strong> when the app couldn't start. Where there's nothing useful to offer, there's no button — a missing one is honest, a dead one isn't.</li>
-    
-    <li><strong>Crash details are scrubbed before they're recorded.</strong> Error messages routinely carry file paths — <code>no such file or directory, open '/Users/you/Notes/…'</code> — and Vellen's diagnostics promise never to include your file names. Paths and note names are now stripped on the way into the log, so the report still says what broke without naming anything of yours.</li>
-    
-    <li><strong>The graph opens far faster on a large vault.</strong> On a 5,000-note vault it took 15–20 seconds. The layout itself accounts for under three of those; the rest was the graph rebuilding itself from scratch five or six times over, once for every incidental redraw of the surrounding app. It now builds once, and a burst of changes from a sync settles into a single relayout instead of one per file. Node positions also survive a rebuild now, so the graph stops jumping back to its starting ring.</li>
-    </ul>
-    <p>  Measured at <strong>6–7 seconds</strong> on the 5,000-note demo vault afterwards. That part is honest arithmetic rather than waste, and it still happens in one go; it's written up in PERFORMANCE.md so the next attempt to improve it starts from numbers.</p>
-    <ul>
-    <li><strong>A Kanban column draws 200 cards at a time</strong>, with a <strong>&quot;Show 200 more — N hidden&quot;</strong> button at the foot. A column had no ceiling before, which is fine for a dozen projects and not fine for a board whose property column catches several thousand notes. The count is in the label on purpose: a column with thousands of cards is telling you the board is cast too wide, and that's worth knowing rather than scrolling past.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.94">
-    <h2><a href="#v0.1.94">Version 0.1.94</a></h2>
-    <p>_Groundwork, not yet visible: the trial and unlock machinery has begun<br>landing (TRIAL-DESIGN.md). Billing itself isn't built, and every current<br>build behaves exactly as before — nothing is gated for anyone._</p>
-    <ul>
-    <li><strong>&quot;Report a problem…&quot;</strong> in Settings → About &amp; updates. It opens an email to us with the diagnostics already in the message — readable in full before you send, and yours to trim. Vellen has no servers and reports nothing automatically, so this is the only way a problem reaches us; it shouldn't require knowing where to look or which address to write to.</li>
-    
-    <li><strong>&quot;Insert diagram&quot; now asks which kind.</strong> From the command list it always inserted a flowchart, which made it a poorer version of the toolbar button that offers six. It now opens the same chooser — flowchart, sequence, mind map, pie, timeline, Gantt — and there's only one list behind both, so a new type appears in both places at once.</li>
-    
-    <li><strong>&quot;Insert table&quot; and &quot;Insert diagram&quot; work with no note open.</strong> From the Nothing-open screen, ⌘P → <code>&gt;</code> → Insert table did nothing at all — the command was talking to an editor that wasn't there. It now makes a note and puts the table in it, which is what you were asking for anyway. Toggle formatting marks and Toggle focus mode act on an open note and can't mean anything without one, so they no longer appear in the list until there is one.</li>
-    
-    <li><strong>Whiteboard cards can be edited, opened and visited on a phone.</strong> A card's main action was a double-click and nothing else, so on touch you could make a card, type into it once, and never get back in — and a note card couldn't be followed to its note, or a web card to its page. Long-press any card now offers all three.</li>
-    
-    <li><strong>Every hint now speaks your device's language.</strong> Buttons and panels that said &quot;click&quot; to someone holding a touchscreen now say &quot;tap&quot;; the Help resize corner resets on a double-tap as well as a double-click; and the diagram help no longer asks you to hover something with a finger.</li>
-    
-    <li><strong>Double-tap to rename now works on iPhone.</strong> It worked on iPad and every desktop, and did nothing on a phone: a double tap there is iOS's zoom gesture, so Safari keeps it rather than passing it on as a double-click. Vellen now watches for the two taps itself — the same way whiteboards already did — and tells iOS not to zoom on a title. The pencil is unchanged.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.93">
-    <h2><a href="#v0.1.93">Version 0.1.93</a></h2>
-    <ul>
-    <li><strong>Double-click a note or whiteboard's title to rename it.</strong> It's what Finder, Explorer and most editors do, so it's what people reach for first — and Vellen made you find the pencil instead. The pencil is still there, and is still the route on phones and tablets. Renaming updates every link pointing at that note, however you start it.</li>
-    
-    <li><strong>Whiteboards: double-tap really does make a card now, on phones and tablets.</strong> The hint said it did; the gesture never worked. Whiteboards handle their own pinch-to-zoom, which stops the browser from turning a double tap into the double-click the canvas was listening for — so it worked with a mouse and never with a finger. Vellen now watches for the two taps itself, and ignores them if you were panning or pinching.</li>
-    
-    <li><strong>Quick capture closes itself again.</strong> After jotting a note with the global hotkey, the little window stayed on screen instead of tucking away — and Esc didn't dismiss it either. Both used the same call, which the app had never actually been permitted to make, so it failed silently every time. Your notes were captured correctly throughout; only the window was stubborn.</li>
-    
-    <li><strong>Groundwork for the Mac App Store.</strong> Vellen can now run inside Apple's sandbox — remembering the folder you chose across restarts, and still finding it if you rename or move it while the app is closed. Nothing changes for the current Mac build.</li>
-    
-    <li><strong>Safer saves, everywhere.</strong> Every save writes to a temporary file and swaps it into place, so an interrupted write can never leave a half-written note. Those temporary files are now named so that nothing else can mistake them for real notes — previously they relied on a convention that also meant &quot;Vellen's own hidden files&quot;, and on macOS's stricter rules that combination stopped saves from working at all.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.92">
-    <h2><a href="#v0.1.92">Version 0.1.92</a></h2>
-    <ul>
-    <li><strong>Windows: new vaults no longer land inside OneDrive.</strong> OneDrive quietly takes over your Documents folder on most PCs, so Vellen was creating notes folders inside it — while warning elsewhere that two sync systems sharing one folder causes files that won't open, folders that move themselves, and duplicate &quot;conflicted copy&quot; files. Vellen now notices when Documents is managed by OneDrive, Dropbox, Google Drive or iCloud and puts new vaults in your user folder instead. macOS already dodged iCloud; every platform now dodges all of them. <strong>Existing vaults are left exactly where they are</strong> — if yours is inside one of those folders, Settings → switch notes folder moves it.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.91">
-    <h2><a href="#v0.1.91">Version 0.1.91</a></h2>
-    <ul>
-    <li><strong>…and it no longer guesses why.</strong> The first version of that screen listed likely causes — disconnected drive, moved folder — as though it knew. When none of them were true it was simply wrong, confidently. Vellen now tells apart &quot;that folder isn't there&quot; from &quot;Vellen isn't allowed to open it&quot;, words each honestly, and leads with the action that can actually help — retrying is useless against a permission problem. When the cause genuinely isn't clear, it offers no reason at all.</li>
-    
-    <li><strong>If Vellen can't reach your notes folder, it now says so</strong> — instead of showing the first-run welcome screen as though you'd never set anything up. That happens when a drive or network share isn't connected, or the folder was moved or renamed. The old screen led with <strong>Start taking notes</strong>, which would have made a second, empty vault while your real notes sat perfectly safe on disk, unmentioned. Now it names the folder, explains the likely reasons, and leads with <strong>Try again</strong> and <strong>Find the folder…</strong>. Starting over is still there, just no longer the obvious button.</li>
-    
-    <li><strong>If a vault's encryption file can't be read, setting up a device now says so before it starts</strong> — rather than treating the vault as unencrypted, setting everything up, and only then refusing to sync. Nothing gets created on the device in that case.</li>
-    
-    <li><strong>Setting up a device on an encrypted vault no longer sends you to Settings.</strong> Pick your vault, and if it's encrypted the passphrase box appears right there with the vault's name on it. Get it wrong and you simply try again — nothing has been created yet, so there's nothing to undo — and you can back out to the vault list or cancel entirely without leaving the setup screen. Previously the app created the folder, opened the vault, discovered it couldn't read anything, and left a message asking you to go and unlock it somewhere else. That prompt was meant to appear in the setup screen all along, but the vault opening replaced that screen before it could — so on every platform it fell back to the message. Now the question is asked before any of it starts.</li>
-    
-    <li><strong>iPhone and iPad: the update protection now arms the moment you join a vault</strong>, instead of on the next launch. Joining reaches the vault by a different route than opening it, so a freshly joined device briefly had nothing recorded. It was already covered by the repair that runs when nothing is remembered — but a gap that doesn't exist beats one that's handled.</li>
-    
-    <li><strong>Vault identities are now generated with proper randomness.</strong> Each vault gets a unique id that tells devices which Drive folder is theirs. That id was being generated with ordinary (non-cryptographic) randomness, which carries a small chance of two vaults ever minting the same one — and two vaults sharing an identity is exactly the mix-up the sync rules exist to prevent. Nothing was at risk and the id is not a secret, but it now comes from the same source as the encryption keys. Existing vaults keep the ids they have; nothing needs redoing.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.90">
-    <h2><a href="#v0.1.90">Version 0.1.90</a></h2>
-    <ul>
-    <li><strong>The diagnostics report now says what this device believes about your vault</strong> — where it is, whether it's unlocked, which Drive folder it syncs with, and whether any of its settings ended up filed under an old location. Settings → About &amp; updates → <strong>Copy diagnostics</strong>. Three separate head-scratchers this week were each a ten-second read once you could see this, and release builds have no developer tools — so if the app can't tell you, nobody can. Still no note content and no keys; the vault's folder path is included, because spotting when it's wrong is the entire point.</li>
-    
-    <li><strong>Sync will no longer reorganise your Drive folders when it can't read one of them.</strong> Each vault's folder in Drive holds a small identity file. If that file couldn't be read for a moment — a hiccup, a slow connection — Vellen concluded the folder wasn't a vault at all and could move it inside another vault's folder while tidying up. Nothing was ever lost or mixed between vaults, but folders could end up nested where they shouldn't be. Vellen now tells &quot;this isn't a vault&quot; apart from &quot;I couldn't tell&quot;, and pauses sync with an explanation instead of guessing.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.89">
-    <h2><a href="#v0.1.89">Version 0.1.89</a></h2>
-    <ul>
-    <li><strong>iPhone and iPad: updating the app no longer makes it forget your vault.</strong> iOS can move an app's storage location when it updates, and everything Vellen remembered about your vault — that it was unlocked, which Drive folder it syncs with — was filed under the old location. The result looked alarming and wasn't: notes all present, but the app asked for your passphrase again and then asked which vault to sync with, as if it had never seen you. Vellen now notices when iOS has moved things and carries your vault's settings across. <strong>Devices already in that state repair themselves on the next launch</strong> — no reinstall needed.</li>
-    
-    <li><strong>A join message about a failed sync now clears itself once the sync works.</strong> Unlocking an encrypted vault and syncing left the &quot;this vault is encrypted&quot; banner on screen until it was dismissed by hand — a complaint about a problem that had just been solved. Any successful sync now clears it. The Dismiss button stays for the situations that don't resolve on their own.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.88">
-    <h2><a href="#v0.1.88">Version 0.1.88</a></h2>
-    <ul>
-    <li><strong>Links can now point at a section, not just a note.</strong> \<code>[[Project Atlas#Budget]]\</code> opens that note <em>and scrolls to the Budget heading</em>; \<code>[[Project Atlas#^some-id]]\</code> lands on one tagged line; \<code>[[#Budget]]\</code> jumps within the note you're already in. Vellen has always understood this syntax and kept it intact through renames — it just quietly ignored it when you clicked, dropping you at the top of the note. If the section has since been renamed or deleted, it says so instead of doing nothing. Embeds and links now locate a section through the same tested code, so they can't drift apart.</li>
-    
-    <li><strong>The note-link button now looks like what it does, and the link list tells you what else it can do.</strong> The toolbar button that inserts \<code>[[ ]]\</code> wore a chain-link icon — which in every other editor means &quot;web link&quot; — so the single most important button in a linked-notes app read as something else entirely. It's now drawn as brackets. And when the note list pops up, a quiet line along the bottom names the three characters that go further: \<code>#\</code>, \<code>^\</code> and \<code>|\</code>.</li>
-    
-    <li><strong>Encryption keys now spend far less time in memory.</strong> A security pass over the encryption code found the vault's master key being kept in memory for as long as the app was running, so the passphrase could be changed later. It's no longer held: the key is used and scrubbed within the operation that needs it. If you unlock a vault choosing NOT to remember it on that device, changing the passphrase there now asks for your current passphrase or recovery phrase — the device kept nothing, which is what you asked it to do. Everything else is unchanged. The full audit, including what was examined and deliberately left alone, is recorded in E2EE-DESIGN.md.</li>
-    
-    <li><strong>Phones: joining an encrypted vault no longer dead-ends in silence.</strong> On Android/iPhone, joining a vault whose Drive copy is encrypted landed on an empty &quot;Nothing open&quot; screen with no explanation — the &quot;this vault is encrypted, unlock in Settings&quot; message was being set but only ever rendered in the desktop layout. The join-status banner now shows on every layout, sits above the phone's bottom bar, and the failure banner gained an &quot;Open sync settings&quot; button that jumps straight to where the passphrase goes.</li>
-    
-    <li><strong>iOS minimum raised 14.0 → 15.0</strong> — Apple requires 15.0+ for App Store uploads starting Spring 2027 (warning 90068 on the v0.1.87 delivery). Costs zero devices: iOS 15 runs on every device iOS 14 ran on. The 14.0 was never written down anywhere — it's Tauri's default for <code>bundle.iOS.minimumSystemVersion</code>, which Vellen had simply never set. Now set explicitly in tauri.conf.json (survives regeneration) AND patched into the generated Xcode project + Podfile (gen/ is unversioned — re-apply if the iOS project is ever regenerated, same drill as Android's allowBackup).</li>
-    
-    <li><strong>The deploy step now reads the iOS minimum out of the built app</strong> and warns if it's below 15.0, rather than letting Apple be the one to mention it. Same principle as the existing version check: trust the artifact, not the repo. A warning, not a refusal — these builds are still accepted until Spring 2027.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.87">
-    <h2><a href="#v0.1.87">Version 0.1.87</a></h2>
-    <ul>
-    <li><strong>Android: the real sync breaker, found and fixed — v0.1.86's error reporting named it on the first tap.</strong> The screen finally said it: &quot;No content provider: saf:vault/Note 3.md&quot;. Three spots in the sync engine (local file hashing, upload reads, version-history listing) and one in folder moves still reached vault files by absolute path — a channel that predates Android support and cannot work there, where the vault is addressed through Android's document system. All four now route through the same storage layer as everything else, a lint-test outlaws the pattern for good, and folder moves on Android no longer silently leave images behind. The whiteboard was never the culprit — sync was dying before any file transferred.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.86">
-    <h2><a href="#v0.1.86">Version 0.1.86</a></h2>
-    <ul>
-    <li><strong>Android: hardened the sync path a whiteboard's arrival was failing on — and sync errors now name their file.</strong> A whiteboard created on another device reached every platform except Android, whose only explanation was a detail-free &quot;Sync failed.&quot; Two fixes: files created through Android's storage layer now declare an explicit type instead of trusting Android to guess from an extension it has never seen (<code>.canvas</code>), and any per-file sync failure now reports WHICH file plus the real underlying error — including low-level errors that previously displayed as nothing at all.</li>
-    
-    <li><strong>iPad: the whiteboard no longer squeezes mouse instructions down the screen edge.</strong> Touch devices showed BOTH hint lines — the touch cheat-sheet where it belongs, and the mouse one crushed into a one-word-per-line sliver beside the toolbar. Touch now shows only the touch hints.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.85">
-    <h2><a href="#v0.1.85">Version 0.1.85</a></h2>
-    <ul>
-    <li><strong>Signing in on a phone no longer gets stuck at &quot;Waiting for Google…&quot;.</strong> Android could suspend the app while the browser was open and lose the moment sign-in completed; roughly four of five attempts hung. The app now also actively checks for the completed sign-in — including the instant you switch back — and the waiting screen gained a &quot;Cancel and try again&quot; link just in case.</li>
-    
-    <li><strong>Joining a vault now narrates the download.</strong> After you pick your vault (and folder, on Android), a banner shows &quot;Pulling your notes from Drive…&quot; until they're in — and if anything goes wrong, the exact reason appears right there instead of hiding in Settings. Under the hood the join also claims the vault's identity earlier, closing a timing gap that could leave a joined device needing a manual sync.</li>
-    
-    <li><strong>Android: a reinstall is now truly fresh.</strong> Android's automatic backup was silently restoring old app state (sign-in, settings) when Vellen was reinstalled — resurrecting ghosts from installs you'd deleted. Backup is now off; your notes were never part of it (they live in your folder and your Drive).</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.84">
-    <h2><a href="#v0.1.84">Version 0.1.84</a></h2>
-    <ul>
-    <li><strong>iPhone &amp; iPad now show the setup choice on a fresh install.</strong> The welcome screen — start fresh, or &quot;I already use Vellen — get my notes&quot; — was unreachable on iOS, which opened straight into an empty vault. A truly fresh install now asks first; existing installs are untouched.</li>
-    
-    <li><strong>&quot;Get my notes&quot; explains itself better.</strong> If your account still has Vellen's older sync layout, the screen now says exactly what to do (sync once from an updated device, then scan again) instead of &quot;no vaults found.&quot; It also gained Scan again and Use-a-different-Google- account buttons.</li>
-    
-    <li><strong>A sync-connection warning can no longer hide its own fix.</strong> One refusal state showed an empty list where the &quot;Sync with this folder instead&quot; reconnect belonged. The reconnect now always appears when it's the way out, and the warning names it.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.83">
-    <h2><a href="#v0.1.83">Version 0.1.83</a></h2>
-    <ul>
-    <li><strong>Setting up a new device is now three taps: sign in, tap your vault, done.</strong> The welcome screen asks what you're here for — <strong>Start taking notes</strong>, or <strong>&quot;I already use Vellen — get my notes.&quot;</strong> The second path signs you into Google, shows your vaults as cards (name, size, age), and on a tap creates the notes folder for you, pulls everything down, and asks for your passphrase at exactly the right moment if the vault is encrypted. No Settings safari, no manufacturing empty folders, no guessing.</li>
-    
-    <li><strong>Every vault now gets its own folder in Google Drive — named after the vault, impossible to mix up.</strong> Your Drive gains one folder per vault (Vellen/Personal, Vellen/Work Notes…), each carrying a small identity file that sync verifies before every single run. Vaults can never cross: a mismatch refuses with a plain explanation instead of guessing. On a new device, Settings now asks what you want — <strong>Join</strong> one of your existing vaults (it pulls everything down) or <strong>Create</strong> a new synced vault — and joining is only offered to a fresh vault, so two different vaults can't be merged by accident. Existing setups upgrade themselves on their next sync: your notes move into their named folder automatically, and every OTHER device you already sync recognizes its own vault and reconnects silently — no chooser, no re-download, nothing to do anywhere. This replaces the previous release's one-vault-per-account rule with the real answer: every vault, each in its own lane.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.82">
-    <h2><a href="#v0.1.82">Version 0.1.82</a></h2>
-    <ul>
-    <li><strong>Mac: one button now moves your notes out of iCloud.</strong> If your notes folder sits inside iCloud-managed storage (macOS turns &quot;Desktop &amp; Documents in iCloud&quot; on by itself), files can get parked online and two sync systems fight over one folder. The Settings warning about this now offers the fix, not just the diagnosis: &quot;Move notes out of iCloud&quot; copies everything to ~/Vellen, verifies every file, refuses to run at all if anything is still parked in iCloud (with instructions to download first), and switches over with sync and encryption carried along — no passphrase re-ask, no slow re-sync. The old folder keeps a fallback copy with a note inside explaining where everything went.</li>
-    
-    <li><strong>Sync now belongs to ONE notes folder per Google account — and says so.</strong> Before, opening a different vault and syncing on the same account would quietly merge it with your synced notes through the shared Drive folder: no error, wrong result. Now sync is bound to the folder that set it up; a different folder sees a plain explanation in Settings and sync stays off there. Moved your notes (same notes, new folder)? Settings offers &quot;Sync with this folder instead&quot; to reconnect deliberately. Disconnecting releases the account.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.81">
-    <h2><a href="#v0.1.81">Version 0.1.81</a></h2>
-    <ul>
-    <li><strong>Android: you can now change which folder your notes live in — and reconnect if the folder goes missing.</strong> Settings → Backup &amp; protection gained &quot;Change folder…&quot;: pick a new empty folder and everything is copied, verified file by file, and only then switched — sync and encryption carry over with no passphrase re-ask, and the old folder keeps your previous copy as a fallback. If Vellen ever loses access to the folder (moved, deleted, or permission revoked in system settings), the same row turns into &quot;Reconnect folder…&quot; and points the app back at your notes without copying anything.</li>
-    
-    <li><strong>iPhone &amp; iPad: edits made in the Files app now appear when you come back to Vellen.</strong> Same promise Android gained in v0.1.80, same protections: returning to the app compares the folder against a snapshot and applies what changed — your unsaved edits are never clobbered, and a real clash shows both versions. Until now an outside edit was invisible until the next sync, and a stale open note could quietly overwrite it.</li>
-    
-    <li><strong>Pasting an SVG image now works end to end.</strong> An SVG pasted from a browser was saved with a broken file extension (<code>.svg+xml</code>, the raw clipboard type), which kept it from ever rendering as an image — and clicking the leftover link then quietly created a useless empty note with that same strange name. Pasted images now always get a clean extension, files misnamed by the old bug are recognized as images anyway, and following a link to an image can no longer spawn a note.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.80">
-    <h2><a href="#v0.1.80">Version 0.1.80</a></h2>
-    <ul>
-    <li><strong>Android: the real reason moved notes were empty — file WRITES were being denied, and now they're allowed.</strong> The system permission set that fixed the folder picker turned out to cover reading and creating files but not writing into them: the migration created every file and could fill none, leaving perfect-looking empty shells. The app now requests the plugin's full command set — it can still only touch the folder you yourself picked.</li>
-    
-    <li><strong>Android: a failed move-to-folder no longer forgets which folder you picked.</strong> The first device pass revealed the worst version of this: the copy failed at the last step, the app quietly erased the pick and stayed on its original storage, and Settings showed a blank &quot;Choose folder…&quot; as if nothing had happened — while the picked folder held empty copies. Now the pick survives any failure: Settings says plainly &quot;you picked this folder but the switch didn't finish,&quot; names the folder, and offers one button — <strong>Copy &amp; switch</strong> — to finish the job. Your notes stay safe in the original storage the whole time.</li>
-    
-    <li><strong>Android: a move that would produce empty copies now refuses instead of &quot;succeeding&quot; — and Settings can re-run the copy.</strong> Verification used to compare the copy against what was read, which can't notice a whole vault of nothing; it now also checks every file against its true size on disk and refuses outright if the copy would weigh zero. Settings gained &quot;Re-copy notes…&quot; to run the copy again over a bad one — originals are never deleted, so nothing was ever at risk.</li>
-    
-    <li><strong>Android: Settings now says WHERE your notes live, in plain words.</strong> &quot;Documents on device storage&quot; instead of a machine address — and if a pick lands in a cloud provider rather than the device, it names the provider, which is exactly what you'd need to know. &quot;The folder you picked&quot; turned out to be no answer at all when two different places were both called Documents.</li>
-    
-    <li><strong>Android: edits made by OTHER apps now appear when you come back to Vellen.</strong> With notes finally living in a real folder, another app can edit them — and Vellen didn't notice until the next sync, which also risked an open stale note overwriting the outside edit. Returning to the app now re-scans the folder and applies what changed, with the same protections as the desktop's file watcher (your unsaved edits are never clobbered — a real conflict shows both versions).</li>
-    
-    <li><strong>Android: the &quot;Choose folder…&quot; button works — and if the folder picker ever fails, it says why.</strong> On the first real device the button flickered and silently gave up. Two layers fixed: the failure had nowhere to appear (it now becomes a sentence on screen), and the sentence then revealed the real cause — the file-access plugin's commands were never granted in the app's permission manifest, so Android refused every one of them at the door. Granted now; the picker also retries without its &quot;on-device only&quot; hint on devices whose pickers reject it.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.79">
-    <h2><a href="#v0.1.79">Version 0.1.79</a></h2>
-    <ul>
-    <li><strong>The empty screen now offers the next step instead of describing it.</strong> With nothing open, every device shows two buttons — <strong>New note</strong> and <strong>Open a note…</strong> — where there used to be a sentence ending in a keyboard shortcut (which meant nothing to the first iPad tester, who couldn't tell how to get started). The welcome note also ends with a plain &quot;ready to write your own? here's the ＋&quot; pointer.</li>
-    
-    <li><strong>Quick Open's starting list is now your pinned and recent notes — and says so.</strong> Before you type anything, the picker used to show an arbitrary twelve notes (whichever the index listed first), which read as &quot;where's everything else?&quot; It now shows pinned notes, then recently opened ones, alphabetical to fill — with a header explaining that typing searches all of your notes, which it always did.</li>
-    
-    <li><strong>The Trash has a permanent home in the sidebar — a labeled row above the note count.</strong> Restoring a deleted note no longer requires opening some other note first to find a way in. It's a word rather than an icon on purpose — and the Trash now has its own icon too, a bin with an arrow rising out (things come back from here), so it can never be mistaken for the delete button's lidded can. (The clock button on a note is that note's edit history; the Trash is where deleted notes wait — two different jobs, both now reachable.)</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.78">
-    <h2><a href="#v0.1.78">Version 0.1.78</a></h2>
-    <ul>
-    <li><strong>One sync story, told straight — and one Help topic instead of two.</strong> Settings and Help now lead with the way that actually works everywhere: sign in and your notes sync through your own Google Drive to every device, phones included, with optional encryption. Help's two adjacent sync topics (which read like two competing features) merged into a single &quot;Syncing between devices&quot; topic, with the keep-your-folder-in-iCloud/Dropbox/OneDrive arrangement clearly labeled what it is — a computers-only alternative — instead of being presented first as if it worked everywhere.</li>
-    
-    <li><strong>Vellen now warns when two sync systems share your notes folder — on Windows and macOS alike.</strong> If the notes folder sits inside a provider-synced location (Dropbox, OneDrive, Google Drive, iCloud Drive, or Apple's invisible &quot;Desktop &amp; Documents in iCloud&quot;) while Google Drive sync is signed in, Settings explains what that combination causes — files parked online that fail to open, folders moved during computer migrations, duplicate copies — and how to pick one system. New vaults on Macs with the Apple feature enabled are created at ~/Vellen instead of inside Documents, so new users never enter the trap at all.</li>
-    
-    <li><strong>Deleting or trashing a file that can't be moved now tells you, instead of silently doing nothing.</strong> Trashing a note, whiteboard, or folder whose file couldn't actually be moved (most commonly: parked in iCloud by &quot;Optimize Mac Storage&quot;) looked like it just didn't work — the failure only went to a hidden console. It now shows the real reason, and when the file is parked in iCloud it says so and explains the Finder cloud-icon step.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.77">
-    <h2><a href="#v0.1.77">Version 0.1.77</a></h2>
-    <ul>
-    <li><strong>A whiteboard that can't be opened now says so — and says why.</strong> A whiteboard whose file couldn't be read sat on &quot;Loading…&quot; forever. It now shows the actual reason and makes clear the file itself is untouched. Better still, it recognizes the common case: when macOS's &quot;Optimize Mac Storage&quot; has parked the file in iCloud, it says exactly that — and how to bring it back (the cloud icon in Finder) — instead of showing an error at all. Sync conflict copies get their own explanation too.</li>
-    
-    <li><strong>Help caught up with the app.</strong> A full audit fixed what had quietly drifted: phone sync was still described as &quot;coming&quot; (it's been here for weeks — and it syncs <em>automatically</em> now, which Help also didn't know about); the right panel is described as the Outline · Info · Links tabs it became; every &quot;Settings →&quot; path points at today's category names; and the iPad no longer gets phone-only instructions about a ⓘ button it doesn't have.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.76">
-    <h2><a href="#v0.1.76">Version 0.1.76</a></h2>
-    <ul>
-    <li><strong>Android: your notes can now live in a folder YOU choose — visible in the Files app, openable by other apps, and still yours if you ever uninstall Vellen.</strong> Fresh installs pick their folder on first launch. Existing installs keep working exactly as before, and can move any time from <strong>Settings → Backup &amp; protection → &quot;Choose folder…&quot;</strong> — every file is copied and verified before anything switches over, the originals stay behind as a fallback, and if even one file can't be verified, nothing changes at all.</li>
-    
-    <li><strong>Every dialog can now be moved.</strong> Drag Settings, Help, History — any popup window — by its title bar to uncover what it was hiding; double-click the title bar to put it back in the center. Windows always reopen centered, and the title bar can't be dragged off the screen. (Requested from Windows testing, where a fixed dialog made the app feel rigid.)</li>
-    
-    <li><strong>An interrupted sync can no longer leave encryption &quot;half-armed.&quot;</strong> Turning encryption on sets a one-time authorization to publish the vault's key file. It used to be cleared when the sync reported back — so a sync that failed <em>after</em> publishing (a full disk, a connection dropped at the wrong moment) left the authorization armed with its job already done, and much later that stale authorization could quietly re-encrypt a vault whose encryption had been deliberately turned off. It's now consumed at the exact moment the key file reaches Drive. Found by the test suite's new fault-injection machinery before any device ever hit it.</li>
-    
-    <li><strong>Help now points at the right Settings categories.</strong> The reading-comfort topic said text size and width lived under Editor — they live under <strong>Appearance</strong> (line numbers too, if you're looking to turn those off). Spell checking is the one that lives under Editor.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.75">
-    <h2><a href="#v0.1.75">Version 0.1.75</a></h2>
-    <ul>
-    <li><strong>The right panel is now three calm tabs: Outline · Info · Links.</strong> Four stacked sections became one tab bar — Outline to jump between headings (with a nudge to add some when a note has none), Info for the note's properties, and Links for everything pointing in and out, with the number of linked mentions right on the tab. The rail remembers which tab you had open. On phones, Note details keeps its familiar stacked layout.</li>
-    
-    <li><strong>The browser clipper moved to Settings → &quot;Import &amp; capture&quot;</strong> (the renamed Import section) — it brings content in, which is what that section is for. It had been sitting between the sync and encryption controls for historical reasons, and the Sync section is calmer without it.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.74">
-    <h2><a href="#v0.1.74">Version 0.1.74</a></h2>
-    <ul>
-    <li><strong>Code blocks can be copied with one click.</strong> Every fenced code block now shows its language and a <strong>Copy</strong> button at its top-right corner — no more careful drag-selecting to grab a snippet. Works with a finger on touch screens too. (Mermaid diagrams keep their own controls.)</li>
-    
-    <li><strong>Notes show where they live and what they weigh.</strong> A slim line above each note (on desktop and tablet) shows its folder and name, when it was last edited, its word count and reading time — the word count moved up there from the footer. This is the paper redesign's phase 2 starting to land.</li>
-    
-    <li><strong>The footer now tells you where your notes stand: &quot;Saved locally · Synced 2 min ago.&quot;</strong> &quot;Saved locally&quot; flips to &quot;Saving…&quot; exactly while the unsaved dot is on, and the sync half appears once a Drive sync has completed for the vault — a calm, always-true answer to &quot;is my stuff safe?&quot;</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.73">
-    <h2><a href="#v0.1.73">Version 0.1.73</a></h2>
-    <ul>
-    <li><strong>A quieter, warmer look — phase 1 of the paper redesign.</strong> The writing surface is a step lighter, like a sheet of paper on the cream desk, with softer borders and gentle warm shadows in the light theme. Headings in your notes — and Help topic titles — now use a serif, so a structured note reads like a document. Dark mode keeps its warm charcoal and gold and gains the same serif headings. Fixed while measuring: red &quot;danger&quot; text and the lettering on gold buttons in the light theme sat just under the readability bar; both now clear it.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.72">
-    <h2><a href="#v0.1.72">Version 0.1.72</a></h2>
-    <ul>
-    <li><strong>The Help window can be resized.</strong> Drag the grip in its bottom-right corner — mouse or finger — to give Help as much room as your screen allows; the size is remembered on that device. Double-click the grip to go back to the default. (Phones keep the full-screen layout.)</li>
-    
-    <li><strong>Hold a button to see what it does (phones and tablets).</strong> Icon-only controls used to explain themselves only on mouse hover, which touch doesn't have. Now a half-second hold on any control shows its name in a small label — and releasing after reading it doesn't press the button. Controls that open a menu on a long-press keep their menu; the label only appears where nothing else claims the hold.</li>
-    
-    <li><strong>Pinch-to-zoom works everywhere on phones and tablets.</strong> Zooming was disabled app-wide, which made small text unreadable for anyone who needed it larger. You can now pinch to zoom anywhere in the app. The graph and whiteboard keep their own pinch (zooming the view, not the screen), and taps stay instant — no double-tap-to-zoom delay was reintroduced. One side effect to know about: with editor text set below 16px, iOS may zoom in slightly when you tap into a note; pinch back out, or pick a larger text size.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.71">
-    <h2><a href="#v0.1.71">Version 0.1.71</a></h2>
-    <ul>
-    <li><strong>Tapping a link with your finger works on iPad.</strong> A finger-tap on a <em class="wikilink">link</em> put the line into editing instead of opening the note — while the same tap worked on iPhone and a trackpad click worked on the iPad. The cause was an ordering quirk: iOS moves the cursor to the tapped spot before the app is told about the tap, so the &quot;is the cursor already on this line?&quot; check — the rule that lets a second tap edit a link — was always answered by the tap itself. The check now remembers where the cursor was just before your finger landed, which is the question it was always meant to ask.</li>
-    
-    <li><strong>Turning encryption off can no longer be silently undone by another device.</strong> The keyring synced like an ordinary file, so a device whose sync memory had been reset — reinstalling, or disconnecting and reconnecting Google — saw its leftover keyring as new and re-uploaded it, quietly re-encrypting a vault where encryption had deliberately been turned off. The sync engine now refuses to upload a keyring unless encryption was just turned on (or the passphrase just changed) on that same device, and a device carrying a leftover keyring for a vault that no longer has one is brought back in line instead of fighting it. The fix is held down by thousands of randomly generated multi-device scenarios on every test run — which found and fixed two further edge cases while it was being built.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.70">
-    <h2><a href="#v0.1.70">Version 0.1.70</a></h2>
-    <ul>
-    <li><strong>A folder that fails to open takes you to the welcome screen, not an empty app.</strong> When opening went wrong, the app kept the half-opened state: full interface, zero notes, no error — indistinguishable from your notes being gone. It now returns to wherever you were: the welcome screen on startup, or the vault you already had open if a re-scan hiccuped. Found by the new automated tests, twice — the first fix had a subtle timing flaw that only showed up when two opens overlapped, and the second run caught that too.</li>
-    
-    <li><strong>Internal: releases can't ship with failing tests, and sync is now tested by chaos.</strong> The ship script used to gate only on the production build compiling — the unit tests were run by discipline, not machinery. They're now a hard gate with no skip flag, and the browser E2E suite — visual baselines included — gates every ship as well — and that suite grew from 31 to 41 checks, adding the ones that were missing where it mattered most: typing in the editor and verifying the save really reached the disk, the first-run journey from the welcome screen, recovery when the backend fails mid-open or mid-sync, long context menus staying on screen, Quick Open, following a wikilink, and phone screenshot baselines. And alongside the scripted sync scenarios there's a chaos loop: thousands of randomly generated multi-device histories (edits, deletes, lost baselines, dropped transfers) run against the real sync engine, with every world checked for convergence, quiescence, no invented content, and no silently lost notes. Any failure prints a seed that replays that exact world. Its first run immediately disproved an assumption about how quickly conflict copies propagate — which is the kind of thing it's for.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.69">
-    <h2><a href="#v0.1.69">Version 0.1.69</a></h2>
-    <ul>
-    <li><strong>Turning encryption off tells you the truth about whether it worked.</strong> &quot;Reset encryption&quot; announced success even when it had failed, and didn't re-check the vault afterwards — so you could be told encryption was reset while the indicator still showed it on. The indicator was right. Turning encryption off happens in two halves (the Drive copy first, then this device), and if the Drive half fails the vault is deliberately left fully encrypted rather than half-undone. Both paths now say plainly which state you're in and refresh the panel afterwards.</li>
-    
-    <li><strong>Sync refuses to run rather than guess whether your vault is encrypted.</strong> Encryption was decided purely by whether a keyring could be found — and a missing keyring meant &quot;this vault isn't encrypted&quot;. That reading is right until the lookup itself fails, at which point the next sync uploaded every note to Drive <strong>in the clear</strong>, over the encrypted copies already there, with nothing reporting a problem. A later sync from another device then re-sealed only part of the folder. Vellen now remembers that a vault has been encrypted, and refuses to sync — with an explanation — if the keyring later goes missing or the Drive folder can't be checked. An unanswered question is never resolved as &quot;unencrypted&quot;.</li>
-    
-    <li><strong>The note you're on is easy to spot in the graph.</strong> It was marked by colour alone, at the same size as every other dot, which made it a genuinely hard thing to find among hundreds. It now has a true red rather than a pale pink, two rings around it so it reads as a target, and it stays visible instead of fading out when you hover elsewhere. The rings do most of the work, so it's still findable if you don't distinguish red easily.</li>
-    
-    <li><strong>Notes that arrive by sync appear straight away.</strong> After a sync pulled notes down — most visibly the first sync on a new phone — the files were written correctly but the list didn't show them until the app was closed and reopened. If anything went wrong while taking stock of what had arrived, the step that refreshes the view was skipped, while sync still reported success. The refresh now always runs, a single unreadable note no longer stops the rest being picked up, and a preferences file from another device can't hold up your notes.</li>
-    
-    <li><strong>The graph's tag filter and smart-folder value lists show every option.</strong> Both stopped at the first twelve or fifteen, with the rest unreachable — the same fault as the note tag picker fixed in v0.1.67, in two more places. All menus scroll and size themselves properly now, so none of these lists is trimmed any more.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.68">
-    <h2><a href="#v0.1.68">Version 0.1.68</a></h2>
-    <ul>
-    <li><strong>Notes and folders can be named anything, on every operating system.</strong> Windows refuses some characters outright (<code>: ? * &quot; &lt; &gt; |</code>) and reserves a handful of names entirely (<code>CON</code>, <code>NUL</code>, <code>COM1</code>…). Names typed into Vellen went to disk as-is, so on Windows a note called &quot;Q3: Results&quot; or &quot;CON&quot; would fail to save while the app carried on as though it had — the list showed a note the disk didn't have. Names are now made safe wherever they're created or renamed. Imported notes were already protected; the paths you type were not.</li>
-    
-    <li><strong>&quot;Reveal in Finder&quot; no longer appears on iPhone and iPad.</strong> There's no file manager to reveal into, so the menu entry did nothing at all — and read &quot;Reveal in Finder&quot; on an iPad, because iPadOS reports itself as a Mac.</li>
-    
-    <li><strong>Spell checking on iPhone and iPad: Help now explains how to make it work.</strong> It depends on two settings in two different places, and the combination is not obvious — on iOS, Vellen's <strong>Auto-correct</strong> switch is what asks the system to check your spelling at all, while the device's own <strong>Auto-Correction</strong> setting decides whether your text actually gets rewritten. Turn Vellen's on and the device's off and you get the underlines without anything changing what you typed. With Vellen's off, most misspellings are never marked. Settings says so where it's relevant, and Help has the full recipe.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.67">
-    <h2><a href="#v0.1.67">Version 0.1.67</a></h2>
-    <ul>
-    <li><strong>Long menus scroll, so you can reach everything in them.</strong> Adding a tag to a note showed only the first 15, and once you had more than that the rest simply weren't there — no scrollbar, nothing to say they'd been left out, and no way to pick them. Two things were wrong: menus couldn't scroll at all, and a menu with many entries positioned itself partly above the top of the screen. Both are fixed, and the tag lists are no longer trimmed — every tag you have is offered, most-used first. This affects every menu in the app, not just tags.</li>
-    
-    <li><strong>The text width button now shows when it can't do anything.</strong> The widths are measured in characters, so with large text — or a narrow window — the narrowest setting can already be wider than the space available, and all three options look identical. The button used to cycle silently and appear broken; it now dims and explains why.</li>
-    
-    <li><strong>Help covers text size, text width and spell checking.</strong> All three shipped undocumented.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.65">
-    <h2><a href="#v0.1.65">Version 0.1.65</a></h2>
-    <ul>
-    <li><strong>The unsaved-changes dot no longer makes the tab jump.</strong> It was added to the note's name when there were unsaved changes and taken away again when the save landed, so the tab changed width twice per edit and everything beside it moved — distracting on a computer, worse on a tablet where it twitches under your thumb as you type. The dot now keeps its place and simply fades in and out.</li>
-    
-    <li><strong>Editor text size works on phones and tablets.</strong> The setting was being overridden in two separate places, and removing only the first one made it look fixed on a phone while it stayed completely stuck on a tablet — no size had any effect there at all. Both are gone; the smaller/larger buttons and the Settings field now do what they say on every platform.</li>
-    
-    <li><strong>iPhone and iPad: no more Vellen folder inside a Vellen folder.</strong> In the Files app your notes sat two levels down, under Vellen ▸ Vellen, with the outer folder holding nothing but the inner one. Worse than untidy: a file you dropped into the outer folder — the obvious place — landed outside your notes and never appeared in the app, with nothing to tell you why. Notes now sit directly in Vellen, and existing notes are moved up automatically the next time the app opens. They only ever move within the folder they were already in, so nothing can go astray, and your passphrase and sync history come with them — the move is invisible apart from the tidier folder.</li>
-    
-    <li><strong>A folder that fails to open no longer leaves the app stuck on &quot;Getting your notes ready…&quot;.</strong> If anything went wrong while opening — a file that couldn't be read, a preferences file from an older version — the loading screen stayed up for good, with no error and no way forward, which looked exactly like every note having vanished. Any failure now clears the screen and reports which step it stopped on. Your notes were never affected; the app just couldn't tell you what had happened.</li>
-    
-    <li><strong>Turning spellcheck on or off applies to the note you're reading.</strong> The setting was only picked up when a note was opened, so changing it appeared to do nothing until you switched notes or restarted — which also made it very hard to tell whether spellcheck was working at all.</li>
-    
-    <li><strong>Encryption won't offer to start over on a vault that may already be encrypted.</strong> A device that hadn't finished a sync couldn't tell the difference between &quot;this vault isn't encrypted&quot; and &quot;it is, and I haven't fetched the key yet&quot; — and offered to set a new passphrase, which on an already-encrypted Drive folder is the worst thing you could do there. It now waits until a sync has confirmed what's actually in your Drive folder, and says so.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.64">
-    <h2><a href="#v0.1.64">Version 0.1.64</a></h2>
-    <ul>
-    <li><strong>iPhone and iPad: the app no longer loses track of your notes after an update.</strong> If opening your notes failed for any reason, the app forgot where they were and started as an empty vault — and since iOS has no folder picker, there was no way to point it back. The notes were never touched; the app just couldn't find its way to them. Two changes: a failure to open a folder no longer causes the app to forget it, so the next launch tries again; and on phones and tablets the app now simply opens the one folder it can use, rather than relying on a remembered path that only makes sense on a computer.</li>
-    
-    <li><strong>&quot;Switch notes folder&quot; is hidden on phones and tablets.</strong> iOS and Android give an app no access outside its own storage, so there was nothing to switch to and the button did nothing when tapped.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.63">
-    <h2><a href="#v0.1.63">Version 0.1.63</a></h2>
-    <ul>
-    <li><strong>iPhone and iPad: your notes are visible in the Files app.</strong> They were kept in the app's private storage, where you couldn't browse them, copy one out, back them up by hand, or open one in another editor — and deleting the app took them with it. On a product built on &quot;plain files you own&quot;, that wasn't true on iOS. The notes folder now appears under <strong>Files → On My iPhone → Vellen</strong>, and you can drop <code>.md</code> files straight into it.</li>
-    
-    <li><strong>A vault that fails to open no longer leaves you stuck.</strong> If something went wrong while opening your notes, the app sat on &quot;Getting your notes ready…&quot; indefinitely — the error was discarded and nothing said anything had failed. It now returns to the welcome screen, where you can choose a folder again, and records the reason.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.62">
-    <h2><a href="#v0.1.62">Version 0.1.62</a></h2>
-    <ul>
-    <li><strong>iPhone and iPad: an encrypted vault can be unlocked again.</strong> The encryption controls were never shown on mobile at all — not hidden below the fold, simply absent — so there was no way to enter a passphrase, while sync kept saying the vault was encrypted and to unlock it in Settings. Encryption was effectively unusable on a phone or tablet. The controls now appear there, and the settings pane scrolls so everything can be reached.</li>
-    
-    <li><strong>Internal: phone-sized screens are now tested.</strong> A mobile browser project runs the interface at iPhone size in WebKit — the same engine as iOS — so layout and mobile-only differences are caught in seconds rather than through a TestFlight build. It found the missing encryption controls on its first run.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.61">
-    <h2><a href="#v0.1.61">Version 0.1.61</a></h2>
-    <ul>
-    <li><strong>iPhone and iPad: Settings can be scrolled.</strong> Anything below the first screenful was unreachable — which on an encrypted vault meant the unlock box couldn't be reached at all, so there was no way to unlock on iOS. Desktop hid the fault: the whole settings window scrolled instead, so the pane inside it never needed to.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.60">
-    <h2><a href="#v0.1.60">Version 0.1.60</a></h2>
-    <ul>
-    <li><strong>Text is easier to read, especially in the light theme.</strong> Muted text — hints, counts, captions, timestamps — sat just under the standard readability threshold on some backgrounds, worst on the very surfaces it's used most. Accent-coloured text (links, highlighted labels) was well under it in light, at less than half the contrast it needed. Both are corrected: accent text now uses its own darker shade in the light theme while fills, borders and dots keep the original colour, so the app still looks like itself. The dark theme barely changes.</li>
-    
-    <li><strong>Tasks are announced by name.</strong> Every checkbox in the Tasks panel was unlabelled, so a screen reader read the list as a row of anonymous &quot;checkbox&quot;es with no way to tell which was which — and that panel is nothing but checkboxes, so it was unusable rather than merely awkward.</li>
-    
-    <li><strong>Help topics can be reached from the keyboard.</strong> The topic list down the side of Help was clickable text rather than buttons, so it couldn't be tabbed to and the reading pane couldn't be scrolled without a mouse — a poor place to strand someone, given Help is where you go when you're already stuck.</li>
-    
-    <li><strong>Settings controls are announced properly.</strong> The dropdowns, checkboxes and number fields in Settings had their labels sitting beside them but never linked, so a screen reader announced them without saying what they set.</li>
-    
-    <li><strong>Settings can be used from the keyboard.</strong> The category list down the left of Settings was clickable text, not buttons — so it couldn't be reached by keyboard at all. You could open Settings and then be stuck on whichever category it happened to open with, and a screen reader read the whole column as one run of words with nothing to say it was a menu. It's now a proper tab list: tab to it, arrow or tab through it, press Enter, with a clear focus outline showing where you are. Looks exactly as before.</li>
-    
-    <li><strong>Internal: the UI can now be tested automatically.</strong> An end-to-end harness runs the real interface in a headless browser — licence gate, startup, welcome screen — in about two seconds, with a stand-in for the Tauri backend so anything the UI asks for can be answered by the test. Built on Playwright after WebdriverIO's separate driver download proved unable to complete on Apple Silicon; Playwright ships the browser and driver as one pinned unit, so there's no version matching to go wrong. Nothing user-visible, but UI bugs that previously needed a build and a manual click-through now surface in seconds.</li>
-    
-    <li><strong>Internal: tests now run on every push.</strong> Until now the only automation was the release build, so nothing was checked BEFORE a release — the tests existed but only ran when someone remembered. Type-check, unit tests and the end-to-end suite now run automatically on every push and pull request, in about two minutes, with the diagnostic report saved whenever something fails.</li>
-    
-    <li><strong>Internal: both themes are checked automatically.</strong> Reference images of each screen in light and dark are compared on every test run, so a colour or spacing change that alters a panel elsewhere — or looks right in one theme and wrong in the other — is caught rather than noticed later. Version numbers and dates are masked so a release doesn't trip it.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.59">
-    <h2><a href="#v0.1.59">Version 0.1.59</a></h2>
-    <ul>
-    <li><strong>Boards, smart folders and pins now sync between devices.</strong> They lived in a file sync never carried, so a board built on the desktop simply didn't exist on the laptop. They travel now — and they're merged one item at a time, not as a lump. Make a board on each device while both are offline and you end up with both, rather than whichever synced second silently replacing the other's entire set. Each board, smart folder and pin records when it last changed, so the newer version of each wins on its own; deleting one makes it stay deleted instead of being resurrected by the other device. Preferences are also encrypted along with everything else on an encrypted vault — including the copy already in Drive when you switch encryption on, which is re-sealed rather than left readable. A problem merging preferences can never stop your notes from syncing.</li>
-    
-    <li><strong>Internal: two-device sync can now be tested without two devices.</strong> A test harness runs two simulated devices against one in-memory cloud, driving the real sync engine — so &quot;both machines edited this while apart&quot; is a test that runs in a second, rather than a round trip across two computers. It already paid for itself by pinning down exactly which device refuses a delete that would empty a vault.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.58">
-    <h2><a href="#v0.1.58">Version 0.1.58</a></h2>
-    <ul>
-    <li><strong>Board cards actually tell you something now.</strong> They showed nothing but a note's title, which made a column read like a list with borders round it. A card now shows a one-line preview of the note, its due date, checkbox progress (&quot;3/7&quot;), and its tags — so you can see what something is, when it's due, and how far along it is without opening it. An overdue date stands out, and a finished checklist goes green. Tags the board groups by are hidden, since every card in a &quot;#doing&quot; column is #doing and repeating it only crowds out the useful ones. All of it is optional — a bare note still shows as a plain title.</li>
-    
-    <li><strong>Cards can now be put in your own order.</strong> Drag a card up or down inside a column and a line shows exactly where it will land; that order sticks. Cards you've never dragged stay alphabetical below the ones you've arranged, so a new note joins the bottom of a column instead of shoving into the middle of a list you set up. The order is kept on the board rather than in the notes, which means the same note can rank differently on two boards and reordering never edits — or re-syncs — a file.</li>
-    
-    <li><strong>Columns fold away.</strong> The ▾ in a column heading folds it to a full-height spine — name on its side, count at the foot — that still accepts dropped cards. Click anywhere on the spine to bring it back. Park &quot;Done&quot; and give the room to the columns you're actually working in.</li>
-    
-    <li><strong>WIP limits.</strong> A column's ⋯ menu can cap how many cards it should hold. The count reads &quot;3/5&quot;, turns amber when full and red with a short nudge when over. It never blocks a drag: if five things really are in progress, the board should say so rather than refuse to record it.</li>
-    
-    <li><strong>Help starts at the top of each topic.</strong> Moving to a new topic left you wherever you'd scrolled to in the last one, so a topic could appear to begin in its middle. The same fix went into version history, where picking another version had the same effect on the diff.</li>
-    
-    <li><strong>Filter a board.</strong> A box at the top narrows every column at once — several words must all match a card's title, preview, tags or filename, and <code>#tag</code> matches tags only. Esc clears it. Columns stay put even when they empty out, so &quot;nothing in Review matches this&quot; is still an answer and still a drop target. The filter isn't saved, so you can't come back tomorrow and find half your board missing with no memory of hiding it.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.57">
-    <h2><a href="#v0.1.57">Version 0.1.57</a></h2>
-    <ul>
-    <li><strong>macOS: no more &quot;unidentified developer&quot; warning.</strong> Vellen for Mac is now signed with a Developer ID certificate and notarized by Apple, so the download opens with a normal double-click instead of being blocked by Gatekeeper and needing the right-click workaround. Releases are signed and notarized automatically from now on.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.56">
-    <h2><a href="#v0.1.56">Version 0.1.56</a></h2>
-    <ul>
-    <li><strong>An interrupted encryption setup now finishes itself.</strong> If the first sealing sync was cut short — connection dropped, or you quit mid-way — the vault could be left reporting as encrypted while some notes on Drive were still readable, and no ordinary sync would finish the job. Vellen now notices any note left unsealed and seals it on the next sync, so the vault repairs itself instead of needing encryption switched off and on again.</li>
-    
-    <li><strong>Encryption is only offered once Google Drive is connected.</strong> It protects the copy of your notes stored in Drive, so without Drive there's nothing for it to protect — but the switch was there anyway. You could set a passphrase, be shown a recovery phrase, and reasonably believe your notes were protected when nothing had been encrypted at all. Settings now explains what encryption covers, and asks you to connect Drive first. The &quot;update your other devices first&quot; warning also moved into the setup step, where the decision is made, instead of sitting permanently on the settings screen.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.55">
-    <h2><a href="#v0.1.55">Version 0.1.55</a></h2>
-    <ul>
-    <li><strong>Encryption now works end to end (it didn't in v0.1.54).</strong> Real-vault testing found that turning encryption on didn't actually encrypt anything, turning it off left the Drive copy sealed, and re-enabling did nothing at all. The cause was the same in each case: encryption changes how bytes are <em>stored</em>, not what a note <em>says</em>, so sync — which compares content — saw nothing to do. Switching encryption on or off now explicitly re-uploads everything in the new form, as one uninterruptible step that a background sync can't undo halfway through.</li>
-    
-    <li><strong>A second device can join an encrypted vault properly.</strong> It correctly refused to sync, but then offered no way forward: the message arrived labelled as a sign-in error, and the Encryption panel still showed &quot;Turn on…&quot; instead of a passphrase box, because it hadn't noticed the vault was encrypted. The unlock prompt now appears as soon as that's known, and the message says plainly what to do.</li>
-    
-    <li><strong>Sync refuses to write encrypted data into a note.</strong> Belt-and-braces protection: if anything ever hands sync a sealed file while the vault isn't unlocked, it stops with a clear message instead of replacing a note with unreadable characters. Skipping a file is always recoverable; overwriting one may not be.</li>
-    
-    <li><strong>Date queries were wrong in the evening.</strong> <code>today</code> in a query was computed from UTC in one remaining place, so from early evening in the Americas &quot;yesterday&quot; and &quot;today&quot; collided and <code>due &lt; today</code> quietly missed notes.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.54">
-    <h2><a href="#v0.1.54">Version 0.1.54</a></h2>
-    <ul>
-    <li><strong>Encrypt your Drive backup (new, optional).</strong> Turn it on in Settings → Sync → Encryption and your notes are sealed on this device <em>before</em> they're uploaded — the copy in Google Drive becomes unreadable to everyone but you, Google and Vellen included. <strong>Your local notes are untouched</strong>: they stay ordinary Markdown files on disk, which is what makes this safe rather than scary. Set a passphrase, save the recovery phrase you're shown, and the next sync re-uploads everything encrypted; other devices ask for the passphrase once. Forgot it? Use the recovery phrase — or, if that's gone too, &quot;Reset encryption&quot; on any computer that still has your notes rebuilds the Drive copy from those files, so a forgotten passphrase never costs you a note. Off by default, and reversible any time. Folder and note <em>names</em> stay visible in Drive so you can still organise your vault there; the contents are what's sealed. You can change your passphrase any time (Settings → Encryption → Change…) — it's instant, since only the lock changes and nothing is re-encrypted or re-uploaded, and your recovery phrase keeps working. New Help topic: &quot;Encrypting your Drive backup.&quot; Setting a passphrase asks you to type it twice (with a &quot;show passphrase&quot; option) — a typo there wouldn't show up on the computer you set it up on, only later on another device, so it's confirmed before anything is locked.</li>
-    
-    <li><strong>Installers now name the publisher.</strong> Windows installers show &quot;CapitalCalcs LLC&quot; as the publisher instead of a value derived from the bundle identifier. (Also required by the Microsoft Store, which rejects a publisher name that matches the product name.)</li>
-    
-    <li><strong>Quick capture is now discoverable.</strong> It shipped as a hotkey only — not in the command list, not in the shortcuts table — so unless you'd read the release notes you'd never know it existed. It's now in the command list (&quot;Quick capture — jot a note into Inbox…&quot;, which opens the capture box) and in Help's keyboard-shortcut table. The command list also now calls note sharing &quot;Share this note as a file — send anywhere…&quot; (it still said &quot;Export note as web page (HTML)…&quot;, the old name, in that one place). Help's AI topic now covers the key checking added in v0.1.52.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.53">
-    <h2><a href="#v0.1.53">Version 0.1.53</a></h2>
-    <ul>
-    <li><strong>The program is now actually called Vellen.</strong> The executable was <code>note-app.exe</code> — the old internal project name — so Task Manager (and any security software looking over your shoulder) showed a program called &quot;note-app&quot; for an app called Vellen. It's now <code>Vellen.exe</code>. This mismatch is also what made the installer hang below: the installer was told to close &quot;Vellen.exe&quot;, a program that never existed.</li>
-    
-    <li><strong>Windows installer no longer hangs when Vellen is open.</strong> Installing over a running copy stalled at &quot;Validating install&quot; — sometimes uncancellably. The installer was told to close <code>Vellen.exe</code>, but that program doesn't exist: &quot;Vellen&quot; is the product name, while the actual executable is <code>note-app.exe</code> (named after the Rust package). So the close step reported &quot;process not found&quot; and quietly did nothing, leaving the app holding its files. It now closes the real process — and runs in the user's own session, where it can actually see it — so upgrading over a running Vellen completes on its own.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.52">
-    <h2><a href="#v0.1.52">Version 0.1.52</a></h2>
-    <ul>
-    <li><strong>Share a note as a single file that opens anywhere.</strong> The share menu's first action is now &quot;Share as a file&quot;: it turns the open note into one polished, self-contained web-page file — styling, images, and diagrams baked in, and <code>![[embedded notes]]</code> (including <code>#section</code> and <code>#^block</code> embeds) expanded into place so the document reads complete instead of showing raw syntax. It opens on any computer with no internet and nothing to install. After saving, the file is revealed in Finder/Explorer ready to drag into an email or message. (This replaces the old &quot;Export as web page&quot; item, which saved the file silently and left embeds as unrendered <code>![[...]]</code> text.)</li>
-    
-    <li><strong>Quick capture — a global hotkey for fleeting thoughts.</strong> Press <strong>⌘⌥N</strong> (Mac) / <strong>Ctrl+Alt+N</strong> (Windows/Linux) from <em>anywhere</em> — another app, mid-task — and a small always-on-top box appears (Vellen just has to be running). Type, hit Enter, and it's filed as a new note in <strong>Inbox/</strong>, named from its first line, without touching the note you had open. Esc dismisses without saving. The capture window is feather-light: it loads none of the vault machinery, so it opens instantly and can't disturb sync or the editor. Desktop only for now (mobile capture arrives with share-sheet support); the hotkey is fixed in this first version, with rebinding planned.</li>
-    
-    <li><strong>Block embeds — transclusion down to a single paragraph.</strong> End any line with a space and <code>^some-id</code>, and <code>![[Note#^some-id]]</code> embeds just that piece: a tagged paragraph brings its whole paragraph, a tagged list item brings its sub-items, and a tagged heading brings its full section. Block refs chain and mix with section embeds (<code>![[Note#Intro#^price]]</code>) and render in the order listed. The <code>^id</code> markers are addressing, not content — they're stripped from every rendered card (including section embeds that pass over tagged lines), and renaming the source note keeps <code>#^id</code> chains intact. Embed cards are also now titled with the note's <em>name</em> (what the <code>![[...]]</code> addresses) instead of its first H1 — a note file called &quot;Test 3&quot; whose first heading happened to be &quot;# Heading 1&quot; used to label all its embeds &quot;Heading 1&quot;.</li>
-    
-    <li><strong>The graph button works from any view now.</strong> Clicking the graph icon while on the Tasks view (or a board) used to take you back to the note instead of the graph — you had to click it twice. The toggle only knew how to switch from the editor; now it opens the graph from wherever you are, and clicking it again on the graph returns you to the note. Same fix for the ⌘G shortcut and the command-palette entry.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.51">
-    <h2><a href="#v0.1.51">Version 0.1.51</a></h2>
-    <ul>
-    <li><strong>You can now drag whole folders to reorganize — including image-only ones.</strong> Folders are now draggable: drop one onto another folder (or the &quot;notes&quot; header to move it to the root) and it moves with <em>everything</em> inside it. Previously folder moves only carried notes and whiteboards, so a dimmed folder that holds only images had nothing to move and wouldn't budge — and a mixed folder would leave its images stranded. Now images and other attachments move too, links in moved notes are still rewritten, and a folder can't be dropped into itself or its own subfolder.</li>
-    
-    <li><strong>Clicking a tag now shows its results where you can see them.</strong> Tags sit low in the sidebar, but clicking one fills the search box at the top — so the matches appeared off-screen above and you had to scroll up to find them. The search (and its results) now scrolls into view automatically when a tag fills it.</li>
-    
-    <li><strong>Vellen now checks your AI key actually works.</strong> Settings used to show &quot;AI is connected&quot; the moment you saved a key — even if the key was expired or wrong — so you'd only find out it was dead when a prompt failed. Now Vellen verifies the key with a tiny test request when you paste it and whenever you open Settings: it shows &quot;connected&quot; only when the key genuinely works, flags an expired or rejected key with a clear warning (and lets you paste a replacement right there), and adds a &quot;Test key&quot; button to re-check on demand. And if a prompt ever is rejected mid-use, the error now says plainly that the key was rejected and to update it, instead of failing cryptically.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.50">
-    <h2><a href="#v0.1.50">Version 0.1.50</a></h2>
-    <ul>
-    <li><strong>Section embeds — pull in just part of a note.</strong> <code>![[Note]]</code> embeds a whole note; now <code>![[Note#Heading]]</code> embeds only the content directly under that heading (stopping at the next heading of any level, so subheadings below aren't pulled in). You can also <strong>chain headings</strong> to pull in several at once — <code>![[Note#Heading 3#Heading 5]]</code> embeds just those two sections, in the order you list them. The embed card stays live and updates when the source changes, and renaming the source keeps the <code>#heading</code> chain intact. Missing headings show a clear &quot;section not found&quot; note. (Block-level embeds — <code>#^id</code> — aren't supported yet and fall back to the whole note.)</li>
-    
-    <li><strong>Windows installer actually closes a running Vellen now.</strong> v0.1.49 tried to do this with WiX's <code>util:CloseApplication</code>, but that runs too late in the install sequence (after the &quot;Validating install&quot; step where the hang happens), so it couldn't help — the install still stalled when a previous Vellen was open. This replaces it with a custom action that force-closes Vellen <em>before</em> that validation step, so the upgrade proceeds on its own instead of hanging. Vellen autosaves continuously, so the forced close is safe.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.49">
-    <h2><a href="#v0.1.49">Version 0.1.49</a></h2>
-    <ul>
-    <li><strong>The app has a real bottom edge now.</strong> The sidebar list used to run straight off the window with nothing under it, so the bottom-left of the app &quot;fell away&quot; while the editor had its status bar. The sidebar now has its own footer that lines up with the editor's status bar — a continuous strip across the whole app — showing a live note and whiteboard count. Above it, a soft fade appears only while there's more to scroll, so the list dissolves into the footer mid-scroll and ends cleanly at the bottom. Adapts to light and dark automatically.</li>
-    
-    <li><strong>Note-less folders now show consistently after syncing.</strong> A folder that holds no notes (only images, attachments, or subfolders) shows dimmed in the tree. On a device that <em>received</em> that folder via sync, it wasn't appearing until the app was reopened — the sync refreshed the note list but never the folder list, and the file watcher is paused during sync. That's why such folders showed on the vault's origin device (e.g. your Mac) but not on one populated by sync (e.g. Windows). Every sync now refreshes the folder tree from disk, so folders look the same on every device.</li>
-    
-    <li><strong>Windows installer closes a running Vellen automatically.</strong> Installing or upgrading while Vellen was open stalled silently at &quot;Validating install&quot; because the running app's files were locked. The MSI now asks a running Vellen to close (and closes it if needed) before installing, so the upgrade completes on its own — no hang, no manual &quot;close the app first,&quot; no reboot prompt.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.48">
-    <h2><a href="#v0.1.48">Version 0.1.48</a></h2>
-    <ul>
-    <li><strong>Google sign-in is resilient again on Windows.</strong> Through v0.1.44, desktop sign-in used a fixed loopback port (21847) and just worked. v0.1.45 replaced that with dynamic-port machinery — bind any free port, ask the backend which one, then ping and redirect to it — and it hard-failed sign-in whenever any link in that chain hiccuped, showing a &quot;couldn't open a local sign-in listener&quot; error even when the listener was fine. (v0.1.47 softened the health ping but still hard-failed if the port lookup came back empty; this removes that last hard-fail.) Sign-in now falls back to the default port if the lookup fails and treats the health ping as advisory — the app binds the port itself, and the browser reaches <code>127.0.0.1</code> directly for the real redirect. It still blocks only when a <em>different</em> program is positively answering on the port.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.47">
-    <h2><a href="#v0.1.47">Version 0.1.47</a></h2>
-    <ul>
-    <li><strong>Windows now ships as an MSI installer</strong> (<code>.msi</code>) instead of the NSIS <code>-setup.exe</code>. The NSIS bundler in the current build toolchain produces a corrupt installer that downloads fine but fails on launch (&quot;Error launching installer&quot;); the MSI is built from the same app and installs cleanly. Both formats are first-class for Tauri's auto-updater, so this costs nothing on the update roadmap. Note: users must stay on the format they installed with — standardizing on MSI keeps everyone on an auto-updatable installer.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.46">
-    <h2><a href="#v0.1.46">Version 0.1.46</a></h2>
-    <ul>
-    <li><strong>Google sign-in works when the whole preferred port range is blocked.</strong> On some Windows machines, Hyper-V/WSL reserve a large <em>contiguous</em> block of ports that swallowed the entire 21847–21947 range Vellen tried, so its local sign-in listener couldn't bind anywhere and sign-in failed with a &quot;couldn't open port 21847&quot; error. If that range is fully taken now, Vellen falls back to an OS-assigned free port (which can't be inside a reserved block) and points the Google redirect at it — so sign-in works regardless. Error messages also now report the actual port instead of always naming 21847.</li>
-    
-    <li><strong>Windows installer (.exe) builds reliably again.</strong> The release workflow installed dependencies with <code>npm install</code>, which let the Tauri CLI float to a newer version whose NSIS bundler produced a corrupt installer — it downloaded fine but failed on launch with &quot;Error launching installer&quot; (the <code>.msi</code> was unaffected). CI now uses <code>npm ci</code>, pinning the build toolchain to the lockfile so the Windows installer is reproducible from now on.</li>
-    
-    <li><strong>Wikilinks render cleanly again.</strong> With raw markdown hidden, a <code>[[Note]]</code> link could show a stray <code>]</code> after the name and behave like an external link. The editor's markdown parser was mistaking the inner <code>[Note]</code> for a shortcut link and fighting the wikilink renderer over the same brackets. Wikilink brackets are now left to the wikilink renderer, so <code>[[Note]]</code> shows just the styled name and clicks through to the note.</li>
-    </ul>
-  </section>
-
-  <section class="release" id="v0.1.45">
-    <h2><a href="#v0.1.45">Version 0.1.45</a></h2>
-    <ul>
-    <li><strong>Images stop masquerading as notes on synced devices.</strong> When syncing (e.g. Google Drive on mobile), attachment files like images were being added to the note list — so a folder holding only images wasn't dimmed, and tapping an image opened its raw binary as gibberish text. Attachments are now kept out of the note list on the sync path too (matching local-folder behavior); they still sync to disk so notes can reference them. Folders that hold only images are correctly dimmed again.</li>
-    
-    <li><strong>Note names are safe to save on every OS.</strong> Every spot that turns a title, heading, or imported name into a filename now runs through one sanitizer. Beyond stripping illegal characters (which it already did, but inconsistently), it escapes Windows reserved device names — a note called &quot;CON&quot;, &quot;PRN&quot;, &quot;NUL&quot;, &quot;COM1&quot;…&quot;LPT9&quot; couldn't be created on Windows at all — and trims leading/trailing dots and spaces that Windows silently mangles. Existing notes are untouched; this only applies when creating new names.</li>
-    
-    <li><strong>Dates use your local timezone, not UTC.</strong> &quot;Today&quot; was computed from UTC, so in the evening (the Americas) or the morning (Asia/Australia) a daily note could be dated a day off and <code>today</code>-based queries could quietly miss. Daily notes, the <code>{{date}}</code> template variable, <code>today</code> in queries, and the daily note's &quot;is this today&quot; navigation all now use your actual local date.</li>
-    
-    <li><strong>Google sign-in no longer depends on one fixed port.</strong> Sign-in uses a local loopback listener; if its port (21847) was taken or reserved by the OS — common on Windows with Hyper-V/WSL/Docker — sign-in couldn't start at all. The listener now falls back through a range of ports and sign-in uses whichever one actually bound. If it still can't open one, the error now explains the likely cause and points to folder-based sync (Dropbox/OneDrive/iCloud), which needs no listener. The browser clipper now discovers that port automatically too, so it keeps working on machines where 21847 is unavailable (re-save the clipper from Settings to pick up the update).</li>
-    
-    <li><strong>Hover actions across the whole sidebar.</strong> Smart folders and boards now show edit/delete icons on hover like regular folders do, and notes and whiteboards show a delete icon on hover — no need to right-click for the common actions.</li>
-    <li><strong>Delete always confirms.</strong> Deleting a smart folder or a board now asks first (noting your notes aren't affected), matching the existing confirmation for folders and notes.</li>
     </ul>
   </section>
 
