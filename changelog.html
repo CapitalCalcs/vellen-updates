@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.35, September 15, 2026</p>
+  <p class="updated">Latest: version 1.0.36, September 15, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,13 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.36">
+    <h2><a href="#v1.0.36">Version 1.0.36</a><span class="date">September 15, 2026</span></h2>
+    <ul>
+    <li><strong>Mac, App Store and iOS builds link again on Xcode 27.</strong> v1.0.35's executables failed with &quot;Undefined symbols: _release_object, _retain_object&quot;: Xcode 27 hides swift-rs's own helper functions inside the billing archive, and swift-rs 1.0.8 re-exports only ours. The build script now re-exports those four too (build.rs <code>export_swift_rs_helpers</code>). v1.0.35 shipped for Windows only because of it; this release is the same code with the link fixed.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.35">
     <h2><a href="#v1.0.35">Version 1.0.35</a><span class="date">September 15, 2026</span></h2>
