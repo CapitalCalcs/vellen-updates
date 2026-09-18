@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.36, September 15, 2026</p>
+  <p class="updated">Latest: version 1.0.37, September 18, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,35 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.37">
+    <h2><a href="#v1.0.37">Version 1.0.37</a><span class="date">September 18, 2026</span></h2>
+    <ul>
+    <li><strong>Restore Purchases is a button you can find.</strong> App Review rejected iOS 1.0.10 (Guideline 3.1.1, 17 Sep 2026) for having no distinct &quot;Restore Purchases&quot; control: Vellen's was a quiet text link under the Unlock button, gone once the device was licensed. It is a real button now, on the unlock screen and in Settings → About, in every state — and it says what the store answered, whether that is &quot;restored&quot;, &quot;your free trial is on record&quot; or &quot;nothing found&quot;.</li>
+    
+    <li><strong>Ask AI no longer claims a note you own doesn't exist.</strong> When nothing in your notes matched the words of a question, the assistant was told to say so and, in the same breath, forbidden to name any note — and what came out was &quot;None of your notes explain wiki links&quot;, a claim about your notes from a model that had read none of them. It now speaks about the search (&quot;nothing in your notes matched those words&quot;), may point at a likely title from the list it is given, and the answer carries a label saying it came from general knowledge, not your notes (Android pass, 16 Sep 2026, Finding 1).</li>
+    
+    <li><strong>A local AI server that refuses is described as what it is.</strong> The chat reported a local server's 403 as &quot;Your AI key was rejected — update it in Settings&quot; — the Local provider has an address, not a key, and Settings a panel away was already saying the true thing. The chat now names the server, quotes what it said, and for a 403 explains OLLAMA_ORIGINS; any other error from a local server points at the model and the address (local-ai pass, 17 Sep 2026, Findings 1 and 2).</li>
+    
+    <li><strong>The whiteboard has Undo.</strong> A card moved, resized, added, removed or recoloured, a tree tidied — every change to a board can be taken back and redone, with ⌘Z / ⇧⌘Z (Ctrl+Z / Ctrl+Y) or the toolbar's new Undo and Redo buttons, which is what the phone needed: a card nudged by a finger reaching for a pinch was moved for good, and nothing on the board could put it back (iOS pass, 16 Sep 2026, Finding 4). A drag is one edit however far it went; a card's text is still the usual text undo while it is open.</li>
+    
+    <li><strong>A replace across notes no longer fills the vault's synced history.</strong> The copy Vellen keeps of each note before a replace, a merge or a conflict resolution was a named version — synced with the vault and kept forever — so five vault-wide replaces on a 3,000-note vault left 48 MB of history beside 23 MB of notes, uploaded to Drive, with no way to reclaim it. Those copies are now safety copies: still listed in History with their label, but kept on this device only and pruned (the newest 20 per note, 90 days). A vault-wide replace also records them in one write instead of one per note. Copies made before this version stay where they are (big-vault pass, 17 Sep 2026, Finding 3).</li>
+    
+    <li><strong>The Undo after a replace across many notes stays until you dismiss it.</strong> It used to fade after twelve seconds — a 2,750-note run takes longer than that to look away from — and a click anywhere on the message, including one aimed at Undo that landed beside it, threw the Undo away. Any message with a button now keeps standing when the text is clicked and has its own × instead; the one after a many-note replace also waits to be dismissed rather than fading (big-vault pass, 17 Sep 2026, Finding 1).</li>
+    
+    <li><strong>Find and replace, from the keyboard.</strong> Closing the dialog put focus back at the top of the app instead of on the button that opened it — the one dialog with a field that focuses itself, which was being mistaken for the opener. And the Undo in the message afterwards was nineteen Tab stops away with twelve seconds to get there. Now focus returns to the button; while a message with Undo is showing, the next Tab from anywhere goes straight to it (once — Shift-Tab goes back, and the order is normal again); and a message never fades while the pointer is over it or the keyboard is in it (a11y pass, 17 Sep 2026, Finding 1).</li>
+    
+    <li><strong>Tapping a link in a note follows it on iPhone and iPad.</strong> A finger tap on a <code>[[link]]</code> only ever placed the caret in it: in editable text, iOS takes the tap for itself and never sends the click the editor was listening for. The tap itself is read now, from the touch — one finger, down and up in place — with the same rule as a click: it follows, unless the caret was already on that line, in which case you're editing it. A swipe still scrolls and a long press still selects (iOS pass, 16 Sep 2026, Finding 3).</li>
+    
+    <li><strong>&quot;Replace in all notes&quot; no longer leaves a half-done run behind.</strong> When one note could not be written (its folder read-only, say), the notes before it in the list were rewritten and nothing said so — no message, no Undo, and the dialog recounted as if the run had never happened (files pass, 17 Sep 2026). Now the notes already rewritten are put back, the run is refused, and the message names the note and the reason. The Undo afterwards also reports a note it could not put back instead of stopping.</li>
+    
+    <li><strong>On a phone, <code>---</code> and two spaces reach the file as typed.</strong> The smart-dash guard from v1.0.35 was built on a guess about what the iOS keyboard sends. Recordings of the real events showed three things: the keyboard deletes the hyphen and then sends the em dash as a plain character (so <code>---</code> was still saved as <code>—-</code>, and tables, frontmatter and horizontal rules could not be typed); WebKit keeps a trailing space as a no-break space until it inserts the next character itself (the 0xA0 that reached files); and the second of two spaces arrives as a space replacing the first (so two keystrokes became one and a nested list could not be indented by hand). Now a dash right after that delete is the <code>--</code> typed, the lost second space is put back once WebKit is done, and text leaves the editor with every no-break space made plain — the editor itself is left holding whatever WebKit wrote, because rewriting it made WebKit drop the spaces (iOS pass, 16 Sep 2026, Findings 1 and 2). A no-break space pasted into a note on a phone is made plain too. The recorder stays in the code for the next such hunt: a build made with <code>VITE_INPUT_LOG=1</code> writes every keyboard event to <code>input-log.md</code> in the vault.</li>
+    
+    <li><strong>Vellen launches on iOS 27.</strong> Any build made with Xcode 27 was terminated by iOS 27 at launch for not adopting the UIScene life cycle — found by the new-iOS pass on its first run, before anything had shipped that way (the 1.0.10 in the store was built with the iOS 26 SDK and is unaffected). The app now declares the scene manifest, and the windowing library it uses carries a one-line fix (a freed scene configuration) until tauri picks up the version that has it. Known and minor: on an iPad, asking for a second Vellen window may open a blank one.</li>
+    
+    <li><strong>The Mac download builds again on Xcode 27.</strong> Packaging the disk image failed at the step that arranges its window in Finder; that step is now skipped, so the image opens with a plain window. The app inside is unchanged and still signed, notarized and stapled. A disk image left behind by an interrupted build no longer stops the next one.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.36">
     <h2><a href="#v1.0.36">Version 1.0.36</a><span class="date">September 15, 2026</span></h2>
