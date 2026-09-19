@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.37, September 18, 2026</p>
+  <p class="updated">Latest: version 1.0.38, September 19, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,28 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.38">
+    <h2><a href="#v1.0.38">Version 1.0.38</a><span class="date">September 19, 2026</span></h2>
+    <ul>
+    <li><strong>The editor had been running without its own stylesheet.</strong> It was reported as &quot;a nested list is drawn flat on the iPhone&quot;, and that was real — indentation you had written was simply not shown, so an outline or a nested checklist was indistinguishable from a flat list, and while typing you could not see which level you were on. But the list was only the visible part. CodeMirror builds its stylesheet as a <code>&lt;style&gt;</code> element while the app starts, and the security policy the app runs under carries a nonce — which, by the rules, means any stylesheet made that way without one is thrown away. Silently: the element stays in the page with nothing behind it. So the editor had none of its own styling, and fell back to the browser's default of collapsing runs of spaces, which is what ate the indentation. Your files were never affected — the spaces were always on disk, only the drawing was wrong (iOS pass, 17 Sep 2026, Finding 2).</li>
+    
+    <li><strong>Mermaid diagrams have their colours back, and their size.</strong> Found while fixing the above, and never reported by anyone: a diagram's whole theme — fills, strokes, fonts, edge colours — is written into the diagram itself the same way, and was being thrown away for the same reason. Every diagram in every shipped build has been drawing in flat black. It reads as &quot;a dark-mode diagram&quot; rather than as something broken, which is exactly why it went unnoticed. The same policy had also been dropping the diagram's own size, so a small flowchart stretched to the full width of the pane and scaled everything in it — a two-box diagram filling the window and running off the bottom. Diagrams are drawn at their natural size again, shrinking to fit a narrow pane rather than blowing up to fill a wide one.</li>
+    
+    <li><strong>Larger Text takes effect when you change it, not when you next force-quit.</strong> Set the system text size up on an iPhone with Vellen open and nothing happened — no hint that quitting and reopening would apply it, which is the worst version of this bug, because the people who change that setting are the people who need it. Vellen read the size once at launch and never again. iOS makes this easy to get wrong: it re-resolves the size immediately for a page that is already open, but it tells the page nothing — no event, no media query, nothing to listen for. What it does change is the size of anything drawn in the system font, so Vellen now watches its own measuring probe and follows it. The size is applied within a second of the change, whether it came from Settings or from Control Center (iOS 27 pass, 17 Sep 2026, Finding 1).</li>
+    
+    <li><strong>The bottom strip of an iPhone screen belongs to the home indicator again.</strong> Scroll the drawer's folder tree to the end and the last row was drawn at 873.7 pt of an 874 pt screen — the indicator straight across it, and no way to scroll it clear, because that was the end of the list. Unscrolled, the LIBRARY footer and its + sat there instead. Help's topic list did the same thing for a different reason: the overlay holds the panel 12% of the screen down and the panel is 88% tall, which is exactly the whole screen. Both stop above the indicator now. The insets this depends on used to be written out by hand in fifteen separate places — which is how the drawer came to take a top inset and no bottom one without anyone noticing — and are four named values now, so the whole set can be seen at once, and tested: <code>env()</code> reports nothing in a browser with no notch, so a surface that honours the inset and one that ignores it looked identical to the test suite (iOS 27 pass, 17 Sep 2026, Finding 2).</li>
+    
+    <li><strong>A whiteboard on a phone is mostly whiteboard again.</strong> Select a card and the toolbar wrapped to three rows: the board's own chrome took 41% of an iPhone screen before any board was visible. Two CSS rules disagreed about it — one said &quot;one scrollable row&quot; and had said so for weeks, the other wrapped it and, being later and more specific, won — while the code that measures the row and moves whatever will not fit into a &quot;⋯&quot; menu skipped phones entirely, on the theory that they had a scrolling row instead. They didn't. Phones measure now: ONE row, which does not grow when you select something, holding what you came to a board to do — Undo, Redo,</li>
+    <ul>
+    <li>Add, Connect →, and Delete once something is selected — with pinning, renaming, colours and the rest one tap away under ⋯. The board's name has left the toolbar too; the header an inch above it already says &quot;Ideas&quot;. Chrome is about a quarter of the screen instead of 41%. iPads keep the wrapping toolbar: they have the width for a second row, and wrapping is what keeps the largest text size from cutting anything off there (iOS pass, 17 Sep 2026, Finding 6; iOS 27 pass, Finding 3).</li>
+    </ul>
+    
+    <li><strong>A board opens when you tap it, not just the first time.</strong> On the iPad a board made from the sidebar's <code>+</code> could not be opened again: tapping its row highlighted the row and left the folder's TABLE on screen, three taps running, until the app was relaunched — after which the very first tap on the same row opened the board. Creating a board opens it, and the base screen remembered which view it had already been sent to, so that a background sync could not drag you back to a tab you had since left. Every later tap on that row looked to that guard exactly like the sync it was written to ignore, and was thrown away. It now remembers the ASK, which is counted and never repeats, so asking twice is answered twice — and a reload still leaves you where you put yourself (iPad pass, 17 Sep 2026, Finding 1).</li>
+    
+    <li><strong>A table in a note can lose a row or a column again.</strong> Removing one was only ever on the right-click menu, and a table cell is editable text — so on a phone a long press raises the system Copy/Paste menu and the right-click never happens. The table could gain a row and never lose one, while Enter in the last row adds one: two Enters, the ordinary reflex for &quot;next line&quot;, left two empty rows in the note with no way back. The footer beside &quot;+ row&quot; and &quot;+ column&quot; now has &quot;− row&quot; and &quot;− column&quot;, which take out whichever the caret is in (Android pass, 17 Sep 2026, Finding 2).</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.37">
     <h2><a href="#v1.0.37">Version 1.0.37</a><span class="date">September 18, 2026</span></h2>
