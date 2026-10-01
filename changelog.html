@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.43, October 1, 2026</p>
+  <p class="updated">Latest: version 1.0.44, October 1, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,15 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.44">
+    <h2><a href="#v1.0.44">Version 1.0.44</a><span class="date">October 1, 2026</span></h2>
+    <ul>
+    <li><strong>A folder's name stays readable while you point at it.</strong> The new-note, new-subfolder, rename and delete buttons used to be laid over the end of the row, so on a folder a few levels deep they covered the whole name and it couldn't be clicked. Now the name shortens to make room, always keeps its first letters, and the buttons give way when there isn't space (they're all on the right-click menu too).</li>
+    <li><strong>Import from OneNote.</strong> Settings → Import &amp; capture → <strong>OneNote notebook</strong>: choose the <code>.onepkg</code> OneNote exports (File → Export → Notebook), a notebook's <code>.onetoc2</code>, or one <code>.one</code> section. Sections and section groups become folders, a page with subpages becomes a folder with its own page, links between pages stay links, and to-dos, tags, highlights, tables, images, drawings, attachments and each page's dates and author come along. A password-protected section is named in the summary — unlock it in OneNote and import again. No Microsoft sign-in: Vellen reads the files.</li>
+    <li><strong>Folders can have a page of their own.</strong> A note named like its folder — <code>Kitchen remodel/Kitchen remodel.md</code> — is the folder's page: clicking the folder opens it (the ▸ only opens and closes the folder), it isn't listed twice, and renaming either one renames the other. Right-click a folder for <strong>Make a page for this folder</strong>. Plain files, so a vault from Obsidian's folder-notes plugin works as it is. A Notion page with pages inside it now imports as its folder's page instead of showing twice, and Export as website makes a folder's page its <code>index.html</code>.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.43">
     <h2><a href="#v1.0.43">Version 1.0.43</a><span class="date">October 1, 2026</span></h2>
