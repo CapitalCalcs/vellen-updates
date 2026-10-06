@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.44, October 1, 2026</p>
+  <p class="updated">Latest: version 1.0.45, October 6, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,64 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.45">
+    <h2><a href="#v1.0.45">Version 1.0.45</a><span class="date">October 6, 2026</span></h2>
+    <ul>
+    <li><strong>Settings → Sync between devices</strong> says when the sync it reports happened (&quot;Already up to date. · 2:55 PM&quot;), so a press that did nothing no longer looks like one that found nothing.</li>
+    <li><strong>A Vellen shortcut is Vellen's, even with the caret in a note:</strong> ⌘G and ⌘D now only open the graph and today's note, instead of also running the editor's find-next and select-next.</li>
+    <li><strong>Switching to another notes folder</strong> no longer carries the previous folder's sync warning or its &quot;Undo&quot; with it — an Undo left over from a replace in one folder can no longer change notes in another.</li>
+    <li><strong>The note header</strong> shows the note's own name, with its folder as one faded line that shortens to &quot;…&quot;: a long path no longer wraps or pushes the header's buttons onto a second line, and a folder's page shows its name once instead of &quot;Holiday/Holiday&quot;.</li>
+    <li><strong>OneNote handwriting</strong> is readable on the dark theme: black ink is drawn in the text colour and coloured ink keeps its colour, without changing the imported file.</li>
+    <li><strong>On an iPad with a keyboard,</strong> ⌘W closes the tab (iPadOS used to close the whole window). iPadOS keeps ⌘, and ⌘? for itself, so the iPad no longer lists them — Settings and Help are on the rail.</li>
+    <li><strong>Closing Find and replace, Settings, Help, Trash or Version history</strong> after opening it with VoiceOver (or any press that doesn't focus the button) puts focus back on the button that opened it, not in the note.</li>
+    <li><strong>Under a &quot;From Vellen Help&quot; chip,</strong> a keyboard shortcut the AI pairs with the wrong action (Shift+Tab &quot;to fold a branch&quot;), or one Help never mentions, is marked as the model's words — and so is a menu path or setting Help doesn't name.</li>
+    <li><strong>A table, diagram, formula, embedded note or task that is the first thing in a note</strong> is drawn when the note opens, instead of showing its raw Markdown (such as a Notion database page's pipes).</li>
+    <li><strong>A note iCloud downloads again unchanged</strong> no longer stays marked &quot;parked in iCloud, not downloaded&quot;.</li>
+    <li><strong>Tasks:</strong> a task written across two lines shows in full in the Tasks view, and its second line in a note lines up under its words; on phones and tablets a task's checkbox, date and set-a-date icon are finger-sized targets.</li>
+    <li><strong>An image that fails to load on a whiteboard,</strong> or inside an embedded note, says &quot;image not found&quot; with its path instead of showing an empty box.</li>
+    <li><strong>Evernote import:</strong> an attachment with an empty file name is saved under a name you can see instead of as a hidden &quot;.png&quot;.</li>
+    <li><strong>Sync:</strong> a note renamed on one device is no longer reported as &quot;deleted&quot; on the device that had edited it, or in the sentence under Sync now; the merge screen times the other device's text by when it was written there, not when it reached Google Drive; the question before removing files another device deleted says which device that was; deleting a folder's last notes removes the empty folder from Drive and your other devices; Settings → Sync between devices names the Google Drive notes folder this folder syncs with; and a standing &quot;notes folder can't be found&quot; warning says when it couldn't be re-checked.</li>
+    <li><strong>The Calendar's &quot;today&quot;</strong> is your local day: in the evening in the Americas (and the morning in Asia and Australia) it no longer rings tomorrow or shows today's tasks as overdue, and a base's &quot;today&quot; and &quot;this week&quot; filters use your local day too.</li>
+    <li><strong>iPad with a hardware keyboard:</strong> ⌘N makes an empty note — the N no longer types itself into it (and ⌘T/⌘P no longer leave their letter in the picker's box).</li>
+    <li><strong>On iPad,</strong> Help and the AI chat no longer offer to pop out into a computer-style floating window.</li>
+    <li><strong>On iPhone and iPad,</strong> the keyboard follows Vellen's Dark or Light theme instead of the device's appearance.</li>
+    <li><strong>On Windows,</strong> Ctrl+J no longer opens a browser Downloads panel, and Ctrl+F away from a note or Ctrl+G inside a dialog no longer opens a browser find bar; typing a backslash in a note or folder name makes a folder, as a slash does.</li>
+    <li><strong>Vellen says when it had to change a name you typed</strong> — new notes, new folders, and renamed folders and whiteboards, not only renamed notes; the folder picker says &quot;notes folder&quot; and the export dialog says &quot;Export&quot;.</li>
+    <li><strong>&quot;Name, A–Z&quot;</strong> puts &quot;Report&quot; above &quot;Report 2&quot; — the file extension used to make each such pair come out backwards.</li>
+    <li><strong>On phones,</strong> a top-level folder's ▸ in the sidebar takes a tap across its full finger-sized area.</li>
+    <li><strong>Closing a folder's &quot;Sort by…&quot; menu,</strong> by Escape or by choosing, puts keyboard focus back in the file tree.</li>
+    <li><strong>Renaming a note or folder deep in the sidebar</strong> gives a field wide enough to read; on Windows a task's due-date chip no longer leaves a tooltip over the next task's chip.</li>
+    <li><strong>The whiteboard's tips line</strong> wraps at every window width instead of scrolling sideways out of a keyboard's reach.</li>
+    <li><strong>Boards over large folders</strong> open faster and use less memory: each column shows 200 cards at a time, with &quot;Show 200 more&quot;.</li>
+    <li><strong>Typing in very long notes</strong> no longer stutters now and then; the word count updates when you pause.</li>
+    <li><strong>In the command palette,</strong> Enter runs the row you typed or arrowed to, even with the mouse pointer resting over the list.</li>
+    <li><strong>Ask AI answers drawn from Vellen Help</strong> now mark a menu item or sync service that Help never mentions as the AI's own words, instead of leaving it looking like it came from the manual.</li>
+    <li><strong>Local AI pointed at an address that isn't an AI server</strong> no longer pastes that server's raw web-page code into Settings and the chat — both say the address answered, but not like an AI server.</li>
+    <li><strong>On phones, &quot;How does AI work here?&quot;</strong> in Settings → AI reads cleanly: the aside about where to find Ask AI is closed.</li>
+    <li><strong>A new note is named for the time you started it</strong> — &quot;Untitled 10.45&quot; rather than &quot;Untitled&quot;. Two devices on one notes folder used to make &quot;Untitled&quot; on each, and sync, meeting two different notes under one name, left a conflict copy behind.</li>
+    <li><strong>A note you renamed is never described as one you deleted.</strong> When another device had edited the note under its old name, the rename brought it back — and the device that had done the renaming was told &quot;1 deleted here came back&quot;. It now says the note was renamed here and edited on another device, and names both names.</li>
+    <li><strong>Linking with <code>[[</code>:</strong> the note whose name you typed comes first. Typing <code>[[Trip</code> used to list the notes inside a folder called Trip ahead of the note called Trip, and Enter linked the wrong one.</li>
+    <li><strong>A folder renamed on another device</strong> arrives as a rename even when renaming it changed the links inside every note: the old folder no longer stays behind empty, and its notes no longer turn up in this device's Trash.</li>
+    <li><strong>Notion import:</strong> a page whose first sentence starts with a word and a colon — &quot;Owner: Robert. Back to …&quot;, &quot;Note: ask Dana first.&quot; — keeps that sentence in the note instead of moving it, link and all, into the note's properties.</li>
+    <li><strong>Folders can be sorted.</strong> Right-click a folder (long-press on a phone) → <strong>Sort by…</strong>: Name A–Z, Name Z–A, Newest first, or Recently edited. The choice syncs with the notes folder. A folder of dated notes — Daily — now starts newest first, so today's note is at the top instead of at the bottom of a long scroll; and &quot;Meeting 2&quot; comes before &quot;Meeting 10&quot;.</li>
+    <li><strong>A rename syncs as a rename.</strong> Renaming a note or a folder and then syncing used to ask &quot;Sync wants to remove files … to match your other devices&quot;, and choosing Keep left the note under both names on every device. A rename is now carried across without a question, and when sync does ask about removals it says which device they came from.</li>
+    <li><strong>Folders with pages, on a phone and in a rename:</strong> tapping a closed folder's name opens its page and the folder; the ▸ beside it takes a full-size tap; renaming a folder keeps <code>[[links]]</code> to its notes as they were written, instead of turning them into paths; and whiteboard cards follow notes, boards and pictures to their new names instead of showing &quot;(missing note)&quot;.</li>
+    <li><strong>A Notion page with pictures imports as one thing:</strong> its folder's page, with the pictures inside, instead of a note beside an empty-looking folder of the same name.</li>
+    <li><strong>Encryption says what it covers.</strong> What your notes say is sealed before it reaches Drive; their names, and their folders' names, are not — Settings, Help and the recovery kit now say so.</li>
+    <li><strong>Settings → AI's &quot;How does AI work here?&quot;</strong> speaks of a server and its address when you use a local AI server, and points to Ask AI where it is.</li>
+    <li><strong>Ask AI:</strong> Retry keeps the &quot;From Vellen Help&quot; chip it had the first time. An answer with suggested notes beside it no longer says &quot;No note matched&quot; above the note it is suggesting; it says nothing matched closely and lists the nearest by title. A request about folders for a filing cabinet, a desk drawer or a shelf is not answered from the manual.</li>
+    <li><strong>Renaming a note from its header or the phone's ⋯ → Rename…</strong> shows just its name, and a new name keeps it in its folder (type a path, or start with <code>/</code>, to move it). <strong>Make a page for this folder</strong> writes the page with its heading.</li>
+    <li><strong>Small things said right:</strong> &quot;1 note&quot;, not &quot;1 notes&quot;; a note's name in a message has no <code>.md</code>; the Calendar's example date is in the future; the Welcome note tells a phone to use ⋯ → New note; a board says how many notes have no status and how many have one that isn't a column; a phone's new notes folder says when its name was taken and what it is called instead; a server's refusal and the advice after it are separate sentences.</li>
+    <li><strong>Two files with the same name on Drive</strong> (Drive allows it; a disk doesn't): the version you have keeps the name, and the other copy is renamed to &quot;name (1)&quot; on Drive and comes down to every device, with a note saying so. Sync used to keep one and silently ignore the other, and a stale copy could replace a note's text.</li>
+    <li><strong>Resolving a conflict:</strong> the two sides say which one was this device's and when each was last edited — &quot;This iPhone · 8:52 PM&quot; and &quot;Your other device · 8:50 PM&quot; — instead of only &quot;Kept version&quot; and &quot;Set-aside copy&quot;.</li>
+    <li><strong>A new board's columns start from your notes.</strong> If notes in the folder already have the property — <code>status: Review</code>, <code>status: in-progress</code> — those values become the columns, most used first, and the dialog says where they came from; &quot;To do, Doing, Done&quot; is only the start when nothing uses it yet. Create no longer does nothing when the name belongs to a property of another kind: it says why.</li>
+    <li><strong>A notes folder waiting for you to choose where it syncs</strong> no longer checks Google Drive every time it opens; it waits until you press <strong>Set up sync…</strong>.</li>
+    <li><strong>Settings → Sync's recent activity</strong> shows a flaky connection's failures as one row, however many quiet syncs fall between them.</li>
+    <li><strong>Keyboard:</strong> Shift+F10 and the Menu key open a sidebar row's menu. While a picker or dialog is open, shortcuts no longer act behind it.</li>
+    <li><strong>Windows:</strong> in high contrast, the date chip in a note keeps its edge and its calendar icon, and the set-a-date icon shows. In a short window the sidebar's icon strip fades at the edge where more is hidden.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.44">
     <h2><a href="#v1.0.44">Version 1.0.44</a><span class="date">October 1, 2026</span></h2>
