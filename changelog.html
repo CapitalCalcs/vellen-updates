@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.46, October 7, 2026</p>
+  <p class="updated">Latest: version 1.0.47, October 9, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,91 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.47">
+    <h2><a href="#v1.0.47">Version 1.0.47</a><span class="date">October 9, 2026</span></h2>
+    <ul>
+    <li><strong>Import from Google Keep:</strong> Settings → Import &amp; capture → &quot;Google Keep export folder (Takeout)&quot; brings in an unzipped Google Takeout export of Keep. Notes land in &quot;Imported from Google Keep&quot; (archived ones in its Archived folder), with checklists as tasks, labels as tags, and colour, pin and dates as properties; pictures are embedded, voice recordings and other files are linked, and a note's links are listed at its end. Notes in Keep's trash are skipped and counted, nothing is ever overwritten, and the message says what was imported, skipped and couldn't be read. Help has a new topic, &quot;Import from Google Keep&quot;, including how to get the Takeout export.</li>
+    <li><strong>Faster first sync.</strong> Setting up sync for a notes folder now sends several notes to Google Drive at once instead of one at a time: 300 small notes took almost 6 minutes on a Mac and now take under a minute and a half, and pulling notes down to a new device is faster the same way. While it runs, the Sync button says how far it has got (&quot;Uploading 120 of 300…&quot;) instead of only &quot;Syncing…&quot;. If Google asks Vellen to slow down, it waits and carries on rather than leaving notes for the next sync.</li>
+    <li><strong>Move notes out of iCloud works on the first press.</strong> On a Mac without a <code>~/Vellen</code> folder it stopped at the first note (&quot;Nothing was changed — 1 file couldn't be copied&quot;), and every press after that was refused because the half-made folder &quot;already exists&quot;. It now makes the folder first, and a move that does stop part way can be pressed again to finish. Afterwards an encrypted notes folder stays unlocked on the Mac that moved it, as the message says, instead of asking for the passphrase again; the same goes for a notes folder moved in Finder.</li>
+    <li><strong>Android's Change folder</strong> can be pressed again after a copy that stopped part way, instead of refusing the folder it half filled. While it copies, switching to another notes folder (or closing this one) is refused with &quot;Finish moving this notes folder first&quot;, instead of letting the switch through and leaving the copy unfinished without a word. Move notes out of iCloud does the same on a Mac.</li>
+    <li><strong>Move notes out of iCloud keeps the folder's own Google Drive sync.</strong> Moving into a <code>~/Vellen</code> that an older notes folder had once used picked up that old folder's Drive sync and history, and dropped the moved folder's; the new folder now starts clean and carries only what it brought.</li>
+    <li><strong>Tables: every row's select box can be reached with Tab</strong> and ticked with Space on a Mac, where the keyboard used to skip straight past them, and each is named after its note for VoiceOver.</li>
+    <li><strong>Whiteboards on phones and tablets:</strong> on a zoomed-out board, a card you had just moved could not be moved again — its connection handles covered it, and each drag drew an arrow instead. The handles' touch areas now reach only away from the card.</li>
+    <li><strong>Android: pictures in a notes folder you picked now show</strong> — in notes, on whiteboard image cards and in note cards. They had read &quot;image not found&quot; over files that were there.</li>
+    <li><strong>Whiteboards made in Obsidian open complete:</strong> a card that points at one heading of a note (&quot;Itinerary › Day 2&quot;) shows that section instead of the whole note, and a group's background picture is drawn behind it.</li>
+    <li><strong>Sync no longer gives up on a notes folder after a hiccup.</strong> If Google Drive was briefly unreachable or slow at the wrong moment, a device could decide its own notes folder's copy in Drive &quot;can't be found&quot; and stop syncing it, while another device kept syncing the same copy. It now says Drive couldn't be reached and tries again, and it checks the folder it last synced with before ever saying it's gone.</li>
+    <li><strong>Whiteboards on phones and tablets:</strong> setting a card down right next to another no longer makes it that card's child by accident — your finger has to be clearly on the other card, which lights up, as it does with a mouse.</li>
+    <li><strong>Leaving a list with Enter leaves a blank line</strong>, so what you type next is a new paragraph. A sentence typed straight after a checklist used to become part of the last task, in the editor, in Tasks and in the Calendar.</li>
+    <li><strong>Renaming a folder by its capitals only</strong> (trip → Trip) now says so if the disk keeps the old spelling, and keeps showing the old name, instead of showing a name the folder doesn't have.</li>
+    <li><strong>Data safety (audit of 7 Oct 2026).</strong> Every path that writes, moves or deletes your files was checked; these are the fixes:</li>
+    <ul>
+    <li>Words you type are no longer lost when a sync changes the same note as you quit or switch folders, or when you restore a version or resolve a conflict copy while the note has unsaved typing.</li>
+    <li>Text typed into a whiteboard card is no longer lost when you close the board, quit, switch folders, or a sync changes the board; if the board changed elsewhere, your version is kept beside it as a conflict copy.</li>
+    <li>Ticking a repeating task and then the task below it, or two tasks in quick succession, now ticks exactly the tasks you clicked.</li>
+    <li>In split view, inserting a table, diagram or AI answer, or removing a due date, now changes only the note you are working in.</li>
+    <li>Moving a card on a board, editing a table cell, &quot;Set a property&quot;, a calendar drag, the Properties panel and template copies now change only the property you changed: other properties stay byte for byte as written (nested lists, multi-line text, quotes, leading zeros, comments, BOM and Windows line endings), and clicking into a table cell without changing it no longer rewrites the note.</li>
+    <li>Dragging a card on a tag board no longer lowercases the note's other tags or deletes a second &quot;Tags&quot; property.</li>
+    <li>Ticking a task, dragging a board card, editing a table cell, linking notes from a whiteboard or renaming a linked note no longer rewrites a non-UTF-8 note with &quot;�&quot; in place of its accented letters; it is left unchanged and Vellen says why.</li>
+    <li>On macOS, Windows and iOS, quick capture, Today, templates, web clips, Duplicate, dropped files and new whiteboards no longer replace an existing note whose name differs only in capitals; they number the new one or open the existing one.</li>
+    <li>On case-sensitive disks, moving a note into a folder whose name differs only in capitals no longer replaces the note of the same name there.</li>
+    <li>&quot;Tidy starter notes into folders&quot; no longer overwrites a whiteboard already in Whiteboards/ with the same name.</li>
+    <li>&quot;Turn into a real note&quot; on a whiteboard card keeps the card's text when the note couldn't be made.</li>
+    <li>&quot;Link the notes&quot; on a whiteboard is now blocked after the trial ends, leaves a note with an unsettled conflict alone, and says so when it fails.</li>
+    <li>Importing or dropping files no longer says &quot;Imported&quot; for a file that wasn't written, and no longer opens a note that isn't there.</li>
+    <li>Renaming or moving a folder, or renaming its page, no longer deletes the folder's table setup, saved views or hidden files such as <code>.obsidian</code> or iCloud placeholders; everything moves with it.</li>
+    <li>Restoring from the Trash no longer replaces another restored copy; extra copies come back as &quot;(restored 2)&quot;, &quot;(restored 3)&quot; and so on.</li>
+    <li>Importing from Evernote, Notion or OneNote no longer lets two attachments with the same name, such as &quot;image.png&quot;, overwrite each other, and importing again never overwrites the first import's files.</li>
+    <li>On Android, putting a folder in the Trash, restoring it or renaming it no longer deletes files another app had added to it.</li>
+    <li>Opening a notes folder no longer unpins notes inside a sub-folder you don't currently have permission to open.</li>
+    <li>Turning encryption on or off no longer overwrites a newer edit made on another device or removes notes this device hadn't downloaded yet; turning it off syncs first and stops, changing nothing, if another device's sealed changes arrive in between.</li>
+    <li>A note renamed on another device by changing only its capitals (Plan → plan) is now renamed here, instead of ending up in the Trash and then removed from Drive.</li>
+    <li>Renaming a large folder no longer stops the next sync with &quot;Sync protected your notes&quot;.</li>
+    <li>A folder renamed on another device, whose notes' links changed with the rename, is shown as a rename again instead of asking to remove files — and a deleted folder replaced by a new one with the same note names still keeps the old notes in the Trash.</li>
+    <li>On a Mac whose notes folder is in iCloud Drive, a note iCloud has moved off the disk is no longer deleted from Drive and your other devices.</li>
+    <li>A note saved here while a sync was running (for example by closing its tab) is no longer overwritten by the other device's version; both versions are kept.</li>
+    <li>Two notes on Drive whose names differ only in capitals are no longer stuck as &quot;couldn't copy&quot; on a Mac or Windows device: one is renamed &quot;name (1)&quot; everywhere, or, where that isn't possible, the app says why it is waiting.</li>
+    <li>Moving your notes folder (iCloud rescue, Android Change folder or migration) now brings tables, saved views, boards and pins, version history and the Trash along, and keeps &quot;this folder is encrypted&quot; and a pending key publish.</li>
+    <li>On Android, &quot;Change folder&quot; now pauses sync while it copies and always moves the folder you started from, even if you switch folders during the copy.</li>
+    <li>Quick capture now says &quot;Captured ✓&quot; only once the note is written; with no notes folder open, or if the write fails, it keeps your words in the box and says why.</li>
+    <li>&quot;Edit anyway&quot; on a read-only note no longer unlocks the note at the same path in your other notes folders; it still holds when you return to that folder.</li>
+    <li>The warning that boards, pins and smart folders couldn't be read now comes back each time that notes folder is opened again, instead of only once per session.</li>
+    <li>A right-click Summarize, Improve or Ask is sent to the AI once; going to the graph and back, docking the chat or switching notes folders no longer sends the selected text again.</li>
+    <li>An open board no longer stays on screen after switching notes folders to say &quot;This board no longer exists.&quot;</li>
+    <li>Bulk &quot;Set a property&quot; and moving a note on the Calendar now report only the changes that were actually saved, and a bulk change no longer slows down quitting; changing a property while typing in the same note no longer removes what you typed during the save.</li>
+    <li>After the trial ends, ticking a task, editing a table cell, inserting a table or diagram, or removing a due date no longer changes the note, and Vellen says why.</li>
+    <li>A note moved to the Trash right after typing in it no longer comes back by itself, and the Trash copy includes the last words typed. If the Trash list can't be read, Vellen refuses to change the Trash and says why, instead of hiding everything already in it.</li>
+    <li>If a folder's table setup can't be read (damaged, or still in iCloud), Vellen no longer saves over it with only your latest change; it says why instead.</li>
+    <li>Evernote and Apple Notes imports continue past a note that can't be saved and say how many were imported and how many couldn't be written; Notion imports save pages whose names Windows can't use (like &quot;CON&quot;) under safe names with their links intact, Notion and OneNote say how many files couldn't be written, and importing a folder with no Notion pages no longer copies its files in first.</li>
+    <li>Exporting a website into a folder that holds another Vellen website no longer deletes that website's pages.</li>
+    <li>Two versions saved to History at the same moment are now both kept.</li>
+    <li>On Android, notes in a folder not yet moved to the new storage are now saved when you switch away from the app.</li>
+    <li>A replace across notes now stops when you leave its notes folder, writes nothing into the next folder, counts only what it changed, and leaves alone a note that changed while it ran; Switch and Close notes folder wait while a replace or its Undo is running.</li>
+    <li>Words typed while a folder switch waits for a sync are now saved to the folder they were typed in, and closing a notes folder finishes its running sync first (&quot;Finishing the sync before leaving this notes folder…&quot;), so the next folder gets none of its result.</li>
+    <li>Turning encryption on, off or resetting it, and Rebuild Drive backup, now finish against the notes folder they started in even if you close it meanwhile.</li>
+    <li>A file change noticed just as you switch notes folders no longer removes the next folder's pins or closes its tabs, and on a phone a rescan still running no longer applies the first folder's changes to the second.</li>
+    <li>An import or a Trash restore that finishes after you switch notes folders no longer shows its notes in the new folder or pulls you back to the old one; a failed join's banner, a website export and the Table view no longer land in another notes folder.</li>
+    <li>Renaming a note no longer pastes the new link in the wrong place in a note that changed since Vellen last read it.</li>
+    <li>Clean up unused attachments now moves only the files it showed you that are still unused, says how many it moved, never decides from another folder's notes, and no longer trashes files linked by bare name, from the note's own folder, as an encoded link (including OneNote attachments) or in properties.</li>
+    <li>Renaming a folder only in capitals (Notes → notes) now changes its name on the disk on Mac, Windows and iPhone too (on iPhone it used to do nothing at all), a folder rename that fails now says so instead of nothing, and renaming a note shown on an open whiteboard with an unsaved edit keeps the edit and points the card at the new name.</li>
+    <li>&quot;Start fresh&quot; at the default location, after a synced notes folder there was moved or deleted outside Vellen, now makes a new folder: it no longer puts the starter notes into the old folder's Drive copy or removes that folder's notes. Joining a Drive notes folder whose copy on this computer had been lost brings every note down again instead of saying the Drive folder is empty, and a plain folder where an encrypted one used to be is no longer refused as &quot;keyring vanished&quot;.</li>
+    <li>On a Mac, turning on Google Drive sync for a notes folder that's in iCloud now asks first: move the notes out of iCloud, sync where they are, or cancel. Vellen never refuses to sync.</li>
+    <li>When iCloud is holding notes off the Mac, the line under Sync now says how many weren't synced this time (for example &quot;3 notes are stored in iCloud only and weren't synced this time.&quot;), and the sync history shows it too.</li>
+    <li>A notes folder in iCloud that was already syncing with Google Drive shows one notice, once per folder, with a &quot;Move notes out of iCloud…&quot; button.</li>
+    <li>Settings → Encryption → Reset now checks Google Drive first. If another device changed notes this one hasn't synced, it says how many (naming up to three), says Reset would replace them with this device's older copies, and points to Change… on a device that is still unlocked, which sets a new passphrase and loses nothing. Cancel is the default; Reset anyway works as before. If Drive can't be reached for the check, Reset says &quot;Encryption was NOT reset&quot; and changes nothing.</li>
+    <li>Quick capture with no notes folder open now offers &quot;Save to &lt;folder&gt;&quot; for the folder you used last, if it's still there. It opens that folder, files the note once it has opened, and says &quot;Captured to &lt;folder&gt; ✓&quot;; if the folder can't be opened, your words stay in the box and it says why.</li>
+    <li>A right-click AI request (Summarize, Improve, Ask) made before AI was set up is no longer sent on its own once you set AI up: the chat asks first (&quot;Summarize the selected text?&quot;) with Send and Dismiss.</li>
+    <li>Which folders are collapsed in the file list is now remembered for each notes folder: collapsing &quot;Projects&quot; in one folder, or Collapse all, no longer changes another folder's layout. Each folder starts from the layout you had before the update.</li>
+    <li>After &quot;Move notes out of iCloud&quot;, the old folder leaves your list of notes folders, and opening it again says it's the old copy and offers the moved folder. The copy opens with sync off, and Settings → Sync asks before turning it on, because it shares a Google Drive folder with your moved notes.</li>
+    <li>Setting a property on several notes at once in a table now saves each note's earlier version first, can be stopped, and ends with &quot;Updated N notes&quot; and an Undo that puts back only the notes still holding what it wrote — never a note you've edited since, and never in another notes folder.</li>
+    <li>Exporting a website no longer writes over a file you added yourself that has the same name as a page — that page is left out, and the message afterwards names it so you can rename the note or the file.</li>
+    <li>Words typed in a note just before you opened another note in the same tab are no longer lost when another device changed that note at the same moment — your words are kept in the note, the other version goes to History, and a notice says so.</li>
+    <li>With the Trash's own list damaged, Move to trash now says why nothing moved, on every button that offers it, and the Trash says its list couldn't be read and where your trashed notes still are, instead of &quot;Trash is empty&quot;.</li>
+    <li>An exported website no longer contains your  and  comments in its search data or &quot;Mentioned in&quot; snippets, and a note marked publish: false is left out whichever way its frontmatter is written.</li>
+    <li>Whiteboards made by other JSON Canvas tools keep their own settings (viewport, version, plugin data) when you edit them or rename a note on them.</li>
+    </ul>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.46">
     <h2><a href="#v1.0.46">Version 1.0.46</a><span class="date">October 7, 2026</span></h2>
