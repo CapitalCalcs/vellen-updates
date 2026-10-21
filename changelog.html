@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.48, October 16, 2026</p>
+  <p class="updated">Latest: version 1.0.49, October 21, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,32 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.49">
+    <h2><a href="#v1.0.49">Version 1.0.49</a><span class="date">October 21, 2026</span></h2>
+    <ul>
+    <li><strong>Copy diagnostics records every quit.</strong> A quit whose last words the autosave had already written left no line, so a report couldn't tell a ⌘Q that waited for saves from one that never did. Each such quit now counts on one line, &quot;quit-flush: nothing left to save&quot;.</li>
+    <li><strong>Ask AI's Help answers stay on the right feature.</strong> For a how-to question Ask AI sent the model a whole Help chapter, and a small model could mix up two features described on the same page — sending you to &quot;Restore all in the version history panel&quot; for a deleted note, when Restore all is in the Trash. It now sends only the paragraphs that answer the question.</li>
+    <li><strong>On a small local model, Ask AI quotes Help when Help names the thing you asked about.</strong> Asked how to import from Apple Notes or Obsidian, a small model could ask the question back or say Help didn't cover it, though the two lines that answer it were in front of it. Under a local model smaller than 7B, a question that names entries Help lists (Apple Notes, Obsidian, Rename…) is now answered with Help's own lines.</li>
+    <li><strong>Settings says when a local model is small.</strong> Under a local model smaller than 7B (qwen3:0.6b, say), Settings → AI now says its answers can be wrong, even about Vellen's own Help, and recommends 8B or larger. Help says the same.</li>
+    <li><strong>&quot;No cards in view&quot; doesn't cover a card you just added.</strong> On a new whiteboard, the first card on a phone could appear with &quot;No cards in view — Fit to cards&quot; drawn across it. The board now checks again whenever its size changes, as it does when the keyboard comes up.</li>
+    <li><strong>Renaming a folder in Finder is described as a move.</strong> Each note in the renamed folder was announced as &quot;renamed to&quot; its own name. The notice now says where the note moved to, and names both changes when a note is renamed and moved at once.</li>
+    <li><strong>A web server that isn't an AI server is named as one.</strong> Pointing Settings → AI → Local at an ordinary web server that answers &quot;not implemented&quot; gave &quot;returned an error (501)&quot;. It now says the address answered, but not like an AI server.</li>
+    <li><strong>Fit to cards says when a board doesn't fit.</strong> On a phone, a whiteboard too wide to show whole at a readable size kept its right-hand columns off the screen, and nothing said they were there. Fit to cards, Tidy tree and making a tree from an outline now say which way the rest of the board is.</li>
+    <li><strong>On Android a note is never left empty by the app closing mid-save.</strong> If Android closed Vellen in the instant a note was being saved, the note could be left empty on disk (Version history still had it). A save now writes the new text beside the note and swaps it in, so the note on disk is always whole — the old words or the new.</li>
+    <li><strong>Renaming a folder's page in different capitals renames the folder.</strong> Renaming the Trip folder's page to &quot;trip&quot; renamed only the page, so the folder stayed &quot;Trip&quot; on disk while the phone said &quot;trip&quot;, and another device said &quot;Trip&quot;. The folder now takes the new spelling, and so does its page, whether the folder is renamed from the sidebar or from its page.</li>
+    <li><strong>Android's Back says when the next press will close Vellen.</strong> With nothing left to close, one press of Back changed nothing on screen and the next closed the app. That press now says &quot;Press Back again to close Vellen.&quot;</li>
+    <li><strong>A folder replaced on another device isn't called renamed.</strong> Deleting &quot;Work 2025&quot; on one device and making &quot;Work 2026&quot; with notes of the same names was announced as &quot;Work 2025 was renamed to Work 2026&quot;. It is now announced only when the notes really moved.</li>
+    <li><strong>A passing Google Drive error doesn't pause sync for minutes.</strong> When Drive answered a request with one of its own errors (&quot;Internal Error&quot;), sync stopped and waited for its next try, three to five minutes later — joining a folder on a new device could leave it empty for ten minutes. Vellen now asks Drive again after a second, and again after three, before it gives up.</li>
+    <li><strong>On Android, a notes folder that's gone can be removed from the list.</strong> A folder deleted or moved outside Vellen stayed in the notes-folder list for good: picking it only said it couldn't be opened. That message now offers Remove from list; the folder's files, wherever they are, are not touched.</li>
+    <li><strong>Every formatting button can be reached on a phone.</strong> On an iPhone 17 Pro, one tap on the toolbar's › moved the row past Heading, which had been under the › button: it was on neither page. Each page now starts with the first button the page before didn't show whole, on any screen width.</li>
+    <li><strong>Reviewing a note you've moved to the Trash says so.</strong> With versions from another device waiting, Review said &quot;both files are still in your folder&quot; when the note itself was in the Trash. It now says the note is in the Trash and offers to restore it and compare.</li>
+    <li><strong>Trashing a folder counts every note in it.</strong> A note that arrived in a folder from outside Vellen (copied in on Android, say) was moved to the trash with the folder, but the question before it counted only the notes Vellen had already seen (&quot;the 1 note&quot; over two). It now counts what is in the folder.</li>
+    <li><strong>During the trial, a notice's Undo can be tapped.</strong> In the last days of the trial, the reminder bar at the bottom of the screen was drawn over the notice that offers Undo after Find and replace, so a tap on Undo did nothing. Everything that floats at the bottom of the screen now sits above the bar.</li>
+    <li><strong>Phones no longer show a &quot;Check for updates&quot; that can't check.</strong> On iPhone, iPad, Android and the Microsoft Store version, Settings → About &amp; updates showed a &quot;Check for updates&quot; button that only said the store installs updates. The store does that, so the button is gone there.</li>
+    <li><strong>Ask AI no longer doubts a shortcut that Help gives.</strong> Asked how to indent a list, Ask AI answered with Tab (which Help names) and then marked Tab &quot;not a shortcut Vellen Help gives&quot;.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.48">
     <h2><a href="#v1.0.48">Version 1.0.48</a><span class="date">October 16, 2026</span></h2>
