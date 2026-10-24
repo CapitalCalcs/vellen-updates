@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.49, October 21, 2026</p>
+  <p class="updated">Latest: version 1.0.50, October 24, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,31 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.50">
+    <h2><a href="#v1.0.50">Version 1.0.50</a><span class="date">October 24, 2026</span></h2>
+    <ul>
+    <li><strong>Words typed into a table cell are saved as you type them.</strong> They reached the note only when you left the cell, so if the phone closed Vellen in the background with the caret still in a cell, what you had typed there was lost. They are now saved like words anywhere else in the note, and the caret stays where it was.</li>
+    <li><strong>A note whose upload hits a passing Google Drive error is tried again within seconds.</strong> Putting a few hundred notes on Drive for the first time could end with &quot;2 couldn't be copied — will try again&quot; and wait for a later sync. Vellen now tries again after a second and after three, and first asks Drive whether the last try already arrived, so a note is never put there twice.</li>
+    <li><strong>On Android, the first Back after opening Vellen says it will close.</strong> Opening Vellen and pressing Back before touching the screen closed it without &quot;Press Back again to close Vellen.&quot; Back now always says so first.</li>
+    <li><strong>Back from the App Switcher, an open note shows what's on disk.</strong> On an iPad, a note changed while Vellen sat in the App Switcher kept showing its old text until you opened it again. Vellen now looks again whenever its window comes back to the front.</li>
+    <li><strong>Ask AI no longer doubts Tab for indenting a list.</strong> Help's shortcuts table says &quot;⌘] / ⌘[, or Tab / Shift+Tab&quot; indent and outdent a list item, but Ask AI still marked Tab &quot;not a shortcut Vellen Help gives&quot;. It now reads the table's &quot;or Tab&quot; as Tab.</li>
+    <li><strong>Recent sync activity says a rename was a rename.</strong> A note renamed on another device was listed as &quot;removed&quot; under its old name and &quot;came in&quot; under the new one. It now reads &quot;renamed … to … on another device&quot;.</li>
+    <li><strong>Recent sync activity lists only your notes.</strong> Turning encryption off showed &quot;1 removed here · removed _vellen.keyring&quot; on your other devices, which is Vellen's own key file. Vellen's own files are no longer counted or named there.</li>
+    <li><strong>A folder with a page is named when it's renamed on another device.</strong> Renaming such a folder said &quot;4 notes were moved or renamed on another device.&quot; It now says the folder was renamed, as it does for folders without a page.</li>
+    <li><strong>A confirmation from inside Settings is shown on a phone.</strong> &quot;Passphrase changed. Your recovery phrase still works.&quot; and the other messages Settings gives were drawn underneath the full-screen Settings sheet, and were gone before it closed. Vellen's notices now appear above any open sheet.</li>
+    <li><strong>An embedded note counts as a link.</strong> A note shown inside another with <code>![[Note]]</code> was left out of the Links panel. It's listed there now, like any other link to it.</li>
+    <li><strong>On a small local model, Ask AI quotes the note it names.</strong> Asked which note explains something, a small model named the right note and then said things it didn't contain (&quot;The note says that Vellen is a notes app.&quot;). Under a local model smaller than 7B, Ask AI now names the note and quotes how it begins.</li>
+    <li><strong>Help says how to undo a change from yesterday.</strong> Asked that on a small local model, Ask AI sent people to the Trash's &quot;Restore all&quot;. Help now has an entry for undoing a change, Undo for what you just did and the note's version history for anything earlier, and Ask AI answers with it.</li>
+    <li><strong>Escape from a menu you opened with the mouse goes back to its button.</strong> On a Mac, a menu opened by clicking (the whiteboard's + Add, the notes-folder switcher, a board column's ⋯) left the keyboard nowhere when it closed. Focus now returns to the button that opened it.</li>
+    <li><strong>On a phone, a tablet or an iPad, a board card drags to another column.</strong> On a tablet a card moved only through its ⋯ menu, and on a phone it couldn't be moved at all. Now press and hold a card, then drag it with your finger, or just drag it with a trackpad or mouse. On a phone, hold the card at the edge of the screen and the board turns to the next column; empty columns now show, so a card can go into one. A finger that moves straight away still scrolls the board, and a tap still opens the note. A phone card also has the <strong>⋯</strong> menu a tablet card has, with <strong>Move to</strong> each column — the way to move a card with VoiceOver or TalkBack, which don't drag.</li>
+    <li><strong>On Android, New note works in a new, empty notes folder.</strong> Every New note there could fail with &quot;it was NOT written to your notes folder&quot;, though the file was made. A look at the folder that started just before the note was made finished just after it and forgot the note. What Vellen itself writes while it looks is now kept.</li>
+    <li><strong>An embed is drawn wherever it sits on a line.</strong> Only an embed alone on its line was drawn, so &quot;See this: <em class="wikilink">photo.png</em>&quot;, a gallery written as a list of <code>- ![[photo.png]]</code>, and a note embedded mid-sentence showed their brackets. An image in a sentence or a list item now appears in the line, a note embedded there appears as its card, and exports show the image too.</li>
+    <li><strong>Select all in a table cell selects that cell.</strong> Ctrl+A (⌘A on a Mac) in a cell selected the whole page, so the next key you typed replaced the entire note on Windows and Android, and landed at the top of the note on a Mac.</li>
+    <li><strong>A notes folder renamed, moved or deleted while it's open is followed, not lost.</strong> Renaming or moving the open notes folder outside Vellen, then making a quick capture, said &quot;Captured to Captures/…&quot; and put the capture in a new, empty folder at the old place, while your notes sat under the new name; the note you had open said &quot;Couldn't save … Vellen keeps trying&quot;, which it never would. Vellen now notices, says where the folder went (renamed to &quot;…&quot;, moved, or in the Trash) and how to get back to it: <strong>Open &quot;&lt;new name&gt;&quot;</strong> opens it where it is and saves what you had typed into it, a folder in the Trash is put back and picked up again, and <strong>Find the folder…</strong> finds one Vellen can't see. Nothing is made at the old place, and the capture window says what to do and keeps your words.</li>
+    <li><strong>On a phone, Turn off encryption names the phone.</strong> Its question said your notes stay as they are &quot;on this computer&quot;. It now says &quot;on this iPhone&quot;, &quot;this iPad&quot; or &quot;this Android device&quot;.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.49">
     <h2><a href="#v1.0.49">Version 1.0.49</a><span class="date">October 21, 2026</span></h2>
