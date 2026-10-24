@@ -393,7 +393,7 @@
       <p class="lede" style="margin-bottom: 28px">Connect your own Google Drive and your notes follow you to every device. We never see them: there is no Vellen server for them to pass through.</p>
       <ol class="steps">
         <li><strong>Connect your own Google Drive.</strong> Vellen asks for Google's narrowest Drive permission — it can see and manage only the folder it creates, never the rest of your Drive. (Notes go in through the app; a file dropped into that Drive folder by hand isn't pulled in.)</li>
-        <li><strong>Turn on end-to-end encryption, if you like.</strong> Notes are sealed on your device with a passphrase only you know before they upload. Not even Google can read them.</li>
+        <li><strong>Turn on end-to-end encryption, if you like.</strong> Notes are sealed on your device with a passphrase only you know before they upload. Google can't read what's in them; note names, sizes and dates stay visible, so you can still find your notes in Drive.</li>
         <li><strong>Write anywhere.</strong> Edits on one device arrive on the others. If two devices change the same note, both versions are kept — Vellen never silently picks one.</li>
       </ol>
       <p class="muted">Or skip sync entirely. Vellen is complete without it.</p>
@@ -418,7 +418,7 @@
       <div class="text">
         <span class="eyebrow">AI, on your terms</span>
         <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem)">Bring your own key, or run it at home</h2>
-        <p>Ask questions of your own writing, and get answers with citation chips that open the note they came from. With Anthropic, have it search the web and draft a note from what it finds, with sources. Use the provider you already pay — OpenAI, Anthropic, Google, Qwen or xAI — or point Vellen at a local model so nothing leaves your machine at all.</p>
+        <p>Ask questions of your own writing, and get answers with citation chips that open the note they came from. With Anthropic, have it search the web and draft a note from what it finds, with sources. Use the provider you already pay — OpenAI, Anthropic, Google, Qwen or xAI — or point Vellen at a local model so your notes reach no AI company at all. On a phone or tablet, that model runs on a computer on your own network.</p>
         <p><strong>It knows Vellen, too.</strong> Ask "how do I make a board?" or "does this sync?" and it answers from the app's own Help — real menu names and the shortcuts for your device, never an invented feature. The manual is comprehensive; this is the way to read it without reading it.</p>
         <ul>
           <li>Vellen adds no fee and is not a party to the traffic</li>
@@ -428,7 +428,7 @@
       </div>
       <div class="card" style="padding: 28px">
         <p class="muted" style="margin:0 0 8px; font-size:.85rem; letter-spacing:.08em; text-transform:uppercase">How it's different</p>
-        <p style="margin:0">Most apps put AI on a subscription and route your notes through their own service to do it. Vellen has no service. Your key goes to your provider, your notes go with the question you asked, and the answer comes back to a file on your disk. Change providers in a menu. Turn it off and it's gone.</p>
+        <p style="margin:0">Most apps put AI on a subscription and route your notes through their own service to do it. Vellen has no service. Your key goes to your provider, your notes go with the question you asked, and the answer comes back to you — Save as note keeps it as a file in your notes folder. To switch providers, connect the one you want in Settings → AI and disconnect the other. Turn it off and it's gone.</p>
       </div>
     </div>
   </div>
@@ -541,7 +541,7 @@
     </details>
     <details>
       <summary>Does the AI see my notes?</summary>
-      <p>Only the provider you chose, only when you ask, and only the notes involved in the question. Vellen has no service in the middle. Use a local model and nothing leaves your machine.</p>
+      <p>Only the provider you chose, only when you ask, and only the notes involved in the question. Vellen has no service in the middle. Use a local model and nothing leaves your computer — or, from a phone or tablet, your own network.</p>
     </details>
     <details>
       <summary>Where do I go when I'm stuck?</summary>
@@ -549,7 +549,7 @@
     </details>
     <details>
       <summary>What does "end-to-end encrypted" mean here?</summary>
-      <p>Your notes are sealed on your device with a passphrase only you know, before they upload to your Drive. Google stores files it can't read. The copies on your own devices stay plain, so forgetting the passphrase costs you nothing locally — you get a recovery phrase too, and any device that still has your notes can rebuild the Drive copy. Nobody can open the sealed copy for you, including us. That's the point.</p>
+      <p>Your notes are sealed on your device with a passphrase only you know, before they upload to your Drive. Google stores files whose contents it can't read. Note and folder names, sizes and dates stay visible, so you can still find your notes in Drive; Help lists exactly what isn't hidden. The copies on your own devices stay plain, so forgetting the passphrase costs you nothing locally — you get a recovery phrase too, and any device that still has your notes can rebuild the Drive copy. Nobody can open the sealed copy for you, including us. That's the point.</p>
     </details>
   </div>
 </section>
