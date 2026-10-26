@@ -74,7 +74,7 @@
 </header>
 <main>
   <h1><span class="brand">Vellen</span> — What's new</h1>
-  <p class="updated">Latest: version 1.0.50, October 24, 2026</p>
+  <p class="updated">Latest: version 1.0.51, October 26, 2026</p>
 
   <div class="intro">
     <p style="margin:0">Every version, what it changed, and what was wrong
@@ -84,6 +84,27 @@
     <a href="mailto:admin@capitalcalcs.com">admin@capitalcalcs.com</a>, or
     use <strong>Settings → About → Report a problem</strong> inside Vellen.</p>
   </div>
+
+  <section class="release" id="v1.0.51">
+    <h2><a href="#v1.0.51">Version 1.0.51</a><span class="date">October 26, 2026</span></h2>
+    <ul>
+    <li><strong>Help explains emoji in note names and how to add one.</strong> An emoji beside a note's or folder's name is part of its file name, not an icon Vellen adds; The basics now says so, where they usually come from (imports), how to type one on each device, and how they sort. Searching Help for emoji or icon finds it, and Ask AI answers from it.</li>
+    <li><strong>The phone's formatting toolbar pages cleanly at the largest text size.</strong> With the largest accessibility text size, pressing › to see more formatting buttons showed Highlight and Code again, which the first page had already shown, before Heading. The next page now starts at the first button the first page didn't show.</li>
+    <li><strong>Switching folders waits for an Undo that is putting notes back.</strong> Undoing a replace across thousands of notes takes a few seconds, and switching to another notes folder from the sidebar's folder list, a recent folder, the iPad's folder chip or the phone's drawer in that time stopped the Undo part-way and said so only to the folder you switched to. Back in the first folder nothing said the notes were still replaced. Every way out of the folder now waits, as Switch and Close notes folder in the command palette already did: a message says Vellen is still putting notes back, and the Undo finishes.</li>
+    <li><strong>A saved table or board in the sidebar follows its folder.</strong> After renaming a folder or moving it into another, its table or board under Boards, tables &amp; whiteboards kept the old folder name and opened on &quot;No notes match this view&quot; until Vellen was restarted. It now follows the folder at once.</li>
+    <li><strong>Copy diagnostics times the calendar.</strong> Opening the calendar and paging a month now add lines to Copy diagnostics' Timings, as Search, Graph and Tasks already did, so a slow calendar on a big notes folder can be measured.</li>
+    <li><strong>Quick open finds a note by its aliases.</strong> A note with <code>aliases: [Home]</code> in its properties, the way Obsidian notes often have, wasn't found by typing &quot;Home&quot; in ⌘P, though <em class="wikilink">Home</em> links to it. Now it is.</li>
+    <li><strong>On Android, About no longer says you chose a folder you didn't.</strong> On an install whose notes are still in Vellen's own storage, from before the folder picker, About said they were in &quot;the “Vellen” folder you chose&quot;. It now says they're in Vellen's own storage and that Settings → Backup &amp; protection moves them to a folder you pick.</li>
+    <li><strong>Ask AI no longer doubts &quot;the pencil icon&quot;.</strong> An answer that said to click the pencil icon to rename a note was marked &quot;not a control Vellen Help names&quot;, because Help calls it the pencil. A control Help names is now recognised when the answer calls it its icon or its button.</li>
+    <li><strong>A table cell on a note that isn't UTF-8 says why it can't change it.</strong> With such a note open in a tab, setting one of its properties from a table was refused, rightly, but the message said &quot;Couldn't save… check that the notes folder is reachable and has free space.&quot; It now says the note isn't plain UTF-8 text and offers Edit anyway, as ticking one of its tasks does.</li>
+    <li><strong>Ask AI says how to get back a deleted note.</strong> Asked &quot;how do I get back a note I deleted?&quot;, Ask AI was also handed the topic about the ← button, and answers said Undo or ⌘Z brings a deleted note back, which isn't so. It now reads &quot;get it back&quot; as restoring and &quot;get back to it&quot; as going back, sends only the Trash topic, and Help has a line for it: open the Trash and press Restore.</li>
+    <li><strong>Moving a board card with its ⋯ menu keeps the keyboard on the card.</strong> Choosing Move to &lt;column&gt; moved the card and left keyboard and VoiceOver focus on the bare page, so the next Tab started at the first card. Focus now stays on the card's ⋯ in its new column. On a board kept in the app's settings, each card's ⋯ is now also named for its card.</li>
+    <li><strong>Picking a spelling suggestion fixes the word.</strong> Right-click a misspelled word and choose the suggested spelling: it now replaces the word. With auto-correct off (the default), Vellen had been refusing the replacement along with the system's automatic ones, so the menu offered the right word and clicking it did nothing (Windows; the Mac's menu took the same path).</li>
+    <li><strong>On an iPad, a calendar entry drags to another day.</strong> The calendar moved a note or task only by mouse drag, which the iPad does not start from a finger or a trackpad. Now, as on a board, press and hold an entry with a finger and drag it to another day, or press and drag it with the trackpad; the note's date changes with it.</li>
+    <li><strong>Help on a phone says how to move a board card.</strong> It still said boards were read-only on a phone. It now says to press and hold a card and drag it to another column, or use its ⋯ → Move to….</li>
+    <li><strong>Help on a phone no longer mentions Quick capture.</strong> Capture web page said its notes went to &quot;the same place quick captures go&quot;, and the trial topic listed quick capture among what pauses, but Quick capture is a computer's shortcut. Both now leave it out on a phone and tablet.</li>
+    </ul>
+  </section>
 
   <section class="release" id="v1.0.50">
     <h2><a href="#v1.0.50">Version 1.0.50</a><span class="date">October 24, 2026</span></h2>
