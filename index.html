@@ -6,7 +6,7 @@
 <title>Vellen — Notes that are files</title>
 <meta name="application-name" content="Vellen">
 <meta property="og:site_name" content="Vellen">
-<meta name="description" content="Vellen is a notes app built on one idea: your notes are plain Markdown files in a folder you own. Links, a graph, boards, whiteboards, tasks — and private sync through your own Drive. No account, no servers, no subscription.">
+<meta name="description" content="Vellen is a notes app built on one idea: your notes are plain Markdown files in a folder you own. Links, a graph, boards, whiteboards, tasks with reminders — and private sync through your own Drive. No account, no servers, no subscription.">
 <meta property="og:title" content="Vellen — Notes that are files">
 <meta property="og:description" content="Plain Markdown files you own, with links, boards, whiteboards and private end-to-end encrypted sync. No account. No subscription.">
 <meta property="og:type" content="website">
@@ -213,7 +213,7 @@
   <div class="wrap">
     <span class="eyebrow">A notes app for people who keep their notes</span>
     <h1>Your notes are <em>files.</em><br>That's the whole idea.</h1>
-    <p class="lede">Vellen writes plain Markdown into a folder you choose, on your own device. Everything it adds — links, a graph, boards, whiteboards, private sync — is built on top of that, never instead of it.</p>
+    <p class="lede">Vellen writes plain Markdown into a folder you choose, on your own device. Everything it adds — links, a graph, boards, whiteboards, reminders, private sync — is built on top of that, never instead of it.</p>
     <div class="actions">
       <a class="btn primary" href="#download">Get Vellen</a>
       <a class="btn" href="#features">See what it does</a>
@@ -311,13 +311,14 @@
 
     <div class="feature flip">
       <div class="text">
-        <h3>The everyday, handled</h3>
-        <p>Daily notes from a template. Tasks that gather themselves from wherever you wrote them, with due dates and an overdue count. Version history with diffs, so an edit is never the end of a sentence you liked.</p>
+        <h3>Tasks that remind you</h3>
+        <p>Tasks gather themselves from wherever you wrote them. Give one a day and a time, and Vellen reminds you when it comes, even with the app closed. Tap the reminder to open the note, or mark it done or snooze it from the reminder itself.</p>
         <ul>
-          <li>Daily notes and templates with dates, times and cursor placement</li>
-          <li>Tasks with due dates, overdue at a glance</li>
-          <li>Repeating tasks: 🔁 every week, every weekday, or when done</li>
-          <li>Versions kept as you write, comparable and restorable; name the ones that matter and they sync too</li>
+          <li>One panel sets a task's date, time and repeat, and says what it will do before you save: "Reminds you tomorrow at 2:30 PM"</li>
+          <li>Reminders on iPhone, iPad, Mac and Windows, set by the device itself; no server is involved</li>
+          <li>Repeating tasks: 🔁 every day, weekday, week, month or year</li>
+          <li>Still plain text: the time is written into the task's own line, so it syncs like any other word</li>
+          <li>Daily notes from a template, and versions kept as you write, comparable and restorable</li>
         </ul>
       </div>
       <figure class="shot">
@@ -331,10 +332,12 @@
     <div class="feature">
       <div class="text">
         <h3>A calendar you never have to fill in</h3>
-        <p>The other half of the task list. Tasks answers "what is there to do"; the Calendar answers "what's coming up, and what did I already miss". Every dated note and every task with a due date lands on it by itself — there is nothing to create or set up.</p>
+        <p>The other half of the task list. Tasks answers "what is there to do"; the Calendar answers "what's coming up, and what did I already miss". Every dated note and every task with a due date lands on it by itself — there is nothing to create or set up. Month shows the shape of things; Week and Day show the hours.</p>
         <ul>
-          <li>Notes dated with a <code>due</code>, <code>deadline</code> or <code>date</code> property, and tasks with due dates, on one month grid</li>
-          <li>Drag anything to another day and the note itself is rewritten (on a phone the calendar is a list of days you tap)</li>
+          <li>Notes dated with a <code>due</code>, <code>deadline</code> or <code>date</code> property, and tasks with due dates, by month, week or day</li>
+          <li>Drag a task to another day, or in Week and Day onto an hour to give it that time, and the note itself is rewritten (on a phone: a list of days, or one day at a time)</li>
+          <li>Your own calendar's appointments beside your tasks in Week and Day, read-only and never copied anywhere (iPhone, iPad and Mac)</li>
+          <li><strong>Add to Calendar</strong> sends a task to your calendar app as a copy</li>
           <li>Late work doesn't hide: past days with unfinished tasks are tinted, and older overdue items are counted in the header</li>
           <li>Not a separate calendar app — every date lives in your own Markdown, so it syncs and means the same thing in any other editor</li>
         </ul>
@@ -476,7 +479,10 @@
             <tr><td>Boards &amp; tables<small>Kanban and table views of a folder</small></td><td class="yes">✓</td><td class="yes">✓<small>drag cards by finger, trackpad or mouse</small></td><td class="yes">✓<small>Boards: hold a card and drag it to another column, or ⋯ → Move to. Tables: read-only, tap a row to open its note.</small></td></tr>
             <tr><td>Whiteboards<small>Mind-map keys, folding, tidy, outline in and out</small></td><td class="yes">✓</td><td class="yes">✓<small>touch gestures; branch buttons instead of keys; no multi-select</small></td><td class="yes">✓<small>touch gestures; branch buttons instead of keys; no multi-select</small></td></tr>
             <tr><td>Tasks dashboard</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><td>Calendar</td><td class="yes">✓<small>month grid, drag to reschedule</small></td><td class="yes">✓<small>month grid, drag to reschedule</small></td><td class="part">List of days<small>tap to open; no drag</small></td></tr>
+            <tr><td>Reminders at a task's time<small>even with Vellen closed; Mark done and Snooze on the reminder</small></td><td class="yes">✓<small>Windows: the Microsoft Store version</small></td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Calendar</td><td class="yes">✓<small>month, week and day; drag to a day or an hour</small></td><td class="yes">✓<small>month, week and day; drag to a day or an hour</small></td><td class="part">List of days, and Day<small>tap to open; no drag</small></td></tr>
+            <tr><td>Add to Calendar<small>a task sent to your calendar app as a copy</small></td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Your calendar's events beside your tasks<small>read-only, in Week and Day</small></td><td class="part">Mac<small>not on Windows yet</small></td><td class="yes">✓</td><td class="yes">✓</td></tr>
             <tr><td>Tabs &amp; split view</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—<small>one note at a time</small></td></tr>
             <tr><td>Version history, trash, smart folders</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
             <tr><td>Daily notes &amp; templates</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
@@ -526,6 +532,10 @@
     <details>
       <summary>Can I use the notes I already have?</summary>
       <p>If they're Markdown files, yes — point Vellen at the folder and they're your vault, links and all. Most notes apps can export to Markdown; once yours has, you're done. Coming from Evernote, Notion, OneNote or Google Keep? Import them on a Mac or Windows PC (Settings → Import &amp; capture), and sync brings them to your phone.</p>
+    </details>
+    <details>
+      <summary>Will it remind me about my tasks?</summary>
+      <p>Yes. Give a task a day and a time, or just a day, and Vellen reminds you when it comes, even with the app closed. Each device sets its own reminders with its own notifications, so there is no server in the middle and nothing to sign up for. Turn them on in Settings → Reminders on each device you want reminded on.</p>
     </details>
     <details>
       <summary>Do I have to use sync?</summary>
